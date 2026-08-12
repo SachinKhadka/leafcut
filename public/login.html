@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leafcut — Sign in</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='195 335 155 130'%3E%3Cpath fill='%236bdb37' d='M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z'/%3E%3Cpath fill='%236bdb37' d='M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z'/%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: {
+      leaf: { 500:'#6bdb37', 600:'#54b52c' },
+      ink: { 800:'#36454f', 900:'#2a353d', 950:'#1c242a' },
+      grey: { 300:'#bfbfbf', 500:'#666666', 700:'#4a4a4a' }
+    },
+    fontFamily: { sans: ['Poppins','sans-serif'] }
+  } } }
+</script>
+<style> body{font-family:'Poppins',sans-serif;} input:focus{outline:none;} </style>
+</head>
+<body class="bg-ink-800 min-h-screen flex items-center justify-center px-5">
+  <div class="w-full max-w-sm">
+    <div class="flex items-center justify-center gap-2 mb-8 text-white font-bold text-xl">
+      <svg class="h-8 w-8" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
+        <path fill="#6bdb37" d="M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z"/>
+      </svg>
+      leafcut
+    </div>
+    <form id="login-form" class="bg-white rounded-2xl p-7">
+      <h1 class="text-lg font-bold text-center mb-1">Sign in</h1>
+      <p class="text-sm text-grey-500 text-center mb-6">Dashboard &amp; content editing access</p>
+      <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="password">Password</label>
+      <input id="password" type="password" required autofocus class="w-full rounded-lg border border-grey-300 px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      <p id="error-msg" class="hidden mt-2 text-sm text-red-500">Incorrect password.</p>
+      <button type="submit" class="mt-5 w-full rounded-full bg-leaf-500 hover:bg-leaf-600 text-ink-900 font-semibold py-2.5 text-sm transition-colors">Sign in</button>
+    </form>
+  </div>
+  <script>
+    const form = document.getElementById('login-form');
+    const errorMsg = document.getElementById('error-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.classList.add('hidden');
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+        if (!res.ok) { errorMsg.classList.remove('hidden'); return; }
+        const params = new URLSearchParams(location.search);
+        location.href = params.get('redirect') || '/dashboard';
+      } catch {
+        errorMsg.textContent = 'Something went wrong — try again.';
+        errorMsg.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

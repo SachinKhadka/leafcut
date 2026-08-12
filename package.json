@@ -1,0 +1,13 @@
+{
+  "name": "leafcut-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Leafcut site backend — zero-dependency Node.js API over JSON-file storage, with a login-gated dashboard and inline content editing. No npm install required.",
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {}
+}

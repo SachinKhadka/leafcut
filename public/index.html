@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leafcut — Video Production Studio for Explainer, SaaS Demo &amp; Social Video</title>
+<meta name="description" content="Leafcut is a video production studio crafting explainer videos, SaaS demos, 2D animation and social content that connect and convert. Get an instant quote.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://leafcut.studio/">
+<meta name="theme-color" content="#36454f">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leafcut">
+<meta property="og:title" content="Leafcut — Video Production Studio">
+<meta property="og:description" content="Explainer videos, SaaS demos, 2D animation and social content that connect and convert. Get an instant quote.">
+<meta property="og:url" content="https://leafcut.studio/">
+<meta property="og:image" content="https://leafcut.studio/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leafcut — Video Production Studio">
+<meta name="twitter:description" content="Explainer videos, SaaS demos, 2D animation and social content that connect and convert.">
+<meta name="twitter:image" content="https://leafcut.studio/og-image.jpg">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='195 335 155 130'%3E%3Cpath fill='%236bdb37' d='M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z'/%3E%3Cpath fill='%236bdb37' d='M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z'/%3E%3C/svg%3E">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://leafcut.studio/#business",
+  "name": "Leafcut",
+  "description": "Video production studio crafting explainer videos, SaaS demos, 2D animation and social content.",
+  "url": "https://leafcut.studio/",
+  "email": "hello@leafcut.studio",
+  "priceRange": "$40-$400",
+  "areaServed": "Worldwide",
+  "serviceType": ["Explainer video production", "SaaS demo video", "2D animation", "Social media video ads", "Video sales letters"]
+}
+</script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          leaf: {
+            50: '#f1fce9', 100: '#ddf7c9', 200: '#bdef99', 300: '#96e563', 400: '#7fe04a',
+            500: '#6bdb37', // primary parrot green (brand)
+            600: '#54b52c', 700: '#428f23', 800: '#356f1e', 900: '#2b591b', 950: '#15300c'
+          },
+          grey: {
+            50: '#f7f7f7', 100: '#eeeeee', 200: '#d9d9d9', 300: '#bfbfbf', 400: '#999999',
+            500: '#666666', // brand mid grey
+            600: '#595959',
+            700: '#4a4a4a', // brand dark grey
+            800: '#333333', 900: '#1f1f1f', 950: '#141414'
+          },
+          ink: {
+            50: '#eef1f3', 100: '#dde4e8', 200: '#b9c5cc', 300: '#93a4ad', 400: '#71828c',
+            500: '#56656f', 600: '#46525b', 700: '#3d4750',
+            800: '#36454f', // brand dark navy (icon backdrop)
+            900: '#2a353d', 950: '#1c242a'
+          }
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          sans: ['Poppins', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --nav-h: 5rem;
+  }
+  @media (max-width: 767px) { :root { --nav-h: 4rem; } }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute; left: 1rem; top: -3rem; z-index: 100;
+    background: #6bdb37; color: #1c242a; padding: .6rem 1rem; border-radius: 9999px;
+    font-size: .875rem; font-weight: 600; transition: top .25s var(--ease-apple);
+  }
+  .skip-link:focus { top: 1rem; }
+
+  /* Apple-style blur reveal */
+  .reveal {
+    opacity: 0; transform: translateY(28px) scale(.985); filter: blur(6px);
+    transition: opacity 1s var(--ease-apple), transform 1s var(--ease-apple), filter 1s var(--ease-apple);
+    will-change: opacity, transform, filter;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 0%;
+    background: #6bdb37; transition: width .3s var(--ease-apple);
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+  #site-header { transition: box-shadow .4s var(--ease-apple), background-color .4s var(--ease-apple); }
+  #site-header.is-scrolled { box-shadow: 0 12px 30px -14px rgba(0,0,0,.45); }
+  #nav-row { height: var(--nav-h); transition: height .4s var(--ease-apple); }
+
+  .grain {
+    background-image: radial-gradient(circle at 20% 20%, rgba(107,219,55,0.18), transparent 40%),
+                       radial-gradient(circle at 80% 0%, rgba(107,219,55,0.12), transparent 35%);
+  }
+  #hero-glow { transition: transform .2s linear; }
+
+  ::selection { background: #6bdb37; color: #1c242a; }
+
+  .magnetic { display: inline-flex; will-change: transform; }
+
+  .play-btn { transition: transform .4s var(--ease-spring); animation: pulse-ring 2.8s var(--ease-apple) infinite; }
+  .play-btn:hover { transform: scale(1.08); }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(107,219,55,.45); }
+    70% { box-shadow: 0 0 0 16px rgba(107,219,55,0); }
+    100% { box-shadow: 0 0 0 0 rgba(107,219,55,0); }
+  }
+
+  .card-hover { transition: transform .5s var(--ease-apple), box-shadow .5s var(--ease-apple), border-color .5s var(--ease-apple); }
+  .card-hover:hover { transform: translateY(-6px); border-color: #6bdb37; box-shadow: 0 20px 40px -20px rgba(0,0,0,.18); }
+
+  .portfolio-item { transition: opacity .4s var(--ease-apple), transform .4s var(--ease-apple); }
+  .portfolio-item .thumb { transition: transform .6s var(--ease-apple); }
+  .portfolio-item:hover .thumb { transform: scale(1.045); }
+  .portfolio-hidden { opacity: 0; transform: scale(.96); position: absolute; pointer-events: none; }
+
+  /* Estimator step panels */
+  .step-panel { transition: opacity .4s var(--ease-apple), transform .4s var(--ease-apple); }
+  .step-panel.is-hidden { opacity: 0; transform: translateY(8px); position: absolute; inset: 0; pointer-events: none; }
+  .step-panel.is-active { opacity: 1; transform: translateY(0); position: relative; }
+
+  .chip-btn { transition: border-color .3s var(--ease-apple), background-color .3s var(--ease-apple), color .3s var(--ease-apple); }
+
+  @keyframes pop { 0% { transform: scale(1); } 35% { transform: scale(1.07); } 100% { transform: scale(1); } }
+  .pulse { animation: pop .4s var(--ease-spring); }
+
+  input:focus, textarea:focus, select:focus { outline: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+    .play-btn { animation: none !important; }
+    .magnetic { transition: none !important; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  }
+
+  /* ===== Inline (WYSIWYG) edit mode ===== */
+  #edit-banner { transition: transform .4s var(--ease-apple); }
+  .edit-card { position: relative; }
+  .edit-del-btn, .edit-cycle-hint {
+    opacity: 0; pointer-events: none; transition: opacity .25s var(--ease-apple);
+  }
+  body.editing .edit-card:hover .edit-del-btn,
+  body.editing .edit-card:hover .edit-cycle-hint { opacity: 1; pointer-events: auto; }
+  body.editing [contenteditable="true"] {
+    cursor: text; border-radius: .25rem; outline: 1px dashed transparent; transition: outline-color .2s;
+  }
+  body.editing [contenteditable="true"]:hover,
+  body.editing [contenteditable="true"]:focus { outline-color: #6bdb37; }
+  body.editing .cycle-field { cursor: pointer; }
+  body.editing .cycle-field:hover { outline: 1px dashed #6bdb37; outline-offset: 2px; }
+  .add-tile {
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .5rem;
+    border: 2px dashed #bfbfbf; border-radius: 1rem; color: #666666; font-size: .875rem; font-weight: 500;
+    min-height: 160px; cursor: pointer; transition: border-color .25s var(--ease-apple), color .25s var(--ease-apple);
+  }
+  .add-tile:hover { border-color: #6bdb37; color: #428f23; }
+  body:not(.editing) .add-tile { display: none; }
+</style>
+</head>
+
+<body class="bg-white text-grey-900 antialiased">
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- Edit-mode banner (only shown when ?edit=1 is in the URL) -->
+<div id="edit-banner" class="hidden fixed bottom-0 inset-x-0 z-[60] bg-leaf-500 text-ink-900">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-sm font-medium">
+    <span>✏️ Editing — click any text to change it, hover a card for delete, click a badge/avatar to cycle its option.</span>
+    <div class="flex items-center gap-3">
+      <a href="/dashboard" class="underline hover:no-underline">View leads →</a>
+      <button id="exit-edit-btn" type="button" class="rounded-full bg-ink-900 text-white px-4 py-1.5 font-semibold hover:bg-ink-800 transition-colors">Exit edit mode</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-ink-800/95 backdrop-blur border-b border-white/10">
+  <div id="nav-row" class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 font-display font-700 text-xl tracking-tight text-white">
+      <svg class="h-8 w-8" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
+        <path fill="#6bdb37" d="M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z"/>
+      </svg>
+      <span>leafcut</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-grey-200" aria-label="Primary">
+      <a href="#about" class="nav-link hover:text-white">About</a>
+      <a href="#services" class="nav-link hover:text-white">Services</a>
+      <a href="#portfolio" class="nav-link hover:text-white">Portfolio</a>
+      <a href="#team" class="nav-link hover:text-white">Team</a>
+      <a href="#contact" class="nav-link hover:text-white">Contact</a>
+    </nav>
+
+    <a href="#contact" class="magnetic hidden md:inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-grey-950 text-sm font-semibold px-5 py-2.5 transition-colors">
+      Start a project
+    </a>
+
+    <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-white p-2 -mr-2">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden border-t border-white/10 bg-ink-800">
+    <nav class="flex flex-col px-5 py-4 gap-1 text-grey-200" aria-label="Mobile">
+      <a href="#about" class="mobile-link py-3 border-b border-white/5">About</a>
+      <a href="#services" class="mobile-link py-3 border-b border-white/5">Services</a>
+      <a href="#portfolio" class="mobile-link py-3 border-b border-white/5">Portfolio</a>
+      <a href="#team" class="mobile-link py-3 border-b border-white/5">Team</a>
+      <a href="#contact" class="mobile-link py-3">Contact</a>
+      <a href="#contact" class="mobile-link mt-3 inline-flex justify-center items-center rounded-full bg-leaf-500 text-grey-950 text-sm font-semibold px-5 py-3">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative pt-28 pb-20 md:pt-40 md:pb-28 bg-ink-800 text-white overflow-hidden grain">
+  <div id="hero-glow" class="pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-6">
+        <span class="h-1.5 w-1.5 rounded-full bg-leaf-500" aria-hidden="true"></span>
+        <span data-site-field="heroEyebrow">Video Production Studio</span>
+      </p>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-700 leading-[1.08] tracking-tight">
+        <span data-site-field="heroPrefix">Video production that makes people</span> <span class="text-leaf-400" data-site-field="heroHighlight">act</span><span data-site-field="heroSuffix">, not just watch.</span>
+      </h1>
+      <p class="mt-6 text-grey-300 text-lg leading-relaxed max-w-lg" data-site-field="heroSubtext">
+        Leafcut is a lean video studio for startups and brands. We turn ideas into explainer videos, product demos and social content built with structure, emotion and intent.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a href="#contact" class="magnetic rounded-full bg-leaf-500 hover:bg-leaf-400 text-grey-950 font-semibold px-7 py-3.5 transition-colors">Start a project</a>
+        <a href="#portfolio" class="magnetic rounded-full border border-white/25 hover:border-white text-white font-semibold px-7 py-3.5 transition-colors">See our work</a>
+      </div>
+      <div class="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4 text-sm text-grey-400">
+        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="10000" data-suffix="+">10,000+</span><br>videos delivered</div>
+        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="4.9" data-decimals="1" data-suffix="★">4.9★</span><br>average client rating</div>
+        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="3" data-suffix="">3</span><br>continents served</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:.15s">
+      <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-leaf-800 via-ink-700 to-ink-950 aspect-video flex items-center justify-center group cursor-pointer">
+        <div class="absolute inset-0 opacity-40" style="background:radial-gradient(circle at 30% 30%, rgba(107,219,55,.5), transparent 55%);" aria-hidden="true"></div>
+        <button class="play-btn relative z-10 h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-leaf-500 text-ink-900 flex items-center justify-center shadow-xl" aria-label="Play showreel">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8 ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <span class="absolute bottom-4 left-4 text-xs font-medium text-grey-300 tracking-wide" data-site-field="heroVideoLabel">Showreel 2026 · 01:12</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid md:grid-cols-12 gap-12">
+    <div class="md:col-span-5 reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">About Leafcut</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight leading-tight" data-site-field="aboutHeading">
+        A small studio, built for clear, honest storytelling.
+      </h2>
+    </div>
+    <div class="md:col-span-7 reveal" style="transition-delay:.1s">
+      <p class="text-grey-600 text-lg leading-relaxed" data-site-field="aboutPara1">
+        We help businesses turn ideas into clear, engaging videos that people understand, feel and respond to — not just watch. Our team has produced thousands of videos for startups, agencies and brands across SaaS, eCommerce and service businesses.
+      </p>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="aboutPara2">
+        Every project runs through the same process: a clear brief, a tight script, considered visuals, and a final cut built for the platform it's meant to live on. No bloated timelines, no jargon — just video that does its job.
+      </p>
+
+      <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-6">
+        <div class="border-t-2 border-leaf-500 pt-3">
+          <p class="stat-num font-display text-2xl font-700" data-target="6.3" data-decimals="1" data-suffix="k+">6.3k+</p>
+          <p class="text-sm text-grey-500 mt-1">client reviews</p>
+        </div>
+        <div class="border-t-2 border-leaf-500 pt-3">
+          <p class="font-display text-2xl font-700">1hr</p>
+          <p class="text-sm text-grey-500 mt-1">avg. response time</p>
+        </div>
+        <div class="border-t-2 border-leaf-500 pt-3">
+          <p class="font-display text-2xl font-700">Top Rated</p>
+          <p class="text-sm text-grey-500 mt-1">studio status</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-20 md:py-28 bg-grey-50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Services</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">What we make</h2>
+      <p class="mt-4 text-grey-600 text-lg">Six core formats, each built around one goal: getting your audience to actually respond.</p>
+    </div>
+
+    <div id="services-grid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section id="portfolio" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 reveal">
+      <div class="max-w-2xl">
+        <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Portfolio</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Recent work</h2>
+      </div>
+      <div id="filters" class="flex flex-wrap gap-2" role="group" aria-label="Filter portfolio by category">
+        <button data-filter="all" aria-pressed="true" class="filter-btn active-filter text-sm font-medium px-4 py-2 rounded-full border border-grey-900 bg-grey-900 text-white transition-colors">All</button>
+        <button data-filter="explainer" aria-pressed="false" class="filter-btn text-sm font-medium px-4 py-2 rounded-full border border-grey-300 text-grey-600 hover:border-grey-900 transition-colors">Explainer</button>
+        <button data-filter="saas" aria-pressed="false" class="filter-btn text-sm font-medium px-4 py-2 rounded-full border border-grey-300 text-grey-600 hover:border-grey-900 transition-colors">SaaS</button>
+        <button data-filter="animation" aria-pressed="false" class="filter-btn text-sm font-medium px-4 py-2 rounded-full border border-grey-300 text-grey-600 hover:border-grey-900 transition-colors">Animation</button>
+        <button data-filter="social" aria-pressed="false" class="filter-btn text-sm font-medium px-4 py-2 rounded-full border border-grey-300 text-grey-600 hover:border-grey-900 transition-colors">Social</button>
+      </div>
+    </div>
+
+    <div id="portfolio-grid" class="relative mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <p class="mt-6 text-xs text-grey-400 reveal">Thumbnails shown are placeholders — swap in real project stills or renders.</p>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section id="team" class="py-20 md:py-28 bg-grey-50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Team</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">The people behind the cut</h2>
+      <p class="mt-4 text-grey-600 text-lg">A small, senior team — every project gets a director's attention, start to finish.</p>
+    </div>
+
+    <div id="team-grid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    <p class="mt-8 text-xs text-grey-400 reveal">Placeholder names and roles — swap in your real team and photos.</p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL STRIP ============ -->
+<section class="py-16 bg-ink-800 text-white">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center reveal">
+    <svg class="w-8 h-8 text-leaf-500 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.17 6C4.87 6 3 7.98 3 10.5c0 2.31 1.61 4.16 3.66 4.47C6.28 17.3 4.71 18.8 3 19.5v1.5c3.5-.4 6.5-2.9 6.5-7.5V10.5C9.5 7.98 9.47 6 7.17 6zm10 0c-2.3 0-4.17 1.98-4.17 4.5 0 2.31 1.61 4.16 3.66 4.47-.38 2.33-1.95 3.83-3.66 4.53v1.5c3.5-.4 6.5-2.9 6.5-7.5V10.5c0-2.52-.03-4.5-2.33-4.5z"/></svg>
+    <p class="font-display text-xl sm:text-2xl leading-relaxed" data-site-field="testimonialQuote">
+      "Leafcut understood our vision from the first call and turned it into something we're proud to put in front of customers. Fast, clear, and genuinely creative."
+    </p>
+    <p class="mt-6 text-sm text-grey-400" data-site-field="testimonialAttribution">Placeholder client quote — replace with a real testimonial</p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-14">
+
+    <div class="lg:col-span-4 reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Contact</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight" data-site-field="contactHeading">Let's make something worth watching.</h2>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="contactPara">Build a quote in a few clicks, or reach out directly. We'll reply within one business day.</p>
+
+      <div class="mt-10 space-y-5 text-sm">
+        <div class="flex items-center gap-3">
+          <span class="h-9 w-9 rounded-full bg-leaf-500/10 text-leaf-600 flex items-center justify-center" aria-hidden="true">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </span>
+          <a href="mailto:hello@leafcut.studio" class="hover:text-leaf-600" data-site-field="contactEmail">hello@leafcut.studio</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="h-9 w-9 rounded-full bg-leaf-500/10 text-leaf-600 flex items-center justify-center" aria-hidden="true">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 01-2-2V5a1 1 0 011-1h16a1 1 0 011 1v1a2 2 0 01-2 2M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg>
+          </span>
+          <span data-site-field="contactResponseTime">Avg. response time: 1 hour</span>
+        </div>
+        <div class="flex items-center gap-4 pt-2">
+          <a href="#" class="h-9 w-9 rounded-full border border-grey-200 flex items-center justify-center hover:border-leaf-500 hover:text-leaf-600 transition-colors" aria-label="Leafcut on Instagram">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.3.15 4.7 1.56 4.85 4.85.06 1.3.07 1.6.07 4.9s0 3.6-.07 4.9c-.15 3.28-1.55 4.7-4.85 4.85-1.3.06-1.6.07-4.9.07s-3.6 0-4.9-.07c-3.3-.15-4.7-1.57-4.85-4.85C2.2 15.6 2.2 15.3 2.2 12s0-3.6.07-4.9C2.4 3.82 3.8 2.4 7.1 2.27 8.4 2.2 8.8 2.2 12 2.2zm0 3.4a6.4 6.4 0 100 12.8 6.4 6.4 0 000-12.8zm0 10.55a4.15 4.15 0 110-8.3 4.15 4.15 0 010 8.3zm6.65-10.8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+          </a>
+          <a href="#" class="h-9 w-9 rounded-full border border-grey-200 flex items-center justify-center hover:border-leaf-500 hover:text-leaf-600 transition-colors" aria-label="Leafcut on LinkedIn">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-.98 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.8c0-1.38-.03-3.16-2-3.16-2 0-2.3 1.5-2.3 3.06V21h-4V9z"/></svg>
+          </a>
+          <a href="#" class="h-9 w-9 rounded-full border border-grey-200 flex items-center justify-center hover:border-leaf-500 hover:text-leaf-600 transition-colors" aria-label="Leafcut on Vimeo">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.4 7.4c-.1 2.1-1.6 5-4.4 8.7-2.9 3.8-5.4 5.7-7.4 5.7-1.3 0-2.3-1.2-3.2-3.5L6 12.8c-.6-2.3-1.3-3.5-2-3.5-.2 0-.7.3-1.5.9l-.9-1.2c.9-.8 1.8-1.6 2.7-2.4C5.5 5.5 6.6 4.9 7.3 4.8c1.6-.2 2.6.9 3 3.3.4 2.6.7 4.3 1 4.9.5 1.3 1.1 2 1.8 2 .5 0 1.3-.8 2.3-2.5s1.6-2.9 1.6-3.8c.1-1.4-.5-2.1-1.8-2.1-.6 0-1.3.1-2 .4 1.3-4.3 3.8-6.4 7.5-6.3 2.7.1 4 1.9 3.7 5.7z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 reveal" style="transition-delay:.1s">
+      <form id="contact-form" class="bg-grey-50 border border-grey-200 rounded-2xl overflow-hidden">
+
+        <div class="p-6 sm:p-7 pb-0">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="font-display text-lg font-700">Get an instant estimate</h3>
+            <span class="text-xs text-grey-500 whitespace-nowrap">Step <span id="step-current">1</span>/4</span>
+          </div>
+          <p class="text-sm text-grey-500 mt-1 mb-5">Priced from our real project rates.</p>
+
+          <!-- progress -->
+          <div class="flex gap-1.5 mb-6" aria-label="Quote builder progress, step 1 of 4">
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-leaf-500" data-step="1" aria-label="Go to step 1: video type"></button>
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="2" aria-label="Go to step 2: length"></button>
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="3" aria-label="Go to step 3: add-ons"></button>
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="4" aria-label="Go to step 4: your details"></button>
+          </div>
+
+          <div class="relative min-h-[104px] sm:min-h-[84px]" id="step-wrap">
+
+            <!-- Step 1: video type -->
+            <div class="step-panel is-active" data-step="1">
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Video type</p>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" data-base="45" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Explainer Ad · $45</button>
+                <button type="button" data-base="105" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">SaaS Demo · $105</button>
+                <button type="button" data-base="150" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">2D Animation · $150</button>
+                <button type="button" data-base="40" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Social Ad · $40</button>
+                <button type="button" data-base="180" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">VSL · $180</button>
+              </div>
+            </div>
+
+            <!-- Step 2: length -->
+            <div class="step-panel is-hidden" data-step="2">
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Video length</p>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" data-mult="1" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Up to 30s</button>
+                <button type="button" data-mult="1.8" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">30–60s</button>
+                <button type="button" data-mult="2.6" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">60–90s</button>
+                <button type="button" data-mult="3.8" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">90s+ / 2–3 min</button>
+              </div>
+            </div>
+
+            <!-- Step 3: add-ons -->
+            <div class="step-panel is-hidden" data-step="3">
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Add-ons (optional)</p>
+              <div class="flex flex-wrap gap-2">
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="35">Voice over +$35
+                </label>
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="40">Script writing +$40
+                </label>
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="25">Extra revision +$25
+                </label>
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="60">Rush 48h +$60
+                </label>
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="30">Source files +$30
+                </label>
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="45">Social cutdowns +$45
+                </label>
+                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
+                  <input type="checkbox" class="addon-check sr-only" data-price="20">Subtitles +$20
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 4: contact details -->
+            <div class="step-panel is-hidden" data-step="4">
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Your details</p>
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="sr-only" for="name">Name</label>
+                  <input required id="name" name="name" type="text" placeholder="Your name" class="w-full rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+                </div>
+                <div>
+                  <label class="sr-only" for="email">Email</label>
+                  <input required id="email" name="email" type="email" placeholder="you@company.com" class="w-full rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Estimate + nav bar -->
+        <div class="mt-6 bg-ink-800 text-white px-6 sm:px-7 py-4 flex items-center justify-between gap-4">
+          <div>
+            <p class="text-[10px] uppercase tracking-wide text-leaf-400 font-semibold leading-none">Estimated budget</p>
+            <p id="estimate-output" class="font-display text-xl sm:text-2xl font-700 leading-tight mt-1">$40 – $55</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" id="step-back" class="hidden text-sm font-medium px-4 py-2.5 rounded-full border border-white/25 hover:border-white transition-colors">Back</button>
+            <button type="button" id="step-next" class="magnetic text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 text-ink-900 hover:bg-leaf-400 transition-colors">Next</button>
+            <button type="submit" id="step-submit" class="magnetic hidden text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 text-ink-900 hover:bg-leaf-400 transition-colors">Get my quote</button>
+          </div>
+        </div>
+
+        <div class="px-6 sm:px-7 pb-6 sm:pb-7">
+          <p id="form-success" class="hidden mt-4 text-sm text-leaf-700 font-medium"></p>
+          <p class="mt-4 text-xs text-grey-400">Indicative pricing, benchmarked against our real project rates — final quote confirmed after your brief. This form is a front-end demo; connect it to your email or CRM before going live.</p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink-800 text-ink-200 py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="#top" class="flex items-center gap-2 font-display font-700 text-lg text-white">
+      <svg class="h-7 w-7" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
+        <path fill="#6bdb37" d="M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z"/>
+      </svg>
+      <span>leafcut</span>
+    </a>
+    <nav class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm" aria-label="Footer">
+      <a href="#about" class="hover:text-white">About</a>
+      <a href="#services" class="hover:text-white">Services</a>
+      <a href="#portfolio" class="hover:text-white">Portfolio</a>
+      <a href="#team" class="hover:text-white">Team</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+    </nav>
+    <p class="text-xs text-ink-300">© <span id="year"></span> Leafcut. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ===== WYSIWYG content store (backed by the Node/JSON API) =====
+  // Portfolio, Services, Team and the site copy fields are loaded from GET /api/content
+  // and rendered client-side. In edit mode (?edit=1, requires an authenticated session)
+  // edits are written back via PUT/POST/DELETE against /api/content/*.
+  const API_BASE = '/api';
+  const requestedEditing = new URLSearchParams(location.search).get('edit') === '1';
+  let editing = false; // becomes true only after an authenticated session is confirmed
+
+  const ICONS = {
+    camera: 'M15 10l4.55-2.6A1 1 0 0121 8.27v7.46a1 1 0 01-1.45.87L15 14M4 6h9a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z',
+    window: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    burst: 'M12 4.5v15m7.5-7.5h-15M12 4.5c-3 3-3 12 0 15m0-15c3 3 3 12 0 15',
+    chat: 'M7 8h10M7 12h6m-9 8l2.5-4H19a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h.5',
+    pencil: 'M13 7H7a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-6M17.5 3.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 8.5-8.5z',
+    mic: 'M19 11a7 7 0 01-14 0m7 7v3m-3 0h6M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z'
+  };
+  const ICON_ORDER = ['camera', 'window', 'burst', 'chat', 'pencil', 'mic'];
+
+  const CATEGORY_META = {
+    explainer: { label: 'Explainer', grad: 'from-leaf-800 to-ink-900' },
+    saas: { label: 'SaaS', grad: 'from-ink-700 to-leaf-900' },
+    animation: { label: 'Animation', grad: 'from-leaf-700 to-ink-950' },
+    social: { label: 'Social', grad: 'from-ink-900 to-leaf-800' }
+  };
+  const CATEGORY_ORDER = ['explainer', 'saas', 'animation', 'social'];
+
+  const TEAM_COLORS = {
+    c1: 'from-leaf-500 to-leaf-800',
+    c2: 'from-ink-600 to-ink-900',
+    c3: 'from-leaf-600 to-ink-800',
+    c4: 'from-ink-700 to-leaf-900'
+  };
+  const COLOR_ORDER = ['c1', 'c2', 'c3', 'c4'];
+
+  const DEFAULT_CONTENT = {
+    site: {
+      heroEyebrow: 'Video Production Studio',
+      heroPrefix: 'Video production that makes people',
+      heroHighlight: 'act',
+      heroSuffix: ', not just watch.',
+      heroSubtext: 'Leafcut is a lean video studio for startups and brands. We turn ideas into explainer videos, product demos and social content built with structure, emotion and intent.',
+      heroVideoLabel: 'Showreel 2026 · 01:12',
+      aboutHeading: 'A small studio, built for clear, honest storytelling.',
+      aboutPara1: 'We help businesses turn ideas into clear, engaging videos that people understand, feel and respond to — not just watch. Our team has produced thousands of videos for startups, agencies and brands across SaaS, eCommerce and service businesses.',
+      aboutPara2: "Every project runs through the same process: a clear brief, a tight script, considered visuals, and a final cut built for the platform it's meant to live on. No bloated timelines, no jargon — just video that does its job.",
+      testimonialQuote: '"Leafcut understood our vision from the first call and turned it into something we\'re proud to put in front of customers. Fast, clear, and genuinely creative."',
+      testimonialAttribution: 'Placeholder client quote — replace with a real testimonial',
+      contactHeading: "Let's make something worth watching.",
+      contactPara: "Build a quote in a few clicks, or reach out directly. We'll reply within one business day.",
+      contactEmail: 'hello@leafcut.studio',
+      contactResponseTime: 'Avg. response time: 1 hour'
+    },
+    portfolio: [
+      { id: 'p1', title: 'Nimbus — Product Explainer', subtitle: 'Cloud storage · 60s', category: 'explainer' },
+      { id: 'p2', title: 'Fluxboard — Product Demo', subtitle: 'Analytics SaaS · 90s', category: 'saas' },
+      { id: 'p3', title: 'Rootly — Brand Animation', subtitle: '2D character animation · 45s', category: 'animation' },
+      { id: 'p4', title: 'Kindred — Reels Campaign', subtitle: 'D2C brand · 6-part series', category: 'social' },
+      { id: 'p5', title: 'Ledgerly — App Walkthrough', subtitle: 'Fintech · 75s', category: 'saas' },
+      { id: 'p6', title: 'Harvest Co. — Brand Story', subtitle: 'eCommerce · 50s', category: 'explainer' }
+    ],
+    services: [
+      { id: 's1', title: 'Explainer & commercial ads', description: 'Brand and product ads that explain what you do, and why it matters, in under 60 seconds.', icon: 'camera' },
+      { id: 's2', title: 'SaaS demos & product videos', description: "Walkthroughs and demo videos that make your product's value obvious at a glance.", icon: 'window' },
+      { id: 's3', title: '2D animation', description: 'Illustrated, character-driven animation for ideas that are too abstract to film.', icon: 'burst' },
+      { id: 's4', title: 'Social & short-form ads', description: 'Fast-cut, platform-native content built for TikTok, Reels and Shorts.', icon: 'chat' },
+      { id: 's5', title: 'VSL & sales videos', description: 'Long-form, conversion-focused video sales letters that carry the pitch for you.', icon: 'pencil' },
+      { id: 's6', title: 'Sound design & voice over', description: 'Original sound editing and professional voice talent to finish the story.', icon: 'mic' }
+    ],
+    team: [
+      { id: 't1', name: 'Founder Name', role: 'Founder & Creative Director', color: 'c1' },
+      { id: 't2', name: 'Team Member', role: 'Lead Video Editor', color: 'c2' },
+      { id: 't3', name: 'Team Member', role: '2D Animator', color: 'c3' },
+      { id: 't4', name: 'Team Member', role: 'Sound Designer', color: 'c4' }
+    ]
+  };
+
+  async function apiFetch(path, options) {
+    const res = await fetch(API_BASE + path, {
+      credentials: 'same-origin',
+      headers: options && options.body ? { 'Content-Type': 'application/json' } : undefined,
+      ...options
+    });
+    if (!res.ok) {
+      let msg = res.statusText;
+      try { const body = await res.json(); if (body && body.error) msg = body.error; } catch {}
+      throw new Error(msg || ('Request failed: ' + res.status));
+    }
+    if (res.status === 204) return null;
+    return res.json();
+  }
+
+  async function loadContent() {
+    try {
+      const data = await apiFetch('/content');
+      return { ...JSON.parse(JSON.stringify(DEFAULT_CONTENT)), ...data, site: { ...DEFAULT_CONTENT.site, ...(data.site || {}) } };
+    } catch (err) {
+      console.error('Failed to load content from API, using defaults', err);
+      return JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+    }
+  }
+
+  let content = JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+
+  function uid(prefix) { return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+  function initials(name) {
+    const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return '?';
+    return (parts[0][0] + (parts[1] ? parts[1][0] : '')).toUpperCase();
+  }
+  const EDITABLE_KEYDOWN = `onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"`;
+
+  async function fieldEdited(type, id, field, el) {
+    const item = content[type] && content[type].find(i => i.id === id);
+    if (!item) return;
+    const val = el.textContent.trim();
+    const previous = item[field];
+    item[field] = val || item[field];
+    el.textContent = item[field];
+    if (type === 'team' && field === 'name') {
+      const card = el.closest('[data-id]');
+      const avatar = card && card.querySelector('.avatar-initials');
+      if (avatar) avatar.textContent = initials(item.name);
+    }
+    try {
+      await apiFetch(`/content/${type}/${id}`, { method: 'PUT', body: JSON.stringify({ [field]: item[field] }) });
+    } catch (err) {
+      console.error('Failed to save', type, field, err);
+      item[field] = previous;
+      el.textContent = previous;
+    }
+  }
+
+  async function siteFieldEdited(field, el) {
+    const val = el.textContent.trim();
+    const previous = content.site[field];
+    if (!val) { el.textContent = previous || ''; return; }
+    content.site[field] = val;
+    try {
+      await apiFetch('/content/site', { method: 'PUT', body: JSON.stringify({ [field]: val }) });
+    } catch (err) {
+      console.error('Failed to save site field', field, err);
+      content.site[field] = previous;
+      el.textContent = previous;
+    }
+  }
+
+  async function cycleField(type, id, field, order) {
+    if (!editing) return;
+    const item = content[type] && content[type].find(i => i.id === id);
+    if (!item) return;
+    const idx = order.indexOf(item[field]);
+    item[field] = order[(idx + 1) % order.length];
+    renderAll();
+    try {
+      await apiFetch(`/content/${type}/${id}`, { method: 'PUT', body: JSON.stringify({ [field]: item[field] }) });
+    } catch (err) {
+      console.error('Failed to save', type, field, err);
+    }
+  }
+
+  async function deleteItem(type, id) {
+    if (!editing) return;
+    if (!confirm('Delete this ' + type.slice(0, -1) + '? This cannot be undone.')) return;
+    const removed = content[type].find(i => i.id === id);
+    content[type] = content[type].filter(i => i.id !== id);
+    renderAll();
+    try {
+      await apiFetch(`/content/${type}/${id}`, { method: 'DELETE' });
+    } catch (err) {
+      console.error('Failed to delete', type, id, err);
+      if (removed) content[type].push(removed);
+      renderAll();
+    }
+  }
+
+  async function addItem(type) {
+    if (!editing) return;
+    let draft;
+    if (type === 'portfolio') draft = { title: 'New project', subtitle: 'Add details', category: 'explainer' };
+    else if (type === 'services') draft = { title: 'New service', description: 'Describe this service.', icon: 'camera' };
+    else draft = { name: 'New teammate', role: 'Role', color: 'c1' };
+    try {
+      const created = await apiFetch(`/content/${type}`, { method: 'POST', body: JSON.stringify(draft) });
+      content[type].push(created);
+    } catch (err) {
+      console.error('Failed to add', type, err);
+      content[type].push({ id: uid(type[0]), ...draft });
+    }
+    renderAll();
+  }
+
+  function renderServices() {
+    const grid = document.getElementById('services-grid');
+    if (!grid) return;
+    grid.innerHTML = content.services.map((item, i) => `
+      <div class="edit-card reveal card-hover bg-white border border-grey-200 rounded-2xl p-7" style="transition-delay:${(i * 0.05).toFixed(2)}s" data-id="${item.id}">
+        <button type="button" class="edit-del-btn absolute top-3 right-3 z-10 h-7 w-7 rounded-full bg-white border border-grey-300 text-grey-600 hover:border-red-400 hover:text-red-500 flex items-center justify-center text-xs" onclick="deleteItem('services','${item.id}')" aria-label="Delete this service">✕</button>
+        <div class="cycle-field h-11 w-11 rounded-xl bg-leaf-500/10 text-leaf-600 flex items-center justify-center mb-5" onclick="cycleField('services','${item.id}','icon', ICON_ORDER)" title="${editing ? 'Click to change icon' : ''}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="${ICONS[item.icon] || ICONS.camera}"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-700" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="title" onblur="fieldEdited('services','${item.id}','title',this)">${escapeHtml(item.title)}</h3>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="description" onblur="fieldEdited('services','${item.id}','description',this)">${escapeHtml(item.description)}</p>
+      </div>`).join('') + `<div class="add-tile" onclick="addItem('services')"><span class="text-2xl leading-none">+</span><span>Add service</span></div>`;
+  }
+
+  function renderPortfolio() {
+    const grid = document.getElementById('portfolio-grid');
+    if (!grid) return;
+    grid.innerHTML = content.portfolio.map((item, i) => {
+      const meta = CATEGORY_META[item.category] || CATEGORY_META.explainer;
+      return `
+      <div class="edit-card portfolio-item reveal group" style="transition-delay:${(i * 0.05).toFixed(2)}s" data-cat="${item.category}" data-id="${item.id}">
+        <button type="button" class="edit-del-btn absolute top-3 right-3 z-10 h-7 w-7 rounded-full bg-white border border-grey-300 text-grey-600 hover:border-red-400 hover:text-red-500 flex items-center justify-center text-xs" onclick="deleteItem('portfolio','${item.id}')" aria-label="Delete this project">✕</button>
+        <a href="#" class="block" onclick="event.preventDefault()">
+          <div class="thumb cycle-field relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br ${meta.grad} flex items-center justify-center" onclick="cycleField('portfolio','${item.id}','category', CATEGORY_ORDER)" title="${editing ? 'Click to change category' : ''}">
+            <svg class="w-9 h-9 text-white/70 group-hover:text-leaf-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span class="absolute top-3 left-3 text-[11px] uppercase tracking-wide font-semibold bg-black/40 text-white px-2.5 py-1 rounded-full">${meta.label}</span>
+          </div>
+          <h3 class="mt-3 font-medium text-base" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="title" onblur="fieldEdited('portfolio','${item.id}','title',this)">${escapeHtml(item.title)}</h3>
+          <p class="text-sm text-grey-500" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="subtitle" onblur="fieldEdited('portfolio','${item.id}','subtitle',this)">${escapeHtml(item.subtitle)}</p>
+        </a>
+      </div>`;
+    }).join('') + `<div class="add-tile" onclick="addItem('portfolio')"><span class="text-2xl leading-none">+</span><span>Add project</span></div>`;
+  }
+
+  function renderTeam() {
+    const grid = document.getElementById('team-grid');
+    if (!grid) return;
+    grid.innerHTML = content.team.map((item, i) => `
+      <div class="edit-card reveal text-center" style="transition-delay:${(i * 0.05).toFixed(2)}s" data-id="${item.id}">
+        <button type="button" class="edit-del-btn absolute top-0 right-0 z-10 h-7 w-7 rounded-full bg-white border border-grey-300 text-grey-600 hover:border-red-400 hover:text-red-500 flex items-center justify-center text-xs" onclick="deleteItem('team','${item.id}')" aria-label="Delete this team member">✕</button>
+        <div class="cycle-field avatar-initials mx-auto h-28 w-28 rounded-full bg-gradient-to-br ${TEAM_COLORS[item.color] || TEAM_COLORS.c1} flex items-center justify-center text-white font-display text-2xl font-700" onclick="cycleField('team','${item.id}','color', COLOR_ORDER)" title="${editing ? 'Click to change color' : ''}">${initials(item.name)}</div>
+        <h3 class="mt-4 font-display font-700 text-base" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="name" onblur="fieldEdited('team','${item.id}','name',this)">${escapeHtml(item.name)}</h3>
+        <p class="text-sm text-grey-500" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="role" onblur="fieldEdited('team','${item.id}','role',this)">${escapeHtml(item.role)}</p>
+      </div>`).join('') + `<div class="add-tile" onclick="addItem('team')"><span class="text-2xl leading-none">+</span><span>Add teammate</span></div>`;
+  }
+
+  // Full re-render used by edit-mode interactions (cycle/add/delete), once the page has
+  // already finished its initial load — safe to touch the reveal observer & filter state here.
+  function renderAll() {
+    renderServices(); renderPortfolio(); renderTeam();
+    document.querySelectorAll('#services-grid .reveal, #portfolio-grid .reveal, #team-grid .reveal').forEach(el => {
+      if (editing) el.classList.add('in'); else io.observe(el);
+    });
+    const activeFilterBtn = document.querySelector('.filter-btn.active-filter');
+    const filter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.style.display = (filter === 'all' || item.dataset.cat === filter) ? '' : 'none';
+    });
+  }
+
+  // Initial population — must happen before the reveal-observer / filter code below queries the DOM.
+  // Renders immediately with defaults so the page paints fast; real content loads async below.
+  renderServices();
+  renderPortfolio();
+  renderTeam();
+
+  function applySiteFields() {
+    document.querySelectorAll('[data-site-field]').forEach(el => {
+      const field = el.dataset.siteField;
+      if (content.site && content.site[field] != null) el.textContent = content.site[field];
+    });
+  }
+
+  function enableSiteFieldEditing() {
+    document.querySelectorAll('[data-site-field]').forEach(el => {
+      el.contentEditable = 'true';
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+      el.addEventListener('blur', () => siteFieldEdited(el.dataset.siteField, el));
+    });
+  }
+
+  const exitEditBtn = document.getElementById('exit-edit-btn');
+  if (exitEditBtn) {
+    exitEditBtn.addEventListener('click', () => {
+      const url = new URL(location.href);
+      url.searchParams.delete('edit');
+      location.href = url.toString();
+    });
+  }
+
+  // Async init: pull real content from the API and, if ?edit=1 was requested, confirm
+  // there's an authenticated session (via GET /api/session) before switching on edit mode.
+  // Unauthenticated edit attempts are bounced to the login page.
+  (async function init() {
+    content = await loadContent();
+    applySiteFields();
+    renderAll();
+
+    if (requestedEditing) {
+      let authed = false;
+      try {
+        const session = await apiFetch('/session');
+        authed = !!session.authed;
+      } catch {}
+      if (!authed) {
+        location.href = '/login.html?redirect=' + encodeURIComponent(location.pathname + location.search);
+        return;
+      }
+      editing = true;
+      document.body.classList.add('editing');
+      const banner = document.getElementById('edit-banner');
+      if (banner) banner.classList.remove('hidden');
+      enableSiteFieldEditing();
+      renderAll();
+    }
+  })();
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', isHidden);
+    iconClose.classList.toggle('hidden', !isHidden);
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(sec => navObserver.observe(sec));
+
+  // Nav shrink-on-scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Hero parallax glow (skipped for reduced motion)
+  if (!prefersReducedMotion) {
+    const heroGlow = document.getElementById('hero-glow');
+    window.addEventListener('scroll', () => {
+      const y = Math.min(window.scrollY, 600) * 0.12;
+      heroGlow.style.transform = `translateY(${y}px)`;
+    }, { passive: true });
+  }
+
+  // Magnetic buttons — continuous rAF lerp so motion is smooth
+  // regardless of how often mousemove actually fires (fixes jumpy/teleporting feel).
+  if (!prefersReducedMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.magnetic').forEach(el => {
+      let targetX = 0, targetY = 0, curX = 0, curY = 0, raf = null;
+
+      function tick() {
+        // ease current position toward target every frame (lerp)
+        curX += (targetX - curX) * 0.18;
+        curY += (targetY - curY) * 0.18;
+        el.style.transform = `translate(${curX.toFixed(2)}px, ${curY.toFixed(2)}px)`;
+
+        if (Math.abs(targetX - curX) > 0.05 || Math.abs(targetY - curY) > 0.05) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          curX = targetX; curY = targetY;
+          el.style.transform = `translate(${curX}px, ${curY}px)`;
+          raf = null;
+        }
+      }
+
+      function startLoop() { if (!raf) raf = requestAnimationFrame(tick); }
+
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        targetX = (e.clientX - r.left - r.width / 2) * 0.3;
+        targetY = (e.clientY - r.top - r.height / 2) * 0.4;
+        startLoop();
+      });
+      el.addEventListener('mouseleave', () => {
+        targetX = 0; targetY = 0;
+        startLoop();
+      });
+    });
+  }
+
+  // Animated stat counters (fallback to static text if reduced motion)
+  if (!prefersReducedMotion) {
+    function runCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const original = el.textContent;
+      const duration = 1200;
+      let start = null;
+      function frame(ts) {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        el.textContent = (decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString()) + suffix;
+        if (p < 1) requestAnimationFrame(frame); else el.textContent = original;
+      }
+      requestAnimationFrame(frame);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { runCounter(entry.target); counterObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
+  }
+
+  // Portfolio filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('active-filter', 'bg-grey-900', 'text-white', 'border-grey-900');
+        b.classList.add('border-grey-300', 'text-grey-600');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active-filter', 'bg-grey-900', 'text-white', 'border-grey-900');
+      btn.classList.remove('border-grey-300', 'text-grey-600');
+      btn.setAttribute('aria-pressed', 'true');
+
+      const filter = btn.dataset.filter;
+      portfolioItems.forEach(item => {
+        const show = filter === 'all' || item.dataset.cat === filter;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // ===== Budget estimator =====
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const lengthBtns = document.querySelectorAll('.length-btn');
+  const addonChecks = document.querySelectorAll('.addon-check');
+  const estimateOutput = document.getElementById('estimate-output');
+
+  const ACTIVE = ['border-leaf-500', 'bg-leaf-500/10', 'text-leaf-700'];
+  const INACTIVE = ['border-grey-300'];
+
+  function setActive(btn, group) {
+    group.forEach(b => { b.classList.remove(...ACTIVE); b.classList.add(...INACTIVE); });
+    btn.classList.remove(...INACTIVE);
+    btn.classList.add(...ACTIVE);
+  }
+
+  typeBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, typeBtns); updateEstimate(); }));
+  lengthBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, lengthBtns); updateEstimate(); }));
+  addonChecks.forEach(chk => chk.addEventListener('change', () => {
+    const label = chk.closest('.addon-label');
+    label.classList.toggle('border-leaf-500', chk.checked);
+    label.classList.toggle('bg-leaf-500/10', chk.checked);
+    label.classList.toggle('text-leaf-700', chk.checked);
+    updateEstimate();
+  }));
+
+  function roundTo(n, step) { return Math.round(n / step) * step; }
+
+  function updateEstimate() {
+    const activeType = document.querySelector('.type-btn.border-leaf-500') || typeBtns[0];
+    const activeLength = document.querySelector('.length-btn.border-leaf-500') || lengthBtns[0];
+    const base = parseFloat(activeType.dataset.base);
+    const mult = parseFloat(activeLength.dataset.mult);
+    let addonsTotal = 0;
+    addonChecks.forEach(chk => { if (chk.checked) addonsTotal += parseFloat(chk.dataset.price); });
+
+    const mid = base * mult + addonsTotal;
+    const low = roundTo(mid * 0.92, 5);
+    const high = roundTo(mid * 1.2, 5);
+    estimateOutput.textContent = `$${low.toLocaleString()} – $${high.toLocaleString()}`;
+    if (!prefersReducedMotion) {
+      estimateOutput.classList.remove('pulse');
+      void estimateOutput.offsetWidth;
+      estimateOutput.classList.add('pulse');
+    }
+  }
+
+  // ===== Step wizard =====
+  const stepPanels = document.querySelectorAll('.step-panel');
+  const stepDots = document.querySelectorAll('.step-dot');
+  const stepCurrent = document.getElementById('step-current');
+  const stepBack = document.getElementById('step-back');
+  const stepNext = document.getElementById('step-next');
+  const stepSubmit = document.getElementById('step-submit');
+  const stepProgress = document.querySelector('#step-wrap').previousElementSibling;
+  let currentStep = 1;
+
+  function goToStep(n) {
+    currentStep = Math.min(4, Math.max(1, n));
+    stepPanels.forEach(p => {
+      const active = parseInt(p.dataset.step, 10) === currentStep;
+      p.classList.toggle('is-active', active);
+      p.classList.toggle('is-hidden', !active);
+    });
+    stepDots.forEach((d, i) => {
+      d.classList.toggle('bg-leaf-500', i < currentStep);
+      d.classList.toggle('bg-grey-200', i >= currentStep);
+    });
+    stepCurrent.textContent = currentStep;
+    stepProgress.setAttribute('aria-label', `Quote builder progress, step ${currentStep} of 4`);
+    stepBack.classList.toggle('hidden', currentStep === 1);
+    stepNext.classList.toggle('hidden', currentStep === 4);
+    stepSubmit.classList.toggle('hidden', currentStep !== 4);
+  }
+
+  stepNext.addEventListener('click', () => goToStep(currentStep + 1));
+  stepBack.addEventListener('click', () => goToStep(currentStep - 1));
+  stepDots.forEach(dot => dot.addEventListener('click', () => goToStep(parseInt(dot.dataset.step, 10))));
+
+  // defaults
+  setActive(typeBtns[0], typeBtns);
+  setActive(lengthBtns[0], lengthBtns);
+  updateEstimate();
+  goToStep(1);
+
+  // Contact form — submits the lead to POST /api/leads (public endpoint; the
+  // server generates id/date and stores it in data/leads.json for the dashboard).
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const activeTypeBtn = document.querySelector('.type-btn.border-leaf-500');
+    const activeLengthBtn = document.querySelector('.length-btn.border-leaf-500');
+    const chosenAddons = Array.from(addonChecks).filter(c => c.checked).map(c => c.closest('.addon-label').textContent.trim());
+    const payload = {
+      name: form.querySelector('#name').value.trim(),
+      email: form.querySelector('#email').value.trim(),
+      type: activeTypeBtn ? activeTypeBtn.textContent.split('·')[0].trim() : '',
+      length: activeLengthBtn ? activeLengthBtn.textContent.trim() : '',
+      addons: chosenAddons,
+      estimate: estimateOutput.textContent,
+      status: 'new'
+    };
+
+    const submitBtn = document.getElementById('step-submit');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    success.classList.remove('hidden', 'text-leaf-700', 'text-red-600');
+
+    try {
+      await apiFetch('/leads', { method: 'POST', body: JSON.stringify(payload) });
+      success.textContent = `Thanks — your estimate (${estimateOutput.textContent}) has been noted. We'll follow up within one business day with a firm quote.`;
+      success.classList.add('text-leaf-700');
+      form.querySelector('#name').value = '';
+      form.querySelector('#email').value = '';
+    } catch (err) {
+      success.textContent = err.message || "Something went wrong — please try again or email us directly.";
+      success.classList.add('text-red-600');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

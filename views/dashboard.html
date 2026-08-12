@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leafcut — Leads</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='195 335 155 130'%3E%3Cpath fill='%236bdb37' d='M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z'/%3E%3Cpath fill='%236bdb37' d='M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z'/%3E%3C/svg%3E">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          leaf: { 50:'#f1fce9',100:'#ddf7c9',200:'#bdef99',300:'#96e563',400:'#7fe04a',500:'#6bdb37',600:'#54b52c',700:'#428f23',800:'#356f1e',900:'#2b591b',950:'#15300c' },
+          grey: { 50:'#f7f7f7',100:'#eeeeee',200:'#d9d9d9',300:'#bfbfbf',400:'#999999',500:'#666666',600:'#595959',700:'#4a4a4a',800:'#333333',900:'#1f1f1f',950:'#141414' },
+          ink: { 50:'#eef1f3',100:'#dde4e8',200:'#b9c5cc',300:'#93a4ad',400:'#71828c',500:'#56656f',600:'#46525b',700:'#3d4750',800:'#36454f',900:'#2a353d',950:'#1c242a' }
+        },
+        fontFamily: { display: ['Poppins','sans-serif'], sans: ['Poppins','sans-serif'] }
+      }
+    }
+  }
+</script>
+
+<style>
+  body { font-family: 'Poppins', sans-serif; }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #d9d9d9; border-radius: 9999px; }
+  .modal-overlay { transition: opacity .25s ease; }
+  .modal-panel { transition: opacity .25s ease, transform .25s ease; }
+  input:focus, textarea:focus, select:focus { outline: none; }
+  tr.lead-row { transition: background-color .15s ease; }
+</style>
+</head>
+
+<body class="bg-grey-50 text-grey-900 antialiased min-h-screen">
+
+<!-- ============ TOP BAR ============ -->
+<header class="bg-ink-800 text-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-display font-700 text-lg tracking-tight">
+      <svg class="h-7 w-7" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
+        <path fill="#6bdb37" d="M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z"/>
+      </svg>
+      leafcut
+      <span class="ml-2 text-xs font-medium text-ink-200 bg-white/10 px-2 py-0.5 rounded-full">Leads</span>
+    </a>
+    <div class="flex items-center gap-5">
+      <a href="/?edit=1" class="text-sm font-medium text-ink-100 hover:text-white transition-colors">Edit site content →</a>
+      <a href="/" class="text-sm font-medium text-ink-100 hover:text-white transition-colors">← Back to site</a>
+      <button id="logout-btn" type="button" class="text-sm font-medium text-ink-100 hover:text-white transition-colors">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-5 sm:px-8 py-8">
+
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <h1 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">Leads</h1>
+      <p class="text-sm text-grey-500 mt-1">Quote requests submitted from the site, plus anything you log manually.</p>
+    </div>
+    <button id="add-lead-btn" type="button" class="inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 text-sm font-semibold px-5 py-2.5 transition-colors">
+      + Add lead
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white border border-grey-200 rounded-xl p-4">
+      <p class="text-2xl font-display font-700" id="stat-total">0</p>
+      <p class="text-xs text-grey-500 mt-0.5">Total leads</p>
+    </div>
+    <div class="bg-white border border-grey-200 rounded-xl p-4">
+      <p class="text-2xl font-display font-700 text-leaf-600" id="stat-new">0</p>
+      <p class="text-xs text-grey-500 mt-0.5">New</p>
+    </div>
+    <div class="bg-white border border-grey-200 rounded-xl p-4">
+      <p class="text-2xl font-display font-700" id="stat-won">0</p>
+      <p class="text-xs text-grey-500 mt-0.5">Won</p>
+    </div>
+    <div class="bg-white border border-grey-200 rounded-xl p-4">
+      <p class="text-2xl font-display font-700" id="stat-avg">$0</p>
+      <p class="text-xs text-grey-500 mt-0.5">Avg. estimate (low end)</p>
+    </div>
+  </div>
+
+  <!-- Search + filter -->
+  <div class="flex flex-wrap items-center gap-3 mb-4">
+    <input id="search-input" type="text" placeholder="Search by name or email…" class="flex-1 min-w-[200px] rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+    <select id="status-filter" class="rounded-lg border border-grey-300 bg-white px-3 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      <option value="all">All statuses</option>
+      <option value="new">New</option>
+      <option value="contacted">Contacted</option>
+      <option value="won">Won</option>
+      <option value="lost">Lost</option>
+    </select>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white border border-grey-200 rounded-xl overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left text-xs uppercase tracking-wide text-grey-500 border-b border-grey-200">
+          <th class="px-4 py-3 font-semibold">Contact</th>
+          <th class="px-4 py-3 font-semibold">Video type</th>
+          <th class="px-4 py-3 font-semibold">Length</th>
+          <th class="px-4 py-3 font-semibold">Estimate</th>
+          <th class="px-4 py-3 font-semibold">Status</th>
+          <th class="px-4 py-3 font-semibold">Date</th>
+          <th class="px-4 py-3 font-semibold text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="leads-tbody"></tbody>
+    </table>
+    <p id="empty-state" class="hidden text-center text-sm text-grey-400 py-14">No leads yet. Submissions from the site's quote form will show up here — or add one manually.</p>
+  </div>
+
+</main>
+
+<!-- ============ MODAL ============ -->
+<div id="modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-ink-950/50 backdrop-blur-sm flex items-center justify-center p-4">
+  <div id="modal-panel" class="modal-panel bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+    <form id="lead-form" class="p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-5">
+        <h2 id="modal-title" class="font-display text-lg font-700">Add lead</h2>
+        <button type="button" id="modal-close" class="h-8 w-8 rounded-full hover:bg-grey-100 flex items-center justify-center text-grey-500" aria-label="Close">✕</button>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="f-name">Name</label>
+          <input required id="f-name" type="text" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="f-email">Email</label>
+          <input required id="f-email" type="email" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 mt-4">
+        <div>
+          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="f-type">Video type</label>
+          <select id="f-type" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="f-length">Length</label>
+          <select id="f-length" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20"></select>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-2">Add-ons</label>
+        <div id="f-addons" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="mt-4">
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="f-status">Status</label>
+        <select id="f-status" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="won">Won</option>
+          <option value="lost">Lost</option>
+        </select>
+      </div>
+
+      <div class="mt-5 rounded-xl bg-ink-800 text-white px-5 py-4 flex items-center justify-between">
+        <span class="text-xs uppercase tracking-wide text-leaf-400 font-semibold">Estimate</span>
+        <span id="f-estimate-output" class="font-display text-lg font-700">$40 – $55</span>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button type="button" id="modal-cancel" class="text-sm font-medium px-4 py-2.5 rounded-full border border-grey-300 hover:border-grey-500 transition-colors">Cancel</button>
+        <button type="submit" class="text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 transition-colors">Save lead</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="hidden fixed bottom-6 right-6 z-50 bg-ink-900 text-white text-sm font-medium px-4 py-3 rounded-lg shadow-xl"></div>
+
+<script>
+  // Backed by the Node/JSON API — this page is only reachable via the authenticated
+  // GET /dashboard route, so the session cookie is already present for these calls.
+  const API_BASE = '/api';
+
+  // Pricing model — matches the public site's quote estimator (index.html) exactly,
+  // so estimates created/edited here stay consistent with what visitors are quoted.
+  const TYPE_BASE = { 'Explainer Ad': 45, 'SaaS Demo': 105, '2D Animation': 150, 'Social Ad': 40, 'VSL': 180 };
+  const LENGTH_MULT = { 'Up to 30s': 1, '30–60s': 1.8, '60–90s': 2.6, '90s+ / 2–3 min': 3.8 };
+  const ADDON_PRICE = { 'Voice over': 35, 'Script writing': 40, 'Extra revision': 25, 'Rush 48h': 60, 'Source files': 30, 'Social cutdowns': 45, 'Subtitles': 20 };
+
+  function roundTo(n, step) { return Math.round(n / step) * step; }
+  function computeEstimate(type, length, addonLabels) {
+    const base = TYPE_BASE[type] ?? 45;
+    const mult = LENGTH_MULT[length] ?? 1;
+    const addonsTotal = (addonLabels || []).reduce((sum, name) => sum + (ADDON_PRICE[name] || 0), 0);
+    const mid = base * mult + addonsTotal;
+    return `$${roundTo(mid * 0.92, 5).toLocaleString()} – $${roundTo(mid * 1.2, 5).toLocaleString()}`;
+  }
+
+  async function apiFetch(path, options) {
+    const res = await fetch(API_BASE + path, {
+      credentials: 'same-origin',
+      headers: options && options.body ? { 'Content-Type': 'application/json' } : undefined,
+      ...options
+    });
+    if (res.status === 401) { location.href = '/login.html?redirect=' + encodeURIComponent('/dashboard'); throw new Error('Not authenticated'); }
+    if (!res.ok) {
+      let msg = res.statusText;
+      try { const body = await res.json(); if (body && body.error) msg = body.error; } catch {}
+      throw new Error(msg || ('Request failed: ' + res.status));
+    }
+    if (res.status === 204) return null;
+    return res.json();
+  }
+
+  let leads = [];
+  let editingId = null; // null = creating new
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.remove('hidden');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => el.classList.add('hidden'), 2200);
+  }
+
+  const STATUS_STYLES = {
+    new: 'bg-leaf-500/10 text-leaf-700',
+    contacted: 'bg-ink-500/10 text-ink-700',
+    won: 'bg-leaf-600/10 text-leaf-800',
+    lost: 'bg-grey-200 text-grey-500'
+  };
+
+  function fmtDate(iso) {
+    try { return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }); }
+    catch { return ''; }
+  }
+
+  function render() {
+    const q = document.getElementById('search-input').value.trim().toLowerCase();
+    const statusFilter = document.getElementById('status-filter').value;
+
+    const filtered = leads.filter(l => {
+      const matchesQ = !q || l.name.toLowerCase().includes(q) || l.email.toLowerCase().includes(q);
+      const matchesStatus = statusFilter === 'all' || l.status === statusFilter;
+      return matchesQ && matchesStatus;
+    });
+
+    const tbody = document.getElementById('leads-tbody');
+    tbody.innerHTML = filtered.map(l => `
+      <tr class="lead-row border-b border-grey-100 last:border-0 hover:bg-grey-50">
+        <td class="px-4 py-3">
+          <p class="font-medium">${escapeHtml(l.name)}</p>
+          <p class="text-grey-500 text-xs">${escapeHtml(l.email)}</p>
+        </td>
+        <td class="px-4 py-3">${escapeHtml(l.type)}</td>
+        <td class="px-4 py-3">${escapeHtml(l.length)}</td>
+        <td class="px-4 py-3 font-medium">${escapeHtml(l.estimate)}</td>
+        <td class="px-4 py-3">
+          <select class="status-select text-xs font-semibold rounded-full px-2.5 py-1 border-0 ${STATUS_STYLES[l.status] || STATUS_STYLES.new}" data-id="${l.id}">
+            <option value="new" ${l.status === 'new' ? 'selected' : ''}>New</option>
+            <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+            <option value="won" ${l.status === 'won' ? 'selected' : ''}>Won</option>
+            <option value="lost" ${l.status === 'lost' ? 'selected' : ''}>Lost</option>
+          </select>
+        </td>
+        <td class="px-4 py-3 text-grey-500 whitespace-nowrap">${fmtDate(l.date)}</td>
+        <td class="px-4 py-3 text-right whitespace-nowrap">
+          <button type="button" class="edit-btn text-grey-500 hover:text-leaf-600 px-2" data-id="${l.id}" aria-label="Edit lead">✎</button>
+          <button type="button" class="delete-btn text-grey-500 hover:text-red-500 px-2" data-id="${l.id}" aria-label="Delete lead">✕</button>
+        </td>
+      </tr>`).join('');
+
+    document.getElementById('empty-state').classList.toggle('hidden', filtered.length > 0);
+
+    // stats (computed from all leads, not just the filtered view)
+    document.getElementById('stat-total').textContent = leads.length;
+    document.getElementById('stat-new').textContent = leads.filter(l => l.status === 'new').length;
+    document.getElementById('stat-won').textContent = leads.filter(l => l.status === 'won').length;
+    const lows = leads.map(l => parseInt((l.estimate || '').replace(/[^0-9]/g, '').slice(0, 4), 10)).filter(n => !isNaN(n));
+    const avg = lows.length ? Math.round(lows.reduce((a, b) => a + b, 0) / lows.length) : 0;
+    document.getElementById('stat-avg').textContent = '$' + avg.toLocaleString();
+
+    // wire row controls
+    tbody.querySelectorAll('.status-select').forEach(sel => {
+      sel.addEventListener('change', async () => {
+        const lead = leads.find(l => l.id === sel.dataset.id);
+        if (!lead) return;
+        const previous = lead.status;
+        lead.status = sel.value;
+        render();
+        try {
+          await apiFetch(`/leads/${lead.id}`, { method: 'PUT', body: JSON.stringify({ status: lead.status }) });
+          toast('Status updated');
+        } catch (err) {
+          lead.status = previous;
+          render();
+          toast(err.message || 'Failed to update status');
+        }
+      });
+    });
+    tbody.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.id)));
+    tbody.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', async () => {
+      if (!confirm('Delete this lead? This cannot be undone.')) return;
+      const id = btn.dataset.id;
+      const removed = leads.find(l => l.id === id);
+      leads = leads.filter(l => l.id !== id);
+      render();
+      try {
+        await apiFetch(`/leads/${id}`, { method: 'DELETE' });
+        toast('Lead deleted');
+      } catch (err) {
+        if (removed) leads.push(removed);
+        render();
+        toast(err.message || 'Failed to delete lead');
+      }
+    }));
+  }
+
+  function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+
+  // ===== Modal =====
+  const overlay = document.getElementById('modal-overlay');
+  const panel = document.getElementById('modal-panel');
+  const form = document.getElementById('lead-form');
+  const fType = document.getElementById('f-type');
+  const fLength = document.getElementById('f-length');
+  const fAddons = document.getElementById('f-addons');
+  const fEstimate = document.getElementById('f-estimate-output');
+
+  fType.innerHTML = Object.keys(TYPE_BASE).map(t => `<option value="${t}">${t} · $${TYPE_BASE[t]}</option>`).join('');
+  fLength.innerHTML = Object.keys(LENGTH_MULT).map(l => `<option value="${l}">${l}</option>`).join('');
+  fAddons.innerHTML = Object.keys(ADDON_PRICE).map(a => `
+    <label class="flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-full border-2 border-grey-300 cursor-pointer has-[:checked]:border-leaf-500 has-[:checked]:bg-leaf-500/10 has-[:checked]:text-leaf-700">
+      <input type="checkbox" class="f-addon-check sr-only" value="${a}"> ${a} +$${ADDON_PRICE[a]}
+    </label>`).join('');
+
+  function updateModalEstimate() {
+    const type = fType.value;
+    const length = fLength.value;
+    const chosen = Array.from(document.querySelectorAll('.f-addon-check')).filter(c => c.checked).map(c => c.value);
+    fEstimate.textContent = computeEstimate(type, length, chosen);
+  }
+  fType.addEventListener('change', updateModalEstimate);
+  fLength.addEventListener('change', updateModalEstimate);
+  fAddons.addEventListener('change', updateModalEstimate);
+
+  function openModal(id) {
+    editingId = id || null;
+    const lead = id ? leads.find(l => l.id === id) : null;
+    document.getElementById('modal-title').textContent = lead ? 'Edit lead' : 'Add lead';
+    document.getElementById('f-name').value = lead ? lead.name : '';
+    document.getElementById('f-email').value = lead ? lead.email : '';
+    fType.value = lead ? lead.type : Object.keys(TYPE_BASE)[0];
+    fLength.value = lead ? lead.length : Object.keys(LENGTH_MULT)[0];
+    document.getElementById('f-status').value = lead ? lead.status : 'new';
+    document.querySelectorAll('.f-addon-check').forEach(c => {
+      c.checked = !!(lead && (lead.addons || []).some(a => a.startsWith(c.value)));
+    });
+    updateModalEstimate();
+    overlay.classList.remove('hidden');
+  }
+  function closeModal() { overlay.classList.add('hidden'); editingId = null; }
+
+  document.getElementById('add-lead-btn').addEventListener('click', () => openModal(null));
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-cancel').addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const chosenAddons = Array.from(document.querySelectorAll('.f-addon-check'))
+      .filter(c => c.checked)
+      .map(c => `${c.value} +$${ADDON_PRICE[c.value]}`);
+
+    const data = {
+      name: document.getElementById('f-name').value.trim(),
+      email: document.getElementById('f-email').value.trim(),
+      type: fType.value,
+      length: fLength.value,
+      addons: chosenAddons,
+      status: document.getElementById('f-status').value,
+      estimate: computeEstimate(fType.value, fLength.value, chosenAddons.map(a => a.split(' +$')[0]))
+    };
+
+    const saveBtn = form.querySelector('button[type="submit"]');
+    saveBtn.disabled = true;
+    try {
+      if (editingId) {
+        const updated = await apiFetch(`/leads/${editingId}`, { method: 'PUT', body: JSON.stringify(data) });
+        const idx = leads.findIndex(l => l.id === editingId);
+        if (idx !== -1) leads[idx] = updated;
+        toast('Lead updated');
+      } else {
+        const created = await apiFetch('/leads', { method: 'POST', body: JSON.stringify(data) });
+        leads.unshift(created);
+        toast('Lead added');
+      }
+      closeModal();
+      render();
+    } catch (err) {
+      toast(err.message || 'Failed to save lead');
+    } finally {
+      saveBtn.disabled = false;
+    }
+  });
+
+  document.getElementById('search-input').addEventListener('input', render);
+  document.getElementById('status-filter').addEventListener('change', render);
+
+  document.getElementById('logout-btn').addEventListener('click', async () => {
+    try { await apiFetch('/logout', { method: 'POST' }); } catch {}
+    location.href = '/login.html';
+  });
+
+  (async function init() {
+    try {
+      leads = await apiFetch('/leads');
+    } catch (err) {
+      toast(err.message || 'Failed to load leads');
+      leads = [];
+    }
+    render();
+  })();
+</script>
+
+</body>
+</html>
