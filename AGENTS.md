@@ -7,13 +7,16 @@ This repository is a small Node.js backend for the Leafcut marketing site. It se
 - No npm dependencies. The server runs on Node built-ins only.
 - Run locally with `node server.js`, `npm start`, or `npm run dev`.
 - Environment values are loaded from `.env` by `src/http-helpers.js`.
-- `server.js` is the entrypoint and defines routing, static file serving, and auth-protected dashboard mounting.
+- `server.js` (local dev) and `api/handler.js` (Vercel) are thin entrypoints; the actual routing, static file serving, and auth-protected dashboard mounting live in `src/app.js` so both hosts share identical behavior.
 - Auth is handled by `src/auth.js`. Protected APIs use `requireAuthApi`; the dashboard page uses `requireAuthPage`.
-- `src/store.js` is the data access layer and is intentionally the swap point for a future real database. It currently reads/writes JSON files under `data/`.
+- `src/store.js` is the data access layer and is intentionally the swap point for a future real database. It reads/writes JSON files under `data/` locally, and falls back to Vercel KV (over REST via `fetch`) when `KV_REST_API_URL`/`KV_REST_API_TOKEN` are set — needed because Vercel functions can't persist filesystem writes.
 - Static site contents are in `public/`; the admin dashboard HTML is in `views/dashboard.html`.
 
 ## Important files
-- `server.js` — HTTP router, static asset handling, session loading, and route mounting
+- `server.js` — local dev entrypoint; loads `.env` then hands requests to `src/app.js`
+- `api/handler.js` — Vercel serverless entrypoint; same `src/app.js`, different host
+- `vercel.json` — routes `/api/*` and `/dashboard` to `api/handler.js`, serves `public/` as static
+- `src/app.js` — HTTP router, static asset handling, session loading, and route mounting
 - `src/http-helpers.js` — custom request/response helpers, router utilities, cookie/session signing
 - `src/auth.js` — authentication middleware for API and dashboard access
 - `src/routes/` — API route handlers for content, leads, and session management

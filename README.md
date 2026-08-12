@@ -14,9 +14,13 @@ serving, .env parsing — is built on Node's built-in modules only (`http`, `fs`
 ## Structure
 
 ```
-server.js              HTTP server, router dispatch, static file serving
+server.js              Local dev entrypoint — HTTP server + .env loading, delegates to src/app.js
+api/
+  handler.js             Vercel serverless entrypoint — same src/app.js, different host
+vercel.json             Vercel routing: /api/* and /dashboard -> api/handler.js, rest is static public/
 src/
-  store.js              JSON file read/write (the swappable "database" layer)
+  app.js                 The actual router dispatch + static file serving (shared by both entrypoints)
+  store.js               JSON file read/write locally; Vercel KV over REST when configured
   http-helpers.js        Router, .env parser, signed-cookie session helpers
   auth.js                 requireAuthApi / requireAuthPage middleware
   routes/
@@ -94,3 +98,26 @@ wasn't shared between visitors or persisted anywhere real. This version:
 Everything reads/writes through `src/store.js` (`getContent`, `saveContent`,
 `getLeads`, `saveLeads`). To move off JSON files, reimplement those four functions
 against your database of choice — no other file needs to change.
+
+## Deploying to Vercel
+
+Vercel serverless functions have a read-only filesystem in production, so the
+JSON-file storage above can't persist writes there — dashboard edits and lead
+submissions would silently stop saving. `src/store.js` already has a fallback for
+this: when `KV_REST_API_URL` and `KV_REST_API_TOKEN` are set, it reads/writes
+through Vercel KV's REST API instead of `data/*.json`, over plain `fetch` (no new
+dependency).
+
+1. Push this repo to GitHub (already done) and import it into Vercel.
+2. In the Vercel project settings, add `ADMIN_PASSWORD` and `SESSION_SECRET` as
+   environment variables (same values you'd put in `.env` — don't commit `.env`).
+3. In the project's **Storage** tab, create a KV database (Vercel's managed Redis)
+   and connect it to this project. Vercel injects `KV_REST_API_URL` /
+   `KV_REST_API_TOKEN` automatically — no code changes needed.
+4. Deploy. `vercel.json` routes `/api/*` and `/dashboard` to `api/handler.js`
+   (the same router as `server.js`, just running as a serverless function) and
+   serves everything else statically from `public/`.
+
+Without a KV store connected, the site and dashboard will still work, but any
+content edits or lead submissions made in production won't persist between
+requests — fine for a demo, not for a live site collecting real leads.

@@ -1,0 +1,12 @@
+{
+  "outputDirectory": "public",
+  "functions": {
+    "api/handler.js": {
+      "includeFiles": "views/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/handler" },
+    { "source": "/dashboard", "destination": "/api/handler" }
+  ]
+}
