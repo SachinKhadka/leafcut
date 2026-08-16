@@ -164,11 +164,12 @@
   /* ===== Inline (WYSIWYG) edit mode ===== */
   #edit-banner { transition: transform .4s var(--ease-apple); }
   .edit-card { position: relative; }
-  .edit-del-btn, .edit-cycle-hint {
+  .edit-del-btn, .edit-cycle-hint, .edit-aux-btn {
     opacity: 0; pointer-events: none; transition: opacity .25s var(--ease-apple);
   }
   body.editing .edit-card:hover .edit-del-btn,
-  body.editing .edit-card:hover .edit-cycle-hint { opacity: 1; pointer-events: auto; }
+  body.editing .edit-card:hover .edit-cycle-hint,
+  body.editing .edit-card:hover .edit-aux-btn { opacity: 1; pointer-events: auto; }
   body.editing [contenteditable="true"] {
     cursor: text; border-radius: .25rem; outline: 1px dashed transparent; transition: outline-color .2s;
   }
@@ -236,6 +237,16 @@
     <div class="flex items-center gap-3">
       <a href="/dashboard" class="underline hover:no-underline">View leads →</a>
       <button id="exit-edit-btn" type="button" class="rounded-full bg-ink-900 text-white px-4 py-1.5 font-semibold hover:bg-ink-800 transition-colors">Exit edit mode</button>
+    </div>
+  </div>
+</div>
+
+<!-- Portfolio video lightbox -->
+<div id="video-lightbox" class="hidden fixed inset-0 z-[70] bg-ink-950/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8" onclick="if (event.target === this) closeVideoLightbox()">
+  <div class="relative w-full max-w-3xl">
+    <button type="button" class="absolute -top-10 right-0 text-white/80 hover:text-white text-sm font-medium" onclick="closeVideoLightbox()" aria-label="Close video">✕ Close</button>
+    <div class="aspect-video rounded-xl overflow-hidden bg-black shadow-2xl">
+      <iframe id="video-lightbox-frame" class="w-full h-full" src="" title="Project video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -972,6 +983,92 @@
     }
   }
 
+  // Converts a YouTube/Vimeo watch/share URL into its embeddable iframe src.
+  // Returns '' if the URL isn't a recognizable YouTube or Vimeo link.
+  function toEmbedUrl(url) {
+    if (!url) return '';
+    let u;
+    try { u = new URL(url); } catch { return ''; }
+    const host = u.hostname.replace(/^www\.|^m\./, '');
+    if (host === 'youtube.com') {
+      if (u.pathname === '/watch') {
+        const id = u.searchParams.get('v');
+        return id ? `https://www.youtube.com/embed/${id}` : '';
+      }
+      if (u.pathname.startsWith('/embed/')) return url;
+      if (u.pathname.startsWith('/shorts/')) {
+        const id = u.pathname.split('/')[2];
+        return id ? `https://www.youtube.com/embed/${id}` : '';
+      }
+      return '';
+    }
+    if (host === 'youtu.be') {
+      const id = u.pathname.slice(1);
+      return id ? `https://www.youtube.com/embed/${id}` : '';
+    }
+    if (host === 'vimeo.com') {
+      const id = u.pathname.split('/').filter(Boolean)[0];
+      return id && /^\d+$/.test(id) ? `https://player.vimeo.com/video/${id}` : '';
+    }
+    if (host === 'player.vimeo.com') return url;
+    return '';
+  }
+
+  async function setPortfolioVideo(id) {
+    if (!editing) return;
+    const item = content.portfolio.find(i => i.id === id);
+    if (!item) return;
+    const input = prompt('YouTube or Vimeo video URL (leave blank to remove):', item.videoUrl || '');
+    if (input === null) return;
+    const val = input.trim();
+    if (val && !toEmbedUrl(val)) { alert("That doesn't look like a YouTube or Vimeo URL."); return; }
+    const previous = item.videoUrl;
+    item.videoUrl = val;
+    renderAll();
+    try {
+      await apiFetch(`/content/portfolio/${id}`, { method: 'PUT', body: JSON.stringify({ videoUrl: val }) });
+    } catch (err) {
+      console.error('Failed to save video url', err);
+      item.videoUrl = previous;
+      renderAll();
+    }
+  }
+
+  async function setPortfolioThumbnail(id) {
+    if (!editing) return;
+    const item = content.portfolio.find(i => i.id === id);
+    if (!item) return;
+    const input = prompt('Thumbnail image URL (optional — leave blank to use the default color block):', item.thumbnailUrl || '');
+    if (input === null) return;
+    const val = input.trim();
+    const previous = item.thumbnailUrl;
+    item.thumbnailUrl = val;
+    renderAll();
+    try {
+      await apiFetch(`/content/portfolio/${id}`, { method: 'PUT', body: JSON.stringify({ thumbnailUrl: val }) });
+    } catch (err) {
+      console.error('Failed to save thumbnail url', err);
+      item.thumbnailUrl = previous;
+      renderAll();
+    }
+  }
+
+  function openVideoLightboxFor(type, id) {
+    const item = content[type] && content[type].find(i => i.id === id);
+    const embed = item && toEmbedUrl(item.videoUrl);
+    if (!embed) return;
+    const frame = document.getElementById('video-lightbox-frame');
+    frame.src = embed + (embed.includes('?') ? '&' : '?') + 'autoplay=1';
+    document.getElementById('video-lightbox').classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
+  function closeVideoLightbox() {
+    document.getElementById('video-lightbox').classList.add('hidden');
+    document.getElementById('video-lightbox-frame').src = '';
+    document.body.classList.remove('overflow-hidden');
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideoLightbox(); });
+
   async function addItem(type) {
     if (!editing) return;
     let draft;
@@ -1007,12 +1104,19 @@
     if (!grid) return;
     grid.innerHTML = content.portfolio.map((item, i) => {
       const meta = CATEGORY_META[item.category] || CATEGORY_META.explainer;
+      const hasThumb = !!item.thumbnailUrl;
+      const hasVideo = !!item.videoUrl;
       return `
       <div class="edit-card portfolio-item reveal group" style="transition-delay:${(i * 0.05).toFixed(2)}s" data-cat="${item.category}" data-id="${item.id}">
         <button type="button" class="edit-del-btn absolute top-3 right-3 z-10 h-7 w-7 rounded-full bg-white border border-grey-300 text-grey-600 hover:border-red-400 hover:text-red-500 flex items-center justify-center text-xs" onclick="deleteItem('portfolio','${item.id}')" aria-label="Delete this project">✕</button>
-        <a href="#" class="block" onclick="event.preventDefault()">
-          <div class="thumb cycle-field relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br ${meta.grad} flex items-center justify-center" onclick="cycleField('portfolio','${item.id}','category', CATEGORY_ORDER)" title="${editing ? 'Click to change category' : ''}">
-            <svg class="w-9 h-9 text-white/70 group-hover:text-leaf-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <div class="edit-aux-btn absolute top-3 right-12 z-10 flex items-center gap-1.5">
+          <button type="button" class="h-7 w-7 rounded-full bg-white border ${hasVideo ? 'border-leaf-500 text-leaf-600' : 'border-grey-300 text-grey-600'} hover:border-leaf-500 hover:text-leaf-600 flex items-center justify-center text-xs" onclick="event.stopPropagation(); setPortfolioVideo('${item.id}')" aria-label="Set video link" title="${hasVideo ? 'Change video link' : 'Add video link (YouTube or Vimeo)'}">▶</button>
+          <button type="button" class="h-7 w-7 rounded-full bg-white border ${hasThumb ? 'border-leaf-500 text-leaf-600' : 'border-grey-300 text-grey-600'} hover:border-leaf-500 hover:text-leaf-600 flex items-center justify-center text-xs" onclick="event.stopPropagation(); setPortfolioThumbnail('${item.id}')" aria-label="Set thumbnail image" title="${hasThumb ? 'Change thumbnail image' : 'Add thumbnail image (optional)'}">🖼</button>
+        </div>
+        <a href="#" class="block" onclick="event.preventDefault(); if (!editing && ${hasVideo}) openVideoLightboxFor('portfolio','${item.id}');">
+          <div class="thumb cycle-field relative aspect-[4/3] rounded-2xl overflow-hidden ${hasThumb ? 'bg-ink-900' : `bg-gradient-to-br ${meta.grad}`} flex items-center justify-center bg-cover bg-center" ${hasThumb ? `style="background-image:url('${escapeHtml(item.thumbnailUrl)}')"` : ''} onclick="cycleField('portfolio','${item.id}','category', CATEGORY_ORDER)" title="${editing ? 'Click to change category' : ''}">
+            ${hasThumb ? '<div class="absolute inset-0 bg-black/20"></div>' : ''}
+            <svg class="relative w-9 h-9 text-white/70 group-hover:text-leaf-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             <span class="absolute top-3 left-3 text-[11px] uppercase tracking-wide font-semibold bg-black/40 text-white px-2.5 py-1 rounded-full">${meta.label}</span>
           </div>
           <h3 class="mt-3 font-medium text-base" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="title" onblur="fieldEdited('portfolio','${item.id}','title',this)">${escapeHtml(item.title)}</h3>
