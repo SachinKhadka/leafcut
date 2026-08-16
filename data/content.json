@@ -16,11 +16,16 @@
     "contactEmail": "hello@leafcut.studio",
     "contactResponseTime": "Avg. response time: 1 hour",
     "clientsServedByRegion": {
-      "northAmerica": 480,
-      "latinAmerica": 60,
-      "europe": 310,
-      "middleEastAfrica": 70,
-      "asiaPacific": 280
+      "northAmerica": 460,
+      "southAmerica": 55,
+      "europe": 300,
+      "africa": 35,
+      "middleEast": 40,
+      "southAsia": 90,
+      "southeastAsia": 60,
+      "eastAsia": 80,
+      "centralAsia": 15,
+      "oceania": 25
     },
     "countriesReachedCount": 22,
     "clientSatisfactionPercent": 98
