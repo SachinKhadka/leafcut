@@ -15,14 +15,15 @@
     "contactPara": "Build a quote in a few clicks, or reach out directly. We'll reply within one business day.",
     "contactEmail": "hello@leafcut.studio",
     "contactResponseTime": "Avg. response time: 1 hour",
-    "clientsServedByContinent": {
-      "northAmerica": 520,
-      "southAmerica": 60,
+    "clientsServedByRegion": {
+      "northAmerica": 480,
+      "latinAmerica": 60,
       "europe": 310,
-      "africa": 40,
-      "asia": 240,
-      "oceania": 300
-    }
+      "middleEastAfrica": 70,
+      "asiaPacific": 280
+    },
+    "countriesReachedCount": 22,
+    "clientSatisfactionPercent": 98
   },
   "portfolio": [
     {
