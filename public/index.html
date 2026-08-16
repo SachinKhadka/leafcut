@@ -1322,7 +1322,7 @@
         authed = !!session.authed;
       } catch {}
       if (!authed) {
-        location.href = '/login.html?redirect=' + encodeURIComponent(location.pathname + location.search);
+        location.href = '/login?redirect=' + encodeURIComponent(location.pathname + location.search);
         return;
       }
       editing = true;

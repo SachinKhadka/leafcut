@@ -113,17 +113,32 @@ async function runHandlers(handlers, req, res) {
   });
 }
 
+function send404(res) {
+  const notFoundPath = path.join(PUBLIC_DIR, '404.html');
+  fs.stat(notFoundPath, (err, stat) => {
+    if (!err && stat.isFile()) return sendFile(res, notFoundPath, 404);
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.end('Not found');
+  });
+}
+
 function serveStatic(req, res, pathname) {
-  let relPath = pathname === '/' ? '/index.html' : pathname;
+  const relPath = pathname === '/' ? '/index.html' : pathname;
   const resolved = path.normalize(path.join(PUBLIC_DIR, relPath));
   if (!resolved.startsWith(PUBLIC_DIR)) { res.statusCode = 403; return res.end('Forbidden'); }
   fs.stat(resolved, (err, stat) => {
-    if (err || !stat.isFile()) {
-      res.statusCode = 404;
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      return res.end('Not found');
+    if (!err && stat.isFile()) return sendFile(res, resolved);
+    // Clean URLs, mirroring Vercel's `cleanUrls: true` in production:
+    // /login resolves to /login.html when nothing exists at the exact path.
+    if (!path.extname(relPath)) {
+      const withHtml = resolved + '.html';
+      return fs.stat(withHtml, (err2, stat2) => {
+        if (!err2 && stat2.isFile()) return sendFile(res, withHtml);
+        send404(res);
+      });
     }
-    sendFile(res, resolved);
+    send404(res);
   });
 }
 

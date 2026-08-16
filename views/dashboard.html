@@ -362,7 +362,7 @@
       headers: options && options.body ? { 'Content-Type': 'application/json' } : undefined,
       ...options
     });
-    if (res.status === 401) { location.href = '/login.html?redirect=' + encodeURIComponent('/dashboard'); throw new Error('Not authenticated'); }
+    if (res.status === 401) { location.href = '/login?redirect=' + encodeURIComponent('/dashboard'); throw new Error('Not authenticated'); }
     if (!res.ok) {
       let msg = res.statusText;
       try { const body = await res.json(); if (body && body.error) msg = body.error; } catch {}
@@ -750,7 +750,7 @@
 
   document.getElementById('logout-btn').addEventListener('click', async () => {
     try { await apiFetch('/logout', { method: 'POST' }); } catch {}
-    location.href = '/login.html';
+    location.href = '/login';
   });
 
   (async function init() {

@@ -5,7 +5,7 @@ function requireAuthApi(req, res, next) {
 
 function requireAuthPage(req, res, next) {
   if (req.session && req.session.authed) return next();
-  res.redirect('/login.html?redirect=' + encodeURIComponent(req.originalUrl));
+  res.redirect('/login?redirect=' + encodeURIComponent(req.originalUrl));
 }
 
 module.exports = { requireAuthApi, requireAuthPage };

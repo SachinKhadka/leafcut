@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leafcut — Scene not found</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='195 335 155 130'%3E%3Cpath fill='%236bdb37' d='M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z'/%3E%3Cpath fill='%236bdb37' d='M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z'/%3E%3C/svg%3E">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          leaf: { 400:'#7fe04a', 500:'#6bdb37', 600:'#54b52c' },
+          grey: { 300:'#bfbfbf', 400:'#999999', 500:'#666666' },
+          ink: { 300:'#93a4ad', 800:'#36454f', 900:'#2a353d', 950:'#1c242a' }
+        },
+        fontFamily: { display: ['Poppins','sans-serif'], sans: ['Poppins','sans-serif'] }
+      }
+    }
+  }
+</script>
+
+<style>
+  body { font-family: 'Poppins', sans-serif; }
+  .grain {
+    background-image: radial-gradient(circle at 18% 20%, rgba(107,219,55,.16), transparent 40%),
+                       radial-gradient(circle at 85% 85%, rgba(107,219,55,.10), transparent 40%);
+  }
+  .sweep-arm { transform-origin: 100px 100px; animation: sweep 5s linear infinite; }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+  .flicker { animation: flicker 3.2s ease-in-out infinite; }
+  @keyframes flicker { 0%,100%{opacity:.5} 45%{opacity:.9} 50%{opacity:.4} 55%{opacity:.85} }
+  .magnetic-btn { transition: transform .3s cubic-bezier(0.34,1.56,0.64,1); }
+  .magnetic-btn:hover { transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) {
+    .sweep-arm, .flicker { animation: none !important; }
+  }
+</style>
+</head>
+
+<body class="bg-ink-800 text-white antialiased min-h-screen flex flex-col overflow-x-hidden">
+
+<header class="relative z-10 px-5 sm:px-8 py-6">
+  <a href="/" class="inline-flex items-center gap-2 font-display font-700 text-lg tracking-tight text-white">
+    <svg class="h-7 w-7" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
+      <path fill="#6bdb37" d="M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z"/>
+    </svg>
+    leafcut
+  </a>
+</header>
+
+<main class="relative flex-1 flex items-center justify-center grain px-5 py-12">
+  <div class="pointer-events-none absolute inset-0 flicker" style="background:radial-gradient(circle at 50% 45%, rgba(107,219,55,.10), transparent 55%);" aria-hidden="true"></div>
+
+  <div class="relative text-center max-w-lg">
+    <!-- Film countdown leader -->
+    <div class="relative mx-auto mb-9 h-40 w-40 sm:h-48 sm:w-48" role="img" aria-label="Film countdown leader showing 404">
+      <svg viewBox="0 0 200 200" class="absolute inset-0 h-full w-full" aria-hidden="true">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <g stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round">
+          <line x1="100" y1="10" x2="100" y2="24"/>
+          <line x1="163.6" y1="36.4" x2="153.7" y2="46.3"/>
+          <line x1="190" y1="100" x2="176" y2="100"/>
+          <line x1="163.6" y1="163.6" x2="153.7" y2="153.7"/>
+          <line x1="100" y1="190" x2="100" y2="176"/>
+          <line x1="36.4" y1="163.6" x2="46.3" y2="153.7"/>
+          <line x1="10" y1="100" x2="24" y2="100"/>
+          <line x1="36.4" y1="36.4" x2="46.3" y2="46.3"/>
+        </g>
+        <g class="sweep-arm">
+          <line x1="100" y1="100" x2="100" y2="14" stroke="#6bdb37" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <circle cx="100" cy="100" r="4" fill="#6bdb37"/>
+      </svg>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="font-display text-4xl sm:text-5xl font-800 tracking-tight">404</span>
+      </div>
+    </div>
+
+    <p class="text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-3">Take 404 &middot; Scene missing</p>
+    <h1 class="font-display text-3xl sm:text-4xl font-700 tracking-tight leading-tight mb-4">This scene didn't make the final cut.</h1>
+    <p class="text-grey-300 text-lg leading-relaxed mb-9">The page you're looking for was trimmed in the edit, moved, or never existed in this production. Let's get you back on set.</p>
+
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a href="/" class="magnetic-btn rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 font-semibold px-7 py-3.5 transition-colors">Back to the studio</a>
+      <a href="/#portfolio" class="magnetic-btn rounded-full border border-white/25 hover:border-white text-white font-semibold px-7 py-3.5 transition-colors">See our work</a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

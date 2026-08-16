@@ -105,12 +105,12 @@ function compilePath(pattern) {
   return { regex: new RegExp('^' + (regexStr || '/') + '/?$'), paramNames };
 }
 
-function sendFile(res, filePath) {
+function sendFile(res, filePath, statusCode = 200) {
   fs.readFile(filePath, (err, data) => {
     if (err) { res.statusCode = 404; res.end('Not found'); return; }
     const ext = path.extname(filePath).toLowerCase();
     res.setHeader('Content-Type', MIME[ext] || 'application/octet-stream');
-    res.statusCode = 200;
+    res.statusCode = statusCode;
     res.end(data);
   });
 }
