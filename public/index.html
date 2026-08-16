@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leafcut — Video Production Studio for Explainer, SaaS Demo &amp; Social Video</title>
-<meta name="description" content="Leafcut is a video production studio crafting explainer videos, SaaS demos, 2D animation and social content that connect and convert. Get an instant quote.">
+<title>Leafcut — Studio Quality, Factory Economics | Video Production at Scale</title>
+<meta name="description" content="Leafcut is a production floor for video. 50,000 videos delivered, 24-hour turnaround available, five production lines, one system. Book a call.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://leafcut.studio/">
 <meta name="theme-color" content="#36454f">
@@ -12,13 +12,13 @@
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Leafcut">
-<meta property="og:title" content="Leafcut — Video Production Studio">
-<meta property="og:description" content="Explainer videos, SaaS demos, 2D animation and social content that connect and convert. Get an instant quote.">
+<meta property="og:title" content="Leafcut — Studio Quality, Factory Economics">
+<meta property="og:description" content="50,000 videos delivered, 24-hour turnaround available, five production lines, one system. Book a call.">
 <meta property="og:url" content="https://leafcut.studio/">
 <meta property="og:image" content="https://leafcut.studio/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Leafcut — Video Production Studio">
-<meta name="twitter:description" content="Explainer videos, SaaS demos, 2D animation and social content that connect and convert.">
+<meta name="twitter:title" content="Leafcut — Studio Quality, Factory Economics">
+<meta name="twitter:description" content="50,000 videos delivered, 24-hour turnaround available, five production lines, one system.">
 <meta name="twitter:image" content="https://leafcut.studio/og-image.jpg">
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -34,12 +34,11 @@
   "@type": "ProfessionalService",
   "@id": "https://leafcut.studio/#business",
   "name": "Leafcut",
-  "description": "Video production studio crafting explainer videos, SaaS demos, 2D animation and social content.",
+  "description": "Video production floor delivering enterprise-scale programmes — 50,000 videos delivered, five production lines, one system.",
   "url": "https://leafcut.studio/",
   "email": "hello@leafcut.studio",
-  "priceRange": "$40-$400",
   "areaServed": "Worldwide",
-  "serviceType": ["Explainer video production", "SaaS demo video", "2D animation", "Social media video ads", "Video sales letters"]
+  "serviceType": ["Product & explainer video", "Brand & launch film", "Training & enablement video", "Video localisation", "Content operations"]
 }
 </script>
 
@@ -84,6 +83,12 @@
   }
   @media (max-width: 767px) { :root { --nav-h: 4rem; } }
 
+  /* Belt-and-braces against sideways scroll/pan: individual sections clip
+     their own decorative overflow (gradients, magnetic-button transforms),
+     but nothing stopped the page itself from being horizontally pannable if
+     any of that briefly exceeded the viewport width — most noticeable as
+     "sliding" on trackpad diagonal-scroll gestures. */
+  html, body { overflow-x: hidden; max-width: 100%; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Poppins', sans-serif; }
   h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
@@ -263,15 +268,15 @@
     </a>
 
     <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-grey-200" aria-label="Primary">
-      <a href="#about" class="nav-link hover:text-white">About</a>
-      <a href="#services" class="nav-link hover:text-white">Services</a>
-      <a href="#portfolio" class="nav-link hover:text-white">Portfolio</a>
-      <a href="#team" class="nav-link hover:text-white">Team</a>
+      <a href="#work" class="nav-link hover:text-white">Work</a>
+      <a href="#lines" class="nav-link hover:text-white">The Lines</a>
+      <a href="#ai-studio" class="nav-link hover:text-white">AI Studio</a>
+      <a href="#studio" class="nav-link hover:text-white">Studio</a>
       <a href="#contact" class="nav-link hover:text-white">Contact</a>
     </nav>
 
     <a href="#contact" class="magnetic hidden md:inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-grey-950 text-sm font-semibold px-5 py-2.5 transition-colors">
-      Start a project
+      Book a call
     </a>
 
     <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-white p-2 -mr-2">
@@ -283,12 +288,12 @@
   <!-- mobile menu -->
   <div id="mobile-menu" class="md:hidden hidden border-t border-white/10 bg-ink-800">
     <nav class="flex flex-col px-5 py-4 gap-1 text-grey-200" aria-label="Mobile">
-      <a href="#about" class="mobile-link py-3 border-b border-white/5">About</a>
-      <a href="#services" class="mobile-link py-3 border-b border-white/5">Services</a>
-      <a href="#portfolio" class="mobile-link py-3 border-b border-white/5">Portfolio</a>
-      <a href="#team" class="mobile-link py-3 border-b border-white/5">Team</a>
+      <a href="#work" class="mobile-link py-3 border-b border-white/5">Work</a>
+      <a href="#lines" class="mobile-link py-3 border-b border-white/5">The Lines</a>
+      <a href="#ai-studio" class="mobile-link py-3 border-b border-white/5">AI Studio</a>
+      <a href="#studio" class="mobile-link py-3 border-b border-white/5">Studio</a>
       <a href="#contact" class="mobile-link py-3">Contact</a>
-      <a href="#contact" class="mobile-link mt-3 inline-flex justify-center items-center rounded-full bg-leaf-500 text-grey-950 text-sm font-semibold px-5 py-3">Start a project</a>
+      <a href="#contact" class="mobile-link mt-3 inline-flex justify-center items-center rounded-full bg-leaf-500 text-grey-950 text-sm font-semibold px-5 py-3">Book a call</a>
     </nav>
   </div>
 </header>
@@ -302,22 +307,24 @@
     <div class="reveal">
       <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-6">
         <span class="h-1.5 w-1.5 rounded-full bg-leaf-500" aria-hidden="true"></span>
-        <span data-site-field="heroEyebrow">Video Production Studio</span>
+        <span data-site-field="heroEyebrow">Video Production at Industrial Scale</span>
       </p>
       <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-700 leading-[1.08] tracking-tight">
-        <span data-site-field="heroPrefix">Video production that makes people</span> <span class="text-leaf-400" data-site-field="heroHighlight">act</span><span data-site-field="heroSuffix">, not just watch.</span>
+        <span data-site-field="heroPrefix">Studio quality.</span> <span class="text-leaf-400" data-site-field="heroHighlight">Factory economics.</span><span data-site-field="heroSuffix"></span>
       </h1>
       <p class="mt-6 text-grey-300 text-lg leading-relaxed max-w-lg" data-site-field="heroSubtext">
-        Leafcut is a lean video studio for startups and brands. We turn ideas into explainer videos, product demos and social content built with structure, emotion and intent.
+        The best product companies in the world do not own their factories. They hire the best one. Leafcut is that floor for video — 50,000 finished videos, one system, delivered in as little as 24 hours.
       </p>
       <div class="mt-9 flex flex-wrap items-center gap-4">
-        <a href="#contact" class="magnetic rounded-full bg-leaf-500 hover:bg-leaf-400 text-grey-950 font-semibold px-7 py-3.5 transition-colors">Start a project</a>
-        <a href="#portfolio" class="magnetic rounded-full border border-white/25 hover:border-white text-white font-semibold px-7 py-3.5 transition-colors">See our work</a>
+        <a href="#contact" class="magnetic rounded-full bg-leaf-500 hover:bg-leaf-400 text-grey-950 font-semibold px-7 py-3.5 transition-colors">Book a call</a>
+        <a href="#work" class="magnetic rounded-full border border-white/25 hover:border-white text-white font-semibold px-7 py-3.5 transition-colors">See the work</a>
       </div>
-      <div class="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4 text-sm text-grey-400">
-        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="10000" data-suffix="+">10,000+</span><br>videos delivered</div>
-        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="4.9" data-decimals="1" data-suffix="★">4.9★</span><br>average client rating</div>
-        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="3" data-suffix="">3</span><br>continents served</div>
+      <div class="mt-12 flex flex-wrap items-center gap-x-7 gap-y-4 text-sm text-grey-400">
+        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="50000" data-suffix="+">50,000+</span><br>videos delivered</div>
+        <div><span id="hero-stat-countries" class="stat-num text-white font-display text-2xl font-700" data-target="22" data-suffix="+">22+</span><br>countries</div>
+        <div><span class="text-white font-display text-2xl font-700">30–50</span><br>people on the floor</div>
+        <div><span class="text-white font-display text-2xl font-700">24hr</span><br>delivery available</div>
+        <div><span class="stat-num text-white font-display text-2xl font-700" data-target="20" data-suffix="+">20+</span><br>languages</div>
       </div>
     </div>
 
@@ -333,61 +340,123 @@
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
+<!-- ============ ABOUT / POSITION ============ -->
 <section id="about" class="py-20 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 grid md:grid-cols-12 gap-12">
     <div class="md:col-span-5 reveal">
-      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">About Leafcut</p>
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">The Position</p>
       <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight leading-tight" data-site-field="aboutHeading">
-        A small studio, built for clear, honest storytelling.
+        A floor built for volume, run like a line, finished like a studio.
       </h2>
     </div>
     <div class="md:col-span-7 reveal" style="transition-delay:.1s">
       <p class="text-grey-600 text-lg leading-relaxed" data-site-field="aboutPara1">
-        We help businesses turn ideas into clear, engaging videos that people understand, feel and respond to — not just watch. Our team has produced thousands of videos for startups, agencies and brands across SaaS, eCommerce and service businesses.
+        Apple does not own a chip factory. It hires the best one on earth — and nobody thinks less of an iPhone for it. Leafcut is that floor for video: the production system that agencies and enterprise brand teams both hire, because we hold quality at a volume and speed they cannot staff for.
       </p>
       <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="aboutPara2">
-        Every project runs through the same process: a clear brief, a tight script, considered visuals, and a final cut built for the platform it's meant to live on. No bloated timelines, no jargon — just video that does its job.
+        Every project runs through the same system: a clear brief, a producer who owns the account, a tight edit, and a final cut checked against your brand before it ships. No bloated timelines, no jargon — just a floor that holds the line at scale.
       </p>
 
       <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-6">
         <div class="border-t-2 border-leaf-500 pt-3">
-          <p class="stat-num font-display text-2xl font-700" data-target="6.3" data-decimals="1" data-suffix="k+">6.3k+</p>
-          <p class="text-sm text-grey-500 mt-1">client reviews</p>
+          <p class="stat-num font-display text-2xl font-700" data-target="50000" data-suffix="+">50,000+</p>
+          <p class="text-sm text-grey-500 mt-1">videos delivered</p>
         </div>
         <div class="border-t-2 border-leaf-500 pt-3">
-          <p class="font-display text-2xl font-700">1hr</p>
-          <p class="text-sm text-grey-500 mt-1">avg. response time</p>
+          <p class="stat-num font-display text-2xl font-700" data-target="24" data-suffix="hr">24hr</p>
+          <p class="text-sm text-grey-500 mt-1">delivery available</p>
         </div>
         <div class="border-t-2 border-leaf-500 pt-3">
-          <p class="font-display text-2xl font-700">Top Rated</p>
-          <p class="text-sm text-grey-500 mt-1">studio status</p>
+          <p class="stat-num font-display text-2xl font-700" data-target="1000" data-suffix="/mo">1,000/mo</p>
+          <p class="text-sm text-grey-500 mt-1">systems built for</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section id="services" class="py-20 md:py-28 bg-grey-50">
+<!-- ============ LOGO WALL ============ -->
+<section id="logos" class="py-16 md:py-20 bg-white border-t border-grey-100">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 reveal">
+    <p class="text-center text-xs font-semibold tracking-widest uppercase text-grey-500 mb-8" data-site-field="logosHeading">Work delivered for teams at</p>
+    <div id="logos-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5"></div>
+    <p class="mt-8 text-center text-sm text-grey-500 max-w-2xl mx-auto" data-site-field="logosSubtext">Plus hundreds of SaaS, fintech, e-commerce, education and media teams across North America, Europe, Asia and Australia.</p>
+  </div>
+</section>
+
+<!-- ============ PRODUCTION FLOOR ============ -->
+<section id="production-floor" class="py-20 md:py-28 bg-ink-800 text-white overflow-hidden grain">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl reveal">
-      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Services</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">What we make</h2>
-      <p class="mt-4 text-grey-600 text-lg">Six core formats, each built around one goal: getting your audience to actually respond.</p>
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-3">The Production Floor</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Every video passes four sets of hands before it reaches you.</h2>
+    </div>
+    <div class="mt-8 max-w-3xl reveal" style="transition-delay:.05s">
+      <p class="text-grey-300 text-lg leading-relaxed">A real production line is not automation. It is division of labour — each person responsible for one thing, and good at it, instead of one editor doing everything and catching nothing.</p>
+      <p class="mt-5 text-grey-300 text-lg leading-relaxed">Every project on our floor moves through a producer who owns the brief, an editor who builds the cut, a quality lead who checks it against your brand system frame by frame, and a creative lead who signs it off before it ships. Four people, four checkpoints, on a 90-second video.</p>
+      <p class="mt-5 text-grey-300 text-lg leading-relaxed">That is why the fortieth video looks like the first one. Video programmes rarely fail on video one — they fail on video forty, when the producer has picked up three other accounts and the newest editor has never read your brand guide. A line does not have that failure mode. A freelancer does.</p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-3 gap-6">
+      <div class="reveal rounded-2xl border border-white/10 bg-ink-900/40 p-7" style="transition-delay:.1s">
+        <div class="h-11 w-11 rounded-xl bg-leaf-500/10 text-leaf-400 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-700">Named accountability</h3>
+        <p class="mt-2 text-sm text-grey-300 leading-relaxed">One producer owns your account and does not rotate. You always know who to call.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-white/10 bg-ink-900/40 p-7" style="transition-delay:.15s">
+        <div class="h-11 w-11 rounded-xl bg-leaf-500/10 text-leaf-400 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-700">Checked four times</h3>
+        <p class="mt-2 text-sm text-grey-300 leading-relaxed">Producer, editor, quality lead, creative lead. Nothing ships unsigned.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-white/10 bg-ink-900/40 p-7" style="transition-delay:.2s">
+        <div class="h-11 w-11 rounded-xl bg-leaf-500/10 text-leaf-400 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-700">Consistency by system</h3>
+        <p class="mt-2 text-sm text-grey-300 leading-relaxed">Your brand system is built once, then enforced on every cut by someone whose only job is enforcing it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE LINES (was Services) ============ -->
+<section id="lines" class="py-20 md:py-28 bg-grey-50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">The Lines</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Five lines. One floor.</h2>
+      <p class="mt-4 text-grey-600 text-lg">Each line is a production system in its own right — its own specialists, its own templates, its own delivery spec. Run one. Run all five.</p>
     </div>
 
     <div id="services-grid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </div>
 </section>
 
-<!-- ============ PORTFOLIO ============ -->
-<section id="portfolio" class="py-20 md:py-28 bg-white">
+<!-- ============ SPEED ============ -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid md:grid-cols-12 gap-12">
+    <div class="md:col-span-5 reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Speed</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight leading-tight">You set the clock. We hold it.</h2>
+    </div>
+    <div class="md:col-span-7 reveal" style="transition-delay:.1s">
+      <p class="text-grey-600 text-lg leading-relaxed">Twenty-four hours. Forty-eight. Seventy-two. Standard delivery in five business days when there is no rush. You choose the turnaround at the point of brief, we quote against it, and we hold it — because the floor is covered every day of the year, across your time zone and ours.</p>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed">No agency can promise this, because an agency is one team in one city with one working day. A floor with round-the-clock coverage is a different kind of promise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK (was Portfolio) ============ -->
+<section id="work" class="py-20 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="flex flex-wrap items-end justify-between gap-6 reveal">
       <div class="max-w-2xl">
-        <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Portfolio</p>
-        <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Recent work</h2>
+        <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Work</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Off the line</h2>
       </div>
       <div id="filters" class="flex flex-wrap gap-2" role="group" aria-label="Filter portfolio by category">
         <button data-filter="all" aria-pressed="true" class="filter-btn active-filter text-sm font-medium px-4 py-2 rounded-full border border-grey-900 bg-grey-900 text-white transition-colors">All</button>
@@ -408,8 +477,8 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl reveal">
       <p class="text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-3">Global Reach</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Clients across the globe</h2>
-      <p class="mt-4 text-grey-300 text-lg">Browse the regions we serve on the left, or hover the map itself, to see how many clients we've worked with in each.</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Delivered in <span id="reach-countries-headline">22</span>+ countries.</h2>
+      <p class="mt-4 text-grey-300 text-lg">Browse the regions we serve on the left, or hover the map itself, to see how many projects we've delivered in each.</p>
     </div>
 
     <div id="reach-map" class="reach-map relative mt-14 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-ink-900/40 reveal overflow-hidden" style="transition-delay:.1s">
@@ -449,7 +518,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#6bdb37"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">North America</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-northAmerica">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-northAmerica">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -458,7 +527,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#356f1e"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">South America</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-southAmerica">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-southAmerica">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -467,7 +536,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#93a4ad"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">Europe</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-europe">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-europe">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -476,7 +545,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#c9a869"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">Africa</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-africa">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-africa">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -485,7 +554,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#b08d57"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">Middle East</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-middleEast">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-middleEast">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -494,7 +563,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#e07a5f"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">South Asia</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-southAsia">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-southAsia">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -503,7 +572,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#f2cc8f"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">Southeast Asia</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-southeastAsia">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-southeastAsia">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -512,7 +581,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#3d5a80"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">East Asia</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-eastAsia">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-eastAsia">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -521,7 +590,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#9b5de5"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">Central Asia</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-centralAsia">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-centralAsia">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -530,7 +599,7 @@
               <span class="h-2.5 w-2.5 rounded-full shrink-0" style="background:#46525b"></span>
               <span class="flex-1 min-w-0">
                 <span class="block text-sm font-semibold text-white">Oceania</span>
-                <span class="block text-xs text-grey-300"><span id="reach-count-oceania">0</span>+ clients served</span>
+                <span class="block text-xs text-grey-300"><span id="reach-count-oceania">0</span>+ projects delivered</span>
               </span>
             </button>
           </li>
@@ -554,7 +623,7 @@
       </div>
       <div class="px-5 py-6 sm:py-7 text-center">
         <p id="reach-stat-total" class="font-display text-3xl sm:text-4xl font-800 text-white">0+</p>
-        <p class="mt-1 text-[11px] sm:text-xs uppercase tracking-wide text-leaf-100 font-semibold">Clients served</p>
+        <p class="mt-1 text-[11px] sm:text-xs uppercase tracking-wide text-leaf-100 font-semibold">Projects delivered</p>
       </div>
       <div class="px-5 py-6 sm:py-7 text-center">
         <p id="reach-stat-satisfaction" class="font-display text-3xl sm:text-4xl font-800 text-white">0%</p>
@@ -564,17 +633,235 @@
   </div>
 </section>
 
-<!-- ============ TEAM ============ -->
-<section id="team" class="py-20 md:py-28 bg-grey-50">
+<!-- ============ CAPACITY ============ -->
+<section class="py-20 md:py-28 bg-ink-800 text-white overflow-hidden grain">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl reveal">
-      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Team</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">The people behind the cut</h2>
-      <p class="mt-4 text-grey-600 text-lg">A small, senior team — every project gets a director's attention, start to finish.</p>
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-3">Capacity</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">The floor is running at a fraction of what it was built for.</h2>
+    </div>
+    <div class="mt-6 max-w-3xl reveal" style="transition-delay:.05s">
+      <p class="text-grey-300 text-lg leading-relaxed">Most studios quote you a price. We will tell you what we can absorb.</p>
+      <p class="mt-5 text-grey-300 text-lg leading-relaxed">Our systems were built to run 500 to 1,000 finished videos a month. We are not running at that. That headroom is the reason we can commit to your volume in writing on the first call, instead of discovering the ceiling in month three — which is how most video programmes actually fail.</p>
+      <p class="mt-5 text-grey-300 text-lg leading-relaxed">Tell us the volume, the formats and the turnaround. We will tell you in one call whether the floor can hold it, and what it costs. Every engagement is quoted at a fixed price against a fixed spec. No hourly billing, no scope-creep invoices.</p>
     </div>
 
-    <div id="team-grid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-    <p class="mt-8 text-xs text-grey-400 reveal">Placeholder names and roles — swap in your real team and photos.</p>
+    <div class="mt-14 grid sm:grid-cols-3 gap-6">
+      <div class="reveal rounded-2xl border border-white/10 bg-ink-900/40 p-7" style="transition-delay:.1s">
+        <h3 class="font-display text-lg font-700">Committed monthly output</h3>
+        <p class="mt-2 text-sm text-grey-300 leading-relaxed">Agreed before we start. Held. In writing.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-white/10 bg-ink-900/40 p-7" style="transition-delay:.15s">
+        <h3 class="font-display text-lg font-700">24 · 48 · 72 hours</h3>
+        <p class="mt-2 text-sm text-grey-300 leading-relaxed">You choose the clock. Standard, express or same-day, quoted upfront.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-white/10 bg-ink-900/40 p-7" style="transition-delay:.2s">
+        <h3 class="font-display text-lg font-700">Every day of the year</h3>
+        <p class="mt-2 text-sm text-grey-300 leading-relaxed">Coverage across your time zone and ours. Your Monday morning is our Monday morning.</p>
+      </div>
+    </div>
+    <div class="mt-10 reveal" style="transition-delay:.25s">
+      <a href="#contact" class="magnetic inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 font-semibold px-7 py-3.5 transition-colors">Book a call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI STUDIO ============ -->
+<section id="ai-studio" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">The AI Studio</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">The budget stopped being the ceiling.</h2>
+    </div>
+    <div class="mt-6 max-w-3xl reveal" style="transition-delay:.05s">
+      <p class="text-grey-600 text-lg leading-relaxed">Three years ago the video in your head needed a crew, a soundstage, a VFX house and a six-figure budget. Most of those ideas were never made — not because they were wrong, but because the number came back and the answer was no.</p>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed">That constraint has collapsed. Work that sat in the hundred-thousand bracket now sits inside a normal campaign budget. Cinematic sequences, synthetic presenters, full animation, twenty language versions of the same film — produced on our floor, directed by people who were making this work before the tools existed.</p>
+      <p class="mt-5 text-grey-800 text-lg leading-relaxed font-semibold">The ceiling on what you can make is no longer the budget. It is the brief.</p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-3 gap-6">
+      <div class="reveal rounded-2xl bg-grey-50 border border-grey-200 p-7" style="transition-delay:.1s">
+        <p class="text-sm text-grey-400 line-through">$100,000 production</p>
+        <p class="mt-1.5 font-display text-2xl font-700 text-leaf-700">now $10,000 bracket</p>
+      </div>
+      <div class="reveal rounded-2xl bg-grey-50 border border-grey-200 p-7" style="transition-delay:.15s">
+        <p class="text-sm text-grey-400 line-through">$10,000 video</p>
+        <p class="mt-1.5 font-display text-2xl font-700 text-leaf-700">now $1,000 bracket</p>
+      </div>
+      <div class="reveal rounded-2xl bg-grey-50 border border-grey-200 p-7" style="transition-delay:.2s">
+        <p class="text-sm text-grey-400 line-through">Six weeks</p>
+        <p class="mt-1.5 font-display text-2xl font-700 text-leaf-700">now 72 hours</p>
+      </div>
+    </div>
+    <p class="mt-6 max-w-3xl text-grey-500 reveal" style="transition-delay:.25s">The saving is not a discount. It is a different production model — no crew, no location, no reshoots, and a floor in Kathmandu instead of a studio in London. The craft standard does not move.</p>
+
+    <div class="mt-16 max-w-2xl reveal">
+      <h3 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">What comes out of it</h3>
+    </div>
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal bg-white border border-grey-200 rounded-2xl p-7" style="transition-delay:.1s">
+        <h4 class="font-display text-lg font-700">Cinematic brand film</h4>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">Scale, scope and finish that used to require a shoot week and a crew of thirty.</p>
+      </div>
+      <div class="reveal bg-white border border-grey-200 rounded-2xl p-7" style="transition-delay:.15s">
+        <h4 class="font-display text-lg font-700">Full animation &amp; motion</h4>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">Character work, 2D and 3D sequences, at a fraction of a traditional animation house.</p>
+      </div>
+      <div class="reveal bg-white border border-grey-200 rounded-2xl p-7" style="transition-delay:.2s">
+        <h4 class="font-display text-lg font-700">Synthetic presenters</h4>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">A named, consistent on-screen presenter across a whole library, in every language you sell in.</p>
+      </div>
+      <div class="reveal bg-white border border-grey-200 rounded-2xl p-7" style="transition-delay:.25s">
+        <h4 class="font-display text-lg font-700">Twenty markets, one master</h4>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">Translated, voiced, lip-synced, and quality-checked by a human in every language.</p>
+      </div>
+      <div class="reveal bg-white border border-grey-200 rounded-2xl p-7" style="transition-delay:.3s">
+        <h4 class="font-display text-lg font-700">Concepts that were never affordable</h4>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">The idea that got cut from the deck because the quote came back too high. Bring it back.</p>
+      </div>
+    </div>
+
+    <div class="mt-16 rounded-2xl bg-ink-800 text-white p-8 sm:p-10 reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-400 mb-4">The AI trust block</p>
+      <p class="font-display text-xl sm:text-2xl font-700 leading-snug mb-6">Human creative direction on every project, without exception.</p>
+      <ul class="space-y-3 text-grey-300 text-base sm:text-lg">
+        <li class="flex gap-3"><span class="text-leaf-400 mt-1" aria-hidden="true">—</span><span>Human final cut. Nothing reaches you that a creative lead has not signed off.</span></li>
+        <li class="flex gap-3"><span class="text-leaf-400 mt-1" aria-hidden="true">—</span><span>Your material is never used to train third-party models.</span></li>
+        <li class="flex gap-3"><span class="text-leaf-400 mt-1" aria-hidden="true">—</span><span>Licensed assets and licensed voices only. Full written disclosure of AI use on request, and on any project where you need it for your own compliance.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="py-20 md:py-28 bg-grey-50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Process</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">How an engagement runs</h2>
+    </div>
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal">
+        <p class="font-display text-3xl font-800 text-leaf-500 mb-3">01</p>
+        <h3 class="font-display text-lg font-700">Spec</h3>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">Thirty minutes. Volume, formats, languages, turnaround. We tell you honestly whether the floor can hold it.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.05s">
+        <p class="font-display text-3xl font-800 text-leaf-500 mb-3">02</p>
+        <h3 class="font-display text-lg font-700">Pilot</h3>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">One video at a fixed price, so you see the work before you commit to the volume. Credited in full against your first month.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <p class="font-display text-3xl font-800 text-leaf-500 mb-3">03</p>
+        <h3 class="font-display text-lg font-700">Brand system</h3>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">Built once: templates, motion language, voice, terminology, delivery specs. Every video after this is faster and more consistent than the last.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <p class="font-display text-3xl font-800 text-leaf-500 mb-3">04</p>
+        <h3 class="font-display text-lg font-700">The line runs</h3>
+        <p class="mt-2 text-sm text-grey-600 leading-relaxed">Agreed monthly output, named producer, four checkpoints, your chosen turnaround. Every month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDIO (was Team) ============ -->
+<section id="studio" class="py-20 md:py-28 bg-grey-50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Studio</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight leading-tight" data-site-field="studioHeading">A production floor in Kathmandu, running for the world.</h2>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="studioPara1">
+        Leafcut has delivered more than 50,000 finished videos to teams in 22+ countries. We are 30 to 50 people in Kathmandu, Nepal — producers, editors, animators, quality leads and creative directors — running one system built for high output that does not lose quality as it scales.
+      </p>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="studioPara2">
+        We do not hide where we are. Our location is the reason we can staff a senior floor, run an AI production stack, cover every time zone, and deliver at a fraction of what the same work costs from a studio in London or New York — without touching the craft. Every client works with the same team, on the same system, in their own working hours.
+      </p>
+    </div>
+
+    <div class="mt-16 max-w-2xl reveal" style="transition-delay:.05s">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Who runs the floor</p>
+      <h3 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">A senior team, in one studio, on one system.</h3>
+      <p class="mt-4 text-grey-600 text-lg">Every account has a named producer and a named creative lead from the first brief to final delivery — and they do not rotate.</p>
+    </div>
+
+    <div id="team-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">FAQ</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight">Questions worth asking before you commit</h2>
+    </div>
+
+    <div class="mt-12 divide-y divide-grey-200 border-t border-grey-200 reveal" style="transition-delay:.05s">
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          How fast can you deliver?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">You choose: 24, 48 or 72 hours, or five business days as standard. You set the clock at the point of brief and we quote against it.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          Can you handle forty videos a month?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">Yes, and considerably more. Our systems were built to run 500 to 1,000 finished videos a month. Monthly capacity is agreed in writing before we start.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          What if our volume spikes?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">That is what the headroom is for. Tell us on the call and we will tell you honestly whether the spike is absorbable. We would rather decline a month than miss it.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          Do you shoot on location?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">No, and it is deliberate. We produce live-action work from premium licensed footage and AI-generated sequences, directed and cut like original production. No crew, no scheduling, no reshoot when the script changes.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          Do you use AI?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">Yes, openly, and it is why our economics work. Generative video, synthetic presenters, voice synthesis and AI localisation, all directed by senior people with a human final cut. Full written disclosure available for your compliance team.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          What happens to our confidential material?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">It stays yours. Your material is never used to train third-party models. NDA signed before any brief is shared, as standard.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          Where are you based?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">Kathmandu, Nepal. One floor, one team, covering every time zone, every day of the year.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          What is the minimum engagement?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">A paid pilot: one video, fixed price, credited in full against your first month if you continue.</p>
+      </details>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-base sm:text-lg font-700">
+          Who will we actually work with?
+          <svg class="w-4 h-4 shrink-0 text-grey-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </summary>
+        <p class="mt-3 text-grey-600 leading-relaxed">A named producer who owns your account and does not rotate, plus a creative lead who signs off every cut. You will meet both before you commit.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -595,8 +882,8 @@
 
     <div class="lg:col-span-4 reveal">
       <p class="text-xs font-semibold tracking-widest uppercase text-leaf-600 mb-3">Contact</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight" data-site-field="contactHeading">Let's make something worth watching.</h2>
-      <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="contactPara">Build a quote in a few clicks, or reach out directly. We'll reply within one business day.</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-700 tracking-tight" data-site-field="contactHeading">Tell us what you need to ship this quarter.</h2>
+      <p class="mt-5 text-grey-600 text-lg leading-relaxed" data-site-field="contactPara">Thirty minutes. We will map the volume, the formats and the turnaround, and tell you plainly whether we are the right floor for it. Every enquiry answered within one business day.</p>
 
       <!-- <div class="mt-10 space-y-5 text-sm">
         <div class="flex items-center gap-3">
@@ -630,69 +917,52 @@
 
         <div class="p-6 sm:p-7 pb-0">
           <div class="flex items-center justify-between gap-4">
-            <h3 class="font-display text-lg font-700">Get an instant estimate</h3>
+            <h3 class="font-display text-lg font-700">Tell us the volume. We will tell you the number.</h3>
             <span class="text-xs text-grey-500 whitespace-nowrap">Step <span id="step-current">1</span>/4</span>
           </div>
-          <p class="text-sm text-grey-500 mt-1 mb-5">Priced from our real project rates.</p>
+          <p class="text-sm text-grey-500 mt-1 mb-5">No pricing on the site — every engagement is quoted at a fixed price against a fixed spec, on the call.</p>
 
           <!-- progress -->
-          <div class="flex gap-1.5 mb-6" aria-label="Quote builder progress, step 1 of 4">
-            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-leaf-500" data-step="1" aria-label="Go to step 1: video type"></button>
-            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="2" aria-label="Go to step 2: length"></button>
-            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="3" aria-label="Go to step 3: add-ons"></button>
+          <div class="flex gap-1.5 mb-6" aria-label="Qualifier progress, step 1 of 4">
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-leaf-500" data-step="1" aria-label="Go to step 1: line"></button>
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="2" aria-label="Go to step 2: volume"></button>
+            <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="3" aria-label="Go to step 3: turnaround"></button>
             <button type="button" class="step-dot h-1 flex-1 rounded-full bg-grey-200" data-step="4" aria-label="Go to step 4: your details"></button>
           </div>
 
           <div class="relative min-h-[104px] sm:min-h-[84px]" id="step-wrap">
 
-            <!-- Step 1: video type -->
+            <!-- Step 1: line -->
             <div class="step-panel is-active" data-step="1">
-              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Video type</p>
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Which line do you need?</p>
               <div class="flex flex-wrap gap-2">
-                <button type="button" data-base="45" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Explainer Ad · $45</button>
-                <button type="button" data-base="105" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">SaaS Demo · $105</button>
-                <button type="button" data-base="150" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">2D Animation · $150</button>
-                <button type="button" data-base="40" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Social Ad · $40</button>
-                <button type="button" data-base="180" class="type-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">VSL · $180</button>
+                <button type="button" class="line-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Product & Explainer</button>
+                <button type="button" class="line-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Brand & Launch Film</button>
+                <button type="button" class="line-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Training & Enablement</button>
+                <button type="button" class="line-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Localisation</button>
+                <button type="button" class="line-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Content Operations</button>
               </div>
             </div>
 
-            <!-- Step 2: length -->
+            <!-- Step 2: volume -->
             <div class="step-panel is-hidden" data-step="2">
-              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Video length</p>
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Monthly volume</p>
               <div class="flex flex-wrap gap-2">
-                <button type="button" data-mult="1" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Up to 30s</button>
-                <button type="button" data-mult="1.8" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">30–60s</button>
-                <button type="button" data-mult="2.6" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">60–90s</button>
-                <button type="button" data-mult="3.8" class="length-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">90s+ / 2–3 min</button>
+                <button type="button" class="volume-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">1–10 videos</button>
+                <button type="button" class="volume-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">10–40 videos</button>
+                <button type="button" class="volume-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">40–100 videos</button>
+                <button type="button" class="volume-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">100+ videos</button>
               </div>
             </div>
 
-            <!-- Step 3: add-ons -->
+            <!-- Step 3: turnaround -->
             <div class="step-panel is-hidden" data-step="3">
-              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Add-ons (optional)</p>
+              <p class="text-xs font-semibold text-grey-500 uppercase tracking-wide mb-3">Turnaround</p>
               <div class="flex flex-wrap gap-2">
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="35">Voice over +$35
-                </label>
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="40">Script writing +$40
-                </label>
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="25">Extra revision +$25
-                </label>
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="60">Rush 48h +$60
-                </label>
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="30">Source files +$30
-                </label>
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="45">Social cutdowns +$45
-                </label>
-                <label class="addon-label chip-btn flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500 cursor-pointer">
-                  <input type="checkbox" class="addon-check sr-only" data-price="20">Subtitles +$20
-                </label>
+                <button type="button" class="turnaround-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">24 hours</button>
+                <button type="button" class="turnaround-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">48 hours</button>
+                <button type="button" class="turnaround-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">72 hours</button>
+                <button type="button" class="turnaround-btn chip-btn text-sm font-medium px-3.5 py-2 rounded-full border-2 border-grey-300 bg-white hover:border-leaf-500">Standard (5 business days)</button>
               </div>
             </div>
 
@@ -708,28 +978,32 @@
                   <label class="sr-only" for="email">Email</label>
                   <input required id="email" name="email" type="email" placeholder="you@company.com" class="w-full rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
                 </div>
+                <div class="sm:col-span-2">
+                  <label class="sr-only" for="company">Company</label>
+                  <input id="company" name="company" type="text" placeholder="Company" class="w-full rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+                </div>
               </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Estimate + nav bar -->
+        <!-- Summary + nav bar -->
         <div class="mt-6 bg-ink-800 text-white px-6 sm:px-7 py-4 flex items-center justify-between gap-4">
           <div>
-            <p class="text-[10px] uppercase tracking-wide text-leaf-400 font-semibold leading-none">Estimated budget</p>
-            <p id="estimate-output" class="font-display text-xl sm:text-2xl font-700 leading-tight mt-1">$40 – $55</p>
+            <p class="text-[10px] uppercase tracking-wide text-leaf-400 font-semibold leading-none">On the call</p>
+            <p id="qualifier-summary" class="font-display text-base sm:text-lg font-700 leading-tight mt-1">We'll confirm capacity and quote against your spec.</p>
           </div>
           <div class="flex items-center gap-2">
             <button type="button" id="step-back" class="hidden text-sm font-medium px-4 py-2.5 rounded-full border border-white/25 hover:border-white transition-colors">Back</button>
             <button type="button" id="step-next" class="magnetic text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 text-ink-900 hover:bg-leaf-400 transition-colors">Next</button>
-            <button type="submit" id="step-submit" class="magnetic hidden text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 text-ink-900 hover:bg-leaf-400 transition-colors">Get my quote</button>
+            <button type="submit" id="step-submit" class="magnetic hidden text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 text-ink-900 hover:bg-leaf-400 transition-colors">Book a call</button>
           </div>
         </div>
 
         <div class="px-6 sm:px-7 pb-6 sm:pb-7">
           <p id="form-success" class="hidden mt-4 text-sm text-leaf-700 font-medium"></p>
-          <p class="mt-4 text-xs text-grey-400">Indicative pricing, benchmarked against our real project rates — final quote confirmed after your brief. This form is a front-end demo; connect it to your email or CRM before going live.</p>
+          <p class="mt-4 text-xs text-grey-400">No hourly billing, no scope-creep invoices — every engagement is quoted at a fixed price against a fixed spec, confirmed on the call.</p>
         </div>
       </form>
     </div>
@@ -751,7 +1025,7 @@
         </svg>
         <span>leafcut</span>
       </a>
-      <p class="mt-4 text-sm leading-relaxed text-ink-300 max-w-sm" data-site-field="heroSubtext">Leafcut is a lean video studio for startups and brands. We turn ideas into explainer videos, product demos and social content built with structure, emotion and intent.</p>
+      <p class="mt-4 text-sm leading-relaxed text-ink-300 max-w-sm" data-site-field="heroSubtext">The best product companies in the world do not own their factories. They hire the best one. Leafcut is that floor for video — 50,000 finished videos, one system, delivered in as little as 24 hours.</p>
       <div class="flex items-center gap-3 mt-6">
         <a href="#" class="h-9 w-9 rounded-full border border-white/15 flex items-center justify-center text-ink-300 hover:border-leaf-500 hover:text-leaf-400 transition-colors" aria-label="Leafcut on Instagram">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.3.15 4.7 1.56 4.85 4.85.06 1.3.07 1.6.07 4.9s0 3.6-.07 4.9c-.15 3.28-1.55 4.7-4.85 4.85-1.3.06-1.6.07-4.9.07s-3.6 0-4.9-.07c-3.3-.15-4.7-1.57-4.85-4.85C2.2 15.6 2.2 15.3 2.2 12s0-3.6.07-4.9C2.4 3.82 3.8 2.4 7.1 2.27 8.4 2.2 8.8 2.2 12 2.2zm0 3.4a6.4 6.4 0 100 12.8 6.4 6.4 0 000-12.8zm0 10.55a4.15 4.15 0 110-8.3 4.15 4.15 0 010 8.3zm6.65-10.8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
@@ -768,10 +1042,10 @@
     <div class="md:col-span-3 reveal" style="transition-delay:.05s">
       <p class="text-xs font-semibold tracking-widest uppercase text-ink-400 mb-4">Navigate</p>
       <nav class="flex flex-col gap-3 text-sm" aria-label="Footer">
-        <a href="#about" class="hover:text-white transition-colors">About</a>
-        <a href="#services" class="hover:text-white transition-colors">Services</a>
-        <a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a>
-        <a href="#team" class="hover:text-white transition-colors">Team</a>
+        <a href="#work" class="hover:text-white transition-colors">Work</a>
+        <a href="#lines" class="hover:text-white transition-colors">The Lines</a>
+        <a href="#ai-studio" class="hover:text-white transition-colors">AI Studio</a>
+        <a href="#studio" class="hover:text-white transition-colors">Studio</a>
         <a href="#contact" class="hover:text-white transition-colors">Contact</a>
       </nav>
     </div>
@@ -779,9 +1053,9 @@
     <div class="md:col-span-4 reveal" style="transition-delay:.1s">
       <p class="text-xs font-semibold tracking-widest uppercase text-ink-400 mb-4">Get in touch</p>
       <a href="mailto:hello@leafcut.studio" class="text-sm hover:text-white transition-colors" data-site-field="contactEmail">hello@leafcut.studio</a>
-      <p class="mt-2 text-sm text-ink-300" data-site-field="contactResponseTime">Avg. response time: 1 hour</p>
+      <p class="mt-2 text-sm text-ink-300" data-site-field="contactResponseTime">24-hour delivery available</p>
       <a href="#contact" class="magnetic mt-6 inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-grey-950 text-sm font-semibold px-5 py-2.5 transition-colors">
-        Start a project
+        Book a call
       </a>
     </div>
 
@@ -837,21 +1111,26 @@
 
   const DEFAULT_CONTENT = {
     site: {
-      heroEyebrow: 'Video Production Studio',
-      heroPrefix: 'Video production that makes people',
-      heroHighlight: 'act',
-      heroSuffix: ', not just watch.',
-      heroSubtext: 'Leafcut is a lean video studio for startups and brands. We turn ideas into explainer videos, product demos and social content built with structure, emotion and intent.',
+      heroEyebrow: 'Video Production at Industrial Scale',
+      heroPrefix: 'Studio quality.',
+      heroHighlight: 'Factory economics.',
+      heroSuffix: '',
+      heroSubtext: 'The best product companies in the world do not own their factories. They hire the best one. Leafcut is that floor for video — 50,000 finished videos, one system, delivered in as little as 24 hours.',
       heroVideoLabel: 'Showreel 2026 · 01:12',
-      aboutHeading: 'A small studio, built for clear, honest storytelling.',
-      aboutPara1: 'We help businesses turn ideas into clear, engaging videos that people understand, feel and respond to — not just watch. Our team has produced thousands of videos for startups, agencies and brands across SaaS, eCommerce and service businesses.',
-      aboutPara2: "Every project runs through the same process: a clear brief, a tight script, considered visuals, and a final cut built for the platform it's meant to live on. No bloated timelines, no jargon — just video that does its job.",
+      aboutHeading: 'A floor built for volume, run like a line, finished like a studio.',
+      aboutPara1: 'Apple does not own a chip factory. It hires the best one on earth — and nobody thinks less of an iPhone for it. Leafcut is that floor for video: the production system that agencies and enterprise brand teams both hire, because we hold quality at a volume and speed they cannot staff for.',
+      aboutPara2: "Every project runs through the same system: a clear brief, a producer who owns the account, a tight edit, and a final cut checked against your brand before it ships. No bloated timelines, no jargon — just a floor that holds the line at scale.",
+      logosHeading: 'Work delivered for teams at',
+      logosSubtext: 'Plus hundreds of SaaS, fintech, e-commerce, education and media teams across North America, Europe, Asia and Australia.',
+      studioHeading: 'A production floor in Kathmandu, running for the world.',
+      studioPara1: 'Leafcut has delivered more than 50,000 finished videos to teams in 22+ countries. We are 30 to 50 people in Kathmandu, Nepal — producers, editors, animators, quality leads and creative directors — running one system built for high output that does not lose quality as it scales.',
+      studioPara2: 'We do not hide where we are. Our location is the reason we can staff a senior floor, run an AI production stack, cover every time zone, and deliver at a fraction of what the same work costs from a studio in London or New York — without touching the craft. Every client works with the same team, on the same system, in their own working hours.',
       testimonialQuote: '"Leafcut understood our vision from the first call and turned it into something we\'re proud to put in front of customers. Fast, clear, and genuinely creative."',
       testimonialAttribution: 'Placeholder client quote — replace with a real testimonial',
-      contactHeading: "Let's make something worth watching.",
-      contactPara: "Build a quote in a few clicks, or reach out directly. We'll reply within one business day.",
+      contactHeading: "Tell us what you need to ship this quarter.",
+      contactPara: "Thirty minutes. We will map the volume, the formats and the turnaround, and tell you plainly whether we are the right floor for it. Every enquiry answered within one business day.",
       contactEmail: 'hello@leafcut.studio',
-      contactResponseTime: 'Avg. response time: 1 hour',
+      contactResponseTime: '24-hour delivery available',
       clientsServedByRegion: {
         northAmerica: 460, southAmerica: 55, europe: 300, africa: 35, middleEast: 40,
         southAsia: 90, southeastAsia: 60, eastAsia: 80, centralAsia: 15, oceania: 25
@@ -868,18 +1147,25 @@
       { id: 'p6', title: 'Harvest Co. — Brand Story', subtitle: 'eCommerce · 50s', category: 'explainer' }
     ],
     services: [
-      { id: 's1', title: 'Explainer & commercial ads', description: 'Brand and product ads that explain what you do, and why it matters, in under 60 seconds.', icon: 'camera' },
-      { id: 's2', title: 'SaaS demos & product videos', description: "Walkthroughs and demo videos that make your product's value obvious at a glance.", icon: 'window' },
-      { id: 's3', title: '2D animation', description: 'Illustrated, character-driven animation for ideas that are too abstract to film.', icon: 'burst' },
-      { id: 's4', title: 'Social & short-form ads', description: 'Fast-cut, platform-native content built for TikTok, Reels and Shorts.', icon: 'chat' },
-      { id: 's5', title: 'VSL & sales videos', description: 'Long-form, conversion-focused video sales letters that carry the pitch for you.', icon: 'pencil' },
-      { id: 's6', title: 'Sound design & voice over', description: 'Original sound editing and professional voice talent to finish the story.', icon: 'mic' }
+      { id: 's1', title: 'Line 01 · Product & Explainer', description: 'The 60 to 120 seconds that makes a complicated product obvious. Demos, feature videos, onboarding walkthroughs.', icon: 'camera' },
+      { id: 's2', title: 'Line 02 · Brand & Launch Film', description: 'The piece the whole company watches on launch day. Live-action feel, cinematic finish, no shoot day required.', icon: 'burst' },
+      { id: 's3', title: 'Line 03 · Training & Enablement', description: 'Onboarding, compliance and enablement libraries, delivered LMS-ready and built to be refreshed rather than remade.', icon: 'window' },
+      { id: 's4', title: 'Line 04 · Localisation', description: 'One master film, every market you sell into. Translated, voiced, lip-synced, with a human checking every language.', icon: 'chat' },
+      { id: 's5', title: 'Line 05 · Content Operations', description: 'Standing editing capacity for channels and content teams. Your backlog cleared every week, at an agreed monthly output.', icon: 'pencil' }
+    ],
+    logos: [
+      { id: 'lg1', name: 'Client Logo' },
+      { id: 'lg2', name: 'Client Logo' },
+      { id: 'lg3', name: 'Client Logo' },
+      { id: 'lg4', name: 'Client Logo' },
+      { id: 'lg5', name: 'Client Logo' },
+      { id: 'lg6', name: 'Client Logo' }
     ],
     team: [
-      { id: 't1', name: 'Founder Name', role: 'Founder & Creative Director', color: 'c1' },
-      { id: 't2', name: 'Team Member', role: 'Lead Video Editor', color: 'c2' },
-      { id: 't3', name: 'Team Member', role: '2D Animator', color: 'c3' },
-      { id: 't4', name: 'Team Member', role: 'Sound Designer', color: 'c4' }
+      { id: 't1', name: 'Team Member', role: 'Head of Operations', bio: 'Owns the production pipeline, capacity planning and every delivery commitment we make.', color: 'c1' },
+      { id: 't2', name: 'Nisha Gurung', role: 'Head of Client Relations', bio: 'Your single point of contact from first brief to final delivery.', color: 'c2' },
+      { id: 't3', name: 'Team Member', role: 'Creative Lead', bio: 'Signs off every final cut against your brand system before it ships.', color: 'c3' },
+      { id: 't4', name: 'Team Member', role: 'Head of Growth', bio: 'First call, scoping and commercial terms.', color: 'c4' }
     ]
   };
 
@@ -1073,8 +1359,9 @@
     if (!editing) return;
     let draft;
     if (type === 'portfolio') draft = { title: 'New project', subtitle: 'Add details', category: 'explainer' };
-    else if (type === 'services') draft = { title: 'New service', description: 'Describe this service.', icon: 'camera' };
-    else draft = { name: 'New teammate', role: 'Role', color: 'c1' };
+    else if (type === 'services') draft = { title: 'New line', description: 'Describe this line.', icon: 'camera' };
+    else if (type === 'logos') draft = { name: 'Client Logo' };
+    else draft = { name: 'New teammate', role: 'Role', bio: 'One line about what they own.', color: 'c1' };
     try {
       const created = await apiFetch(`/content/${type}`, { method: 'POST', body: JSON.stringify(draft) });
       content[type].push(created);
@@ -1126,6 +1413,41 @@
     }).join('') + `<div class="add-tile" onclick="addItem('portfolio')"><span class="text-2xl leading-none">+</span><span>Add project</span></div>`;
   }
 
+  function renderLogos() {
+    const grid = document.getElementById('logos-grid');
+    if (!grid) return;
+    grid.innerHTML = content.logos.map((item, i) => {
+      const hasImage = !!item.imageUrl;
+      return `
+      <div class="edit-card reveal relative flex items-center justify-center h-16 rounded-lg bg-white border border-grey-200 px-4" style="transition-delay:${(i * 0.03).toFixed(2)}s" data-id="${item.id}">
+        <button type="button" class="edit-del-btn absolute -top-2 -right-2 z-10 h-6 w-6 rounded-full bg-white border border-grey-300 text-grey-600 hover:border-red-400 hover:text-red-500 flex items-center justify-center text-[10px]" onclick="deleteItem('logos','${item.id}')" aria-label="Delete this logo">✕</button>
+        <button type="button" class="edit-aux-btn absolute -bottom-2 -right-2 z-10 h-6 w-6 rounded-full bg-white border border-grey-300 text-grey-600 hover:border-leaf-500 hover:text-leaf-600 flex items-center justify-center text-[10px]" onclick="setLogoImage('${item.id}')" aria-label="Set logo image" title="${hasImage ? 'Change logo image' : 'Add logo image URL'}">🖼</button>
+        ${hasImage
+          ? `<img src="${escapeHtml(item.imageUrl)}" alt="${escapeHtml(item.name)}" class="max-h-8 max-w-full object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition">`
+          : `<span class="text-sm font-semibold text-grey-400 text-center" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="name" onblur="fieldEdited('logos','${item.id}','name',this)">${escapeHtml(item.name)}</span>`}
+      </div>`;
+    }).join('') + `<div class="add-tile h-16 min-h-0" onclick="addItem('logos')"><span class="text-lg leading-none">+</span></div>`;
+  }
+
+  async function setLogoImage(id) {
+    if (!editing) return;
+    const item = content.logos.find(i => i.id === id);
+    if (!item) return;
+    const input = prompt('Logo image URL (leave blank to show the name as text instead):', item.imageUrl || '');
+    if (input === null) return;
+    const val = input.trim();
+    const previous = item.imageUrl;
+    item.imageUrl = val;
+    renderAll();
+    try {
+      await apiFetch(`/content/logos/${id}`, { method: 'PUT', body: JSON.stringify({ imageUrl: val }) });
+    } catch (err) {
+      console.error('Failed to save logo image', err);
+      item.imageUrl = previous;
+      renderAll();
+    }
+  }
+
   function renderTeam() {
     const grid = document.getElementById('team-grid');
     if (!grid) return;
@@ -1135,14 +1457,15 @@
         <div class="cycle-field avatar-initials mx-auto h-28 w-28 rounded-full bg-gradient-to-br ${TEAM_COLORS[item.color] || TEAM_COLORS.c1} flex items-center justify-center text-white font-display text-2xl font-700" onclick="cycleField('team','${item.id}','color', COLOR_ORDER)" title="${editing ? 'Click to change color' : ''}">${initials(item.name)}</div>
         <h3 class="mt-4 font-display font-700 text-base" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="name" onblur="fieldEdited('team','${item.id}','name',this)">${escapeHtml(item.name)}</h3>
         <p class="text-sm text-grey-500" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="role" onblur="fieldEdited('team','${item.id}','role',this)">${escapeHtml(item.role)}</p>
+        <p class="mt-1.5 text-xs text-grey-400 leading-relaxed" contenteditable="${editing}" ${EDITABLE_KEYDOWN} data-field="bio" onblur="fieldEdited('team','${item.id}','bio',this)">${escapeHtml(item.bio || '')}</p>
       </div>`).join('') + `<div class="add-tile" onclick="addItem('team')"><span class="text-2xl leading-none">+</span><span>Add teammate</span></div>`;
   }
 
   // Full re-render used by edit-mode interactions (cycle/add/delete), once the page has
   // already finished its initial load — safe to touch the reveal observer & filter state here.
   function renderAll() {
-    renderServices(); renderPortfolio(); renderTeam();
-    document.querySelectorAll('#services-grid .reveal, #portfolio-grid .reveal, #team-grid .reveal').forEach(el => {
+    renderServices(); renderPortfolio(); renderTeam(); renderLogos();
+    document.querySelectorAll('#services-grid .reveal, #portfolio-grid .reveal, #team-grid .reveal, #logos-grid .reveal').forEach(el => {
       if (editing) el.classList.add('in'); else io.observe(el);
     });
     const activeFilterBtn = document.querySelector('.filter-btn.active-filter');
@@ -1157,6 +1480,7 @@
   renderServices();
   renderPortfolio();
   renderTeam();
+  renderLogos();
 
   function applySiteFields() {
     document.querySelectorAll('[data-site-field]').forEach(el => {
@@ -1201,6 +1525,10 @@
     const countries = Math.max(0, parseInt(content.site.countriesReachedCount, 10) || 0);
     const countriesEl = document.getElementById('reach-stat-countries');
     if (countriesEl) countriesEl.textContent = countries.toLocaleString() + '+';
+    const countriesHeadlineEl = document.getElementById('reach-countries-headline');
+    if (countriesHeadlineEl) countriesHeadlineEl.textContent = countries.toLocaleString();
+    const heroCountriesEl = document.getElementById('hero-stat-countries');
+    if (heroCountriesEl) { heroCountriesEl.dataset.target = countries; heroCountriesEl.textContent = countries.toLocaleString() + '+'; }
 
     const satisfaction = Math.max(0, parseInt(content.site.clientSatisfactionPercent, 10) || 0);
     const satisfactionEl = document.getElementById('reach-stat-satisfaction');
@@ -1226,7 +1554,7 @@
       const key = el.dataset.region;
       const count = reachCountFor(key);
       tooltipLabel.textContent = REGION_LABELS[key] || key;
-      tooltipNumber.textContent = count.toLocaleString() + (count === 1 ? ' client served' : ' clients served');
+      tooltipNumber.textContent = count.toLocaleString() + (count === 1 ? ' project delivered' : ' projects delivered');
       const rect = reachMap.getBoundingClientRect();
       tooltip.style.left = (clientX - rect.left) + 'px';
       tooltip.style.top = (clientY - rect.top) + 'px';
@@ -1488,11 +1816,14 @@
     });
   });
 
-  // ===== Budget estimator =====
-  const typeBtns = document.querySelectorAll('.type-btn');
-  const lengthBtns = document.querySelectorAll('.length-btn');
-  const addonChecks = document.querySelectorAll('.addon-check');
-  const estimateOutput = document.getElementById('estimate-output');
+  // ===== Qualifier chips (line / volume / turnaround) =====
+  // No pricing math on the site by design — see the Capacity section. This
+  // just tracks single-select choices per step and reflects them in the
+  // summary bar so a visitor sees their brief taking shape before they submit.
+  const lineBtns = document.querySelectorAll('.line-btn');
+  const volumeBtns = document.querySelectorAll('.volume-btn');
+  const turnaroundBtns = document.querySelectorAll('.turnaround-btn');
+  const qualifierSummary = document.getElementById('qualifier-summary');
 
   const ACTIVE = ['border-leaf-500', 'bg-leaf-500/10', 'text-leaf-700'];
   const INACTIVE = ['border-grey-300'];
@@ -1503,36 +1834,24 @@
     btn.classList.add(...ACTIVE);
   }
 
-  typeBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, typeBtns); updateEstimate(); }));
-  lengthBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, lengthBtns); updateEstimate(); }));
-  addonChecks.forEach(chk => chk.addEventListener('change', () => {
-    const label = chk.closest('.addon-label');
-    label.classList.toggle('border-leaf-500', chk.checked);
-    label.classList.toggle('bg-leaf-500/10', chk.checked);
-    label.classList.toggle('text-leaf-700', chk.checked);
-    updateEstimate();
-  }));
-
-  function roundTo(n, step) { return Math.round(n / step) * step; }
-
-  function updateEstimate() {
-    const activeType = document.querySelector('.type-btn.border-leaf-500') || typeBtns[0];
-    const activeLength = document.querySelector('.length-btn.border-leaf-500') || lengthBtns[0];
-    const base = parseFloat(activeType.dataset.base);
-    const mult = parseFloat(activeLength.dataset.mult);
-    let addonsTotal = 0;
-    addonChecks.forEach(chk => { if (chk.checked) addonsTotal += parseFloat(chk.dataset.price); });
-
-    const mid = base * mult + addonsTotal;
-    const low = roundTo(mid * 0.92, 5);
-    const high = roundTo(mid * 1.2, 5);
-    estimateOutput.textContent = `$${low.toLocaleString()} – $${high.toLocaleString()}`;
+  function updateQualifierSummary() {
+    const line = document.querySelector('.line-btn.border-leaf-500');
+    const volume = document.querySelector('.volume-btn.border-leaf-500');
+    const turnaround = document.querySelector('.turnaround-btn.border-leaf-500');
+    const parts = [line, volume, turnaround].filter(Boolean).map(b => b.textContent.trim());
+    qualifierSummary.textContent = parts.length
+      ? parts.join(' · ')
+      : "We'll confirm capacity and quote against your spec.";
     if (!prefersReducedMotion) {
-      estimateOutput.classList.remove('pulse');
-      void estimateOutput.offsetWidth;
-      estimateOutput.classList.add('pulse');
+      qualifierSummary.classList.remove('pulse');
+      void qualifierSummary.offsetWidth;
+      qualifierSummary.classList.add('pulse');
     }
   }
+
+  lineBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, lineBtns); updateQualifierSummary(); }));
+  volumeBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, volumeBtns); updateQualifierSummary(); }));
+  turnaroundBtns.forEach(btn => btn.addEventListener('click', () => { setActive(btn, turnaroundBtns); updateQualifierSummary(); }));
 
   // ===== Step wizard =====
   const stepPanels = document.querySelectorAll('.step-panel');
@@ -1556,7 +1875,7 @@
       d.classList.toggle('bg-grey-200', i >= currentStep);
     });
     stepCurrent.textContent = currentStep;
-    stepProgress.setAttribute('aria-label', `Quote builder progress, step ${currentStep} of 4`);
+    stepProgress.setAttribute('aria-label', `Qualifier progress, step ${currentStep} of 4`);
     stepBack.classList.toggle('hidden', currentStep === 1);
     stepNext.classList.toggle('hidden', currentStep === 4);
     stepSubmit.classList.toggle('hidden', currentStep !== 4);
@@ -1567,9 +1886,6 @@
   stepDots.forEach(dot => dot.addEventListener('click', () => goToStep(parseInt(dot.dataset.step, 10))));
 
   // defaults
-  setActive(typeBtns[0], typeBtns);
-  setActive(lengthBtns[0], lengthBtns);
-  updateEstimate();
   goToStep(1);
 
   // Contact form — submits the lead to POST /api/leads (public endpoint; the
@@ -1580,16 +1896,16 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    const activeTypeBtn = document.querySelector('.type-btn.border-leaf-500');
-    const activeLengthBtn = document.querySelector('.length-btn.border-leaf-500');
-    const chosenAddons = Array.from(addonChecks).filter(c => c.checked).map(c => c.closest('.addon-label').textContent.trim());
+    const activeLineBtn = document.querySelector('.line-btn.border-leaf-500');
+    const activeVolumeBtn = document.querySelector('.volume-btn.border-leaf-500');
+    const activeTurnaroundBtn = document.querySelector('.turnaround-btn.border-leaf-500');
     const payload = {
       name: form.querySelector('#name').value.trim(),
       email: form.querySelector('#email').value.trim(),
-      type: activeTypeBtn ? activeTypeBtn.textContent.split('·')[0].trim() : '',
-      length: activeLengthBtn ? activeLengthBtn.textContent.trim() : '',
-      addons: chosenAddons,
-      estimate: estimateOutput.textContent,
+      company: form.querySelector('#company').value.trim(),
+      line: activeLineBtn ? activeLineBtn.textContent.trim() : '',
+      volume: activeVolumeBtn ? activeVolumeBtn.textContent.trim() : '',
+      turnaround: activeTurnaroundBtn ? activeTurnaroundBtn.textContent.trim() : '',
       status: 'new'
     };
 
@@ -1601,10 +1917,11 @@
 
     try {
       await apiFetch('/leads', { method: 'POST', body: JSON.stringify(payload) });
-      success.textContent = `Thanks — your estimate (${estimateOutput.textContent}) has been noted. We'll follow up within one business day with a firm quote.`;
+      success.textContent = "Thanks — that's been logged. We will map the volume, formats and turnaround, and follow up within one business day to book a call.";
       success.classList.add('text-leaf-700');
       form.querySelector('#name').value = '';
       form.querySelector('#email').value = '';
+      form.querySelector('#company').value = '';
     } catch (err) {
       success.textContent = err.message || "Something went wrong — please try again or email us directly.";
       success.classList.add('text-red-600');

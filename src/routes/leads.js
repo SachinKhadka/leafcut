@@ -20,7 +20,7 @@ router.get('/', requireAuthApi, async (req, res, next) => {
 // Public on purpose — this is how the site's quote form actually submits a lead.
 router.post('/', async (req, res, next) => {
   try {
-    const { name, email, type, length, addons, estimate, status, notes } = req.body || {};
+    const { name, email, company, line, volume, turnaround, status, notes } = req.body || {};
     if (!name || !String(name).trim()) return res.status(400).json({ error: 'Name is required' });
     if (!email || !EMAIL_RE.test(String(email).trim())) return res.status(400).json({ error: 'A valid email is required' });
 
@@ -28,10 +28,10 @@ router.post('/', async (req, res, next) => {
       id: uid(),
       name: String(name).trim(),
       email: String(email).trim(),
-      type: type || '',
-      length: length || '',
-      addons: Array.isArray(addons) ? addons : [],
-      estimate: estimate || '',
+      company: company || '',
+      line: line || '',
+      volume: volume || '',
+      turnaround: turnaround || '',
       status: status || 'new',
       notes: notes || '',
       date: new Date().toISOString()

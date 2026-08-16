@@ -7,7 +7,7 @@ function uid(prefix) {
   return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 
-const COLLECTIONS = ['portfolio', 'services', 'team'];
+const COLLECTIONS = ['portfolio', 'services', 'team', 'logos'];
 
 // Public — the site itself needs this to render for every visitor, logged in or not.
 router.get('/', async (req, res, next) => {

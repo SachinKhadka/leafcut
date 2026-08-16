@@ -1,20 +1,25 @@
 {
   "site": {
-    "heroEyebrow": "Video Production Studio",
-    "heroPrefix": "Video production that makes people",
-    "heroHighlight": "act",
-    "heroSuffix": ", not just watch.",
-    "heroSubtext": "Leafcut is a lean video studio for startups and brands. We turn ideas into explainer videos, product demos and social content built with structure, emotion and intent.",
+    "heroEyebrow": "Video Production at Industrial Scale",
+    "heroPrefix": "Studio quality.",
+    "heroHighlight": "Factory economics.",
+    "heroSuffix": "",
+    "heroSubtext": "The best product companies in the world do not own their factories. They hire the best one. Leafcut is that floor for video — 50,000 finished videos, one system, delivered in as little as 24 hours.",
     "heroVideoLabel": "Showreel 2026 · 01:12",
-    "aboutHeading": "A small studio, built for clear, honest storytelling.",
-    "aboutPara1": "We help businesses turn ideas into clear, engaging videos that people understand, feel and respond to — not just watch. Our team has produced thousands of videos for startups, agencies and brands across SaaS, eCommerce and service businesses.",
-    "aboutPara2": "Every project runs through the same process: a clear brief, a tight script, considered visuals, and a final cut built for the platform it's meant to live on. No bloated timelines, no jargon — just video that does its job.",
+    "aboutHeading": "A floor built for volume, run like a line, finished like a studio.",
+    "aboutPara1": "Apple does not own a chip factory. It hires the best one on earth — and nobody thinks less of an iPhone for it. Leafcut is that floor for video: the production system that agencies and enterprise brand teams both hire, because we hold quality at a volume and speed they cannot staff for.",
+    "aboutPara2": "Every project runs through the same system: a clear brief, a producer who owns the account, a tight edit, and a final cut checked against your brand before it ships. No bloated timelines, no jargon — just a floor that holds the line at scale.",
+    "logosHeading": "Work delivered for teams at",
+    "logosSubtext": "Plus hundreds of SaaS, fintech, e-commerce, education and media teams across North America, Europe, Asia and Australia.",
+    "studioHeading": "A production floor in Kathmandu, running for the world.",
+    "studioPara1": "Leafcut has delivered more than 50,000 finished videos to teams in 22+ countries. We are 30 to 50 people in Kathmandu, Nepal — producers, editors, animators, quality leads and creative directors — running one system built for high output that does not lose quality as it scales.",
+    "studioPara2": "We do not hide where we are. Our location is the reason we can staff a senior floor, run an AI production stack, cover every time zone, and deliver at a fraction of what the same work costs from a studio in London or New York — without touching the craft. Every client works with the same team, on the same system, in their own working hours.",
     "testimonialQuote": "Leafcut understood our vision from the first call and turned it into something we're proud to put in front of customers. Fast, clear, and genuinely creative.",
     "testimonialAttribution": "Placeholder client quote — replace with a real testimonial",
-    "contactHeading": "Let's make something worth watching.",
-    "contactPara": "Build a quote in a few clicks, or reach out directly. We'll reply within one business day.",
+    "contactHeading": "Tell us what you need to ship this quarter.",
+    "contactPara": "Thirty minutes. We will map the volume, the formats and the turnaround, and tell you plainly whether we are the right floor for it. Every enquiry answered within one business day.",
     "contactEmail": "hello@leafcut.studio",
-    "contactResponseTime": "Avg. response time: 1 hour",
+    "contactResponseTime": "24-hour delivery available",
     "clientsServedByRegion": {
       "northAmerica": 460,
       "southAmerica": 55,
@@ -71,64 +76,70 @@
   "services": [
     {
       "id": "s1",
-      "title": "Explainer & commercial ads",
-      "description": "Brand and product ads that explain what you do, and why it matters, in under 60 seconds.",
+      "title": "Line 01 · Product & Explainer",
+      "description": "The 60 to 120 seconds that makes a complicated product obvious. Demos, feature videos, onboarding walkthroughs.",
       "icon": "camera"
     },
     {
       "id": "s2",
-      "title": "SaaS demos & product videos",
-      "description": "Walkthroughs and demo videos that make your product's value obvious at a glance.",
-      "icon": "window"
-    },
-    {
-      "id": "s3",
-      "title": "2D animation",
-      "description": "Illustrated, character-driven animation for ideas that are too abstract to film.",
+      "title": "Line 02 · Brand & Launch Film",
+      "description": "The piece the whole company watches on launch day. Live-action feel, cinematic finish, no shoot day required.",
       "icon": "burst"
     },
     {
+      "id": "s3",
+      "title": "Line 03 · Training & Enablement",
+      "description": "Onboarding, compliance and enablement libraries, delivered LMS-ready and built to be refreshed rather than remade.",
+      "icon": "window"
+    },
+    {
       "id": "s4",
-      "title": "Social & short-form ads",
-      "description": "Fast-cut, platform-native content built for TikTok, Reels and Shorts.",
+      "title": "Line 04 · Localisation",
+      "description": "One master film, every market you sell into. Translated, voiced, lip-synced, with a human checking every language.",
       "icon": "chat"
     },
     {
       "id": "s5",
-      "title": "VSL & sales videos",
-      "description": "Long-form, conversion-focused video sales letters that carry the pitch for you.",
+      "title": "Line 05 · Content Operations",
+      "description": "Standing editing capacity for channels and content teams. Your backlog cleared every week, at an agreed monthly output.",
       "icon": "pencil"
-    },
-    {
-      "id": "s6",
-      "title": "Sound design & voice over",
-      "description": "Original sound editing and professional voice talent to finish the story.",
-      "icon": "mic"
     }
+  ],
+  "logos": [
+    { "id": "lg1", "name": "Client Logo" },
+    { "id": "lg2", "name": "Client Logo" },
+    { "id": "lg3", "name": "Client Logo" },
+    { "id": "lg4", "name": "Client Logo" },
+    { "id": "lg5", "name": "Client Logo" },
+    { "id": "lg6", "name": "Client Logo" }
   ],
   "team": [
     {
       "id": "t1",
-      "name": "Founder Name",
-      "role": "Founder & Creative Director",
+      "name": "Team Member",
+      "role": "Head of Operations",
+      "bio": "Owns the production pipeline, capacity planning and every delivery commitment we make.",
       "color": "c1"
     },
     {
       "id": "t2",
-      "name": "Team Member",
-      "role": "Lead Video Editor",
+      "name": "Nisha Gurung",
+      "role": "Head of Client Relations",
+      "bio": "Your single point of contact from first brief to final delivery.",
       "color": "c2"
     },
     {
       "id": "t3",
       "name": "Team Member",
-      "role": "2D Animator",
+      "role": "Creative Lead",
+      "bio": "Signs off every final cut against your brand system before it ships.",
       "color": "c3"
     },
     {
       "id": "t4",
       "name": "Team Member",
-      "role": "Sound Designer",
+      "role": "Head of Growth",
+      "bio": "First call, scoping and commercial terms.",
       "color": "c4"
     }
   ]

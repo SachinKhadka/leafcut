@@ -13,7 +13,7 @@ const path = require('path');
 const CONTENT_PATH = path.join(__dirname, '..', 'data', 'content.json');
 const LEADS_PATH = path.join(__dirname, '..', 'data', 'leads.json');
 
-const EMPTY_CONTENT = { site: {}, portfolio: [], services: [], team: [] };
+const EMPTY_CONTENT = { site: {}, portfolio: [], services: [], team: [], logos: [] };
 
 function kvConfigured() {
   return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
