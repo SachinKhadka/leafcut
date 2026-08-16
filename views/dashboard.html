@@ -70,6 +70,41 @@
     </button>
   </div>
 
+  <!-- Homepage settings -->
+  <div class="bg-white border border-grey-200 rounded-xl p-5 mb-8">
+    <p class="text-xs font-semibold text-leaf-600 uppercase tracking-wide mb-1">Homepage — Global Reach map</p>
+    <h2 class="font-display text-lg font-700">Clients served, by continent</h2>
+    <p class="text-sm text-grey-500 mt-1 max-w-lg">Shown on the homepage world map when a visitor hovers or taps a continent.</p>
+
+    <form id="reach-stat-form" class="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
+      <div>
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-northAmerica">North America</label>
+        <input id="reach-input-northAmerica" data-continent="northAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAmerica">South America</label>
+        <input id="reach-input-southAmerica" data-continent="southAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-europe">Europe</label>
+        <input id="reach-input-europe" data-continent="europe" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-africa">Africa</label>
+        <input id="reach-input-africa" data-continent="africa" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-asia">Asia</label>
+        <input id="reach-input-asia" data-continent="asia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-oceania">Oceania</label>
+        <input id="reach-input-oceania" data-continent="oceania" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+      </div>
+      <button type="submit" class="col-span-2 sm:col-span-3 lg:col-span-6 justify-self-start text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 transition-colors">Save</button>
+    </form>
+  </div>
+
   <!-- Stats -->
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
     <div class="bg-white border border-grey-200 rounded-xl p-4">
@@ -415,6 +450,28 @@
   document.getElementById('search-input').addEventListener('input', render);
   document.getElementById('status-filter').addEventListener('change', render);
 
+  // Homepage — Global Reach map stats (site.clientsServedByContinent)
+  const REACH_CONTINENTS = ['northAmerica', 'southAmerica', 'europe', 'africa', 'asia', 'oceania'];
+  document.getElementById('reach-stat-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const clientsServedByContinent = {};
+    for (const key of REACH_CONTINENTS) {
+      const value = parseInt(document.getElementById('reach-input-' + key).value, 10);
+      if (isNaN(value) || value < 0) { toast('Enter a valid number for every continent'); return; }
+      clientsServedByContinent[key] = value;
+    }
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    try {
+      await apiFetch('/content/site', { method: 'PUT', body: JSON.stringify({ clientsServedByContinent }) });
+      toast('Homepage stats updated');
+    } catch (err) {
+      toast(err.message || 'Failed to save');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
   document.getElementById('logout-btn').addEventListener('click', async () => {
     try { await apiFetch('/logout', { method: 'POST' }); } catch {}
     location.href = '/login.html';
@@ -428,6 +485,16 @@
       leads = [];
     }
     render();
+
+    try {
+      const content = await apiFetch('/content');
+      const byContinent = (content.site && content.site.clientsServedByContinent) || {};
+      REACH_CONTINENTS.forEach(key => {
+        document.getElementById('reach-input-' + key).value = byContinent[key] ?? 0;
+      });
+    } catch (err) {
+      toast(err.message || 'Failed to load homepage settings');
+    }
   })();
 </script>
 

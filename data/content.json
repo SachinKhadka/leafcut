@@ -14,7 +14,15 @@
     "contactHeading": "Let's make something worth watching.",
     "contactPara": "Build a quote in a few clicks, or reach out directly. We'll reply within one business day.",
     "contactEmail": "hello@leafcut.studio",
-    "contactResponseTime": "Avg. response time: 1 hour"
+    "contactResponseTime": "Avg. response time: 1 hour",
+    "clientsServedByContinent": {
+      "northAmerica": 520,
+      "southAmerica": 60,
+      "europe": 310,
+      "africa": 40,
+      "asia": 240,
+      "oceania": 300
+    }
   },
   "portfolio": [
     {
