@@ -1463,9 +1463,11 @@
     document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
   }
 
-  // Portfolio filter
+  // Portfolio filter. Queries .portfolio-item fresh on every click rather
+  // than caching the NodeList — the grid's innerHTML gets replaced once real
+  // content arrives from the API (and again on any edit-mode add/delete), so
+  // a cached list would go stale and silently stop matching the live DOM.
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1479,7 +1481,7 @@
       btn.setAttribute('aria-pressed', 'true');
 
       const filter = btn.dataset.filter;
-      portfolioItems.forEach(item => {
+      document.querySelectorAll('.portfolio-item').forEach(item => {
         const show = filter === 'all' || item.dataset.cat === filter;
         item.style.display = show ? '' : 'none';
       });
