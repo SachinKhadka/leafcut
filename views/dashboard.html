@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leafcut — Leads</title>
+<title>Leafcut — Dashboard</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='195 335 155 130'%3E%3Cpath fill='%236bdb37' d='M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z'/%3E%3Cpath fill='%236bdb37' d='M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z'/%3E%3C/svg%3E">
 
@@ -27,6 +27,7 @@
 </script>
 
 <style>
+  html, body { height: 100%; }
   body { font-family: 'Poppins', sans-serif; }
   ::-webkit-scrollbar { height: 8px; width: 8px; }
   ::-webkit-scrollbar-thumb { background: #d9d9d9; border-radius: 9999px; }
@@ -34,159 +35,240 @@
   .modal-panel { transition: opacity .25s ease, transform .25s ease; }
   input:focus, textarea:focus, select:focus { outline: none; }
   tr.lead-row { transition: background-color .15s ease; }
+  .dash-nav-btn { transition: background-color .15s ease, color .15s ease; }
+  .dash-nav-btn.is-active { background: #f1fce9; color: #2b591b; font-weight: 600; }
+  .dash-nav-btn:not(.is-active):hover { background: #f7f7f7; }
 </style>
 </head>
 
-<body class="bg-grey-50 text-grey-900 antialiased min-h-screen">
+<body class="bg-grey-50 text-grey-900 antialiased h-screen flex flex-col overflow-hidden">
 
 <!-- ============ TOP BAR ============ -->
-<header class="bg-ink-800 text-white">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 font-display font-700 text-lg tracking-tight">
-      <svg class="h-7 w-7" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<header class="bg-ink-800 text-white shrink-0">
+  <div class="px-5 sm:px-8 h-14 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-display font-700 text-base tracking-tight">
+      <svg class="h-6 w-6" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
         <path fill="#6bdb37" d="M331.22,351.18v62.16c0,19.59-15.88,35.48-35.47,35.48h-62.58l98.05-97.64Z"/>
       </svg>
       leafcut
-      <span class="ml-2 text-xs font-medium text-ink-200 bg-white/10 px-2 py-0.5 rounded-full">Leads</span>
+      <span class="ml-1 text-xs font-medium text-ink-200 bg-white/10 px-2 py-0.5 rounded-full">Dashboard</span>
     </a>
-    <div class="flex items-center gap-5">
-      <a href="/?edit=1" class="text-sm font-medium text-ink-100 hover:text-white transition-colors">Edit site content →</a>
-      <a href="/" class="text-sm font-medium text-ink-100 hover:text-white transition-colors">← Back to site</a>
-      <button id="logout-btn" type="button" class="text-sm font-medium text-ink-100 hover:text-white transition-colors">Log out</button>
+    <div class="flex items-center gap-4">
+      <a href="/?edit=1" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">Edit site content →</a>
+      <a href="/" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">← Back to site</a>
+      <button id="logout-btn" type="button" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">Log out</button>
     </div>
   </div>
 </header>
 
-<main class="max-w-7xl mx-auto px-5 sm:px-8 py-8">
+<div class="flex flex-col sm:flex-row flex-1 min-h-0">
 
-  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-    <div>
-      <h1 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">Leads</h1>
-      <p class="text-sm text-grey-500 mt-1">Quote requests submitted from the site, plus anything you log manually.</p>
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="shrink-0 bg-white border-b sm:border-b-0 sm:border-r border-grey-200 sm:w-56">
+    <nav class="flex sm:flex-col gap-1 p-3 overflow-x-auto sm:overflow-visible" aria-label="Dashboard sections">
+      <button type="button" data-view="overview" class="dash-nav-btn shrink-0 flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm text-grey-600 whitespace-nowrap">
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13h4v8H3v-8zM10 8h4v13h-4V8zM17 3h4v18h-4V3z"/></svg>
+        Overview
+      </button>
+      <button type="button" data-view="leads" class="dash-nav-btn shrink-0 flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm text-grey-600 whitespace-nowrap">
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span class="flex-1 text-left">Leads</span>
+        <span id="nav-leads-badge" class="text-[10px] font-semibold bg-grey-200 text-grey-700 rounded-full px-1.5 py-0.5 min-w-[1.25rem] text-center">0</span>
+      </button>
+      <button type="button" data-view="homepage" class="dash-nav-btn shrink-0 flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm text-grey-600 whitespace-nowrap">
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zM3.6 9h16.8M3.6 15h16.8M12 3a13.5 13.5 0 010 18 13.5 13.5 0 010-18z"/></svg>
+        Homepage
+      </button>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="flex-1 min-h-0 overflow-y-auto">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-8">
+
+      <!-- ===== OVERVIEW ===== -->
+      <section id="view-overview" data-view-panel>
+        <div class="mb-6">
+          <h1 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">Overview</h1>
+          <p class="text-sm text-grey-500 mt-1">A snapshot of lead activity. Head to Leads to take action on any of them.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          <div class="bg-white border border-grey-200 rounded-xl p-4">
+            <p class="text-2xl font-display font-700" id="stat-total">0</p>
+            <p class="text-xs text-grey-500 mt-0.5">Total leads</p>
+          </div>
+          <div class="bg-white border border-grey-200 rounded-xl p-4">
+            <p class="text-2xl font-display font-700 text-leaf-600" id="stat-new">0</p>
+            <p class="text-xs text-grey-500 mt-0.5">New</p>
+          </div>
+          <div class="bg-white border border-grey-200 rounded-xl p-4">
+            <p class="text-2xl font-display font-700 text-ink-600" id="stat-contacted">0</p>
+            <p class="text-xs text-grey-500 mt-0.5">Contacted</p>
+          </div>
+          <div class="bg-white border border-grey-200 rounded-xl p-4">
+            <p class="text-2xl font-display font-700 text-leaf-800" id="stat-won">0</p>
+            <p class="text-xs text-grey-500 mt-0.5">Won</p>
+          </div>
+          <div class="bg-white border border-grey-200 rounded-xl p-4">
+            <p class="text-2xl font-display font-700 text-grey-400" id="stat-lost">0</p>
+            <p class="text-xs text-grey-500 mt-0.5">Lost</p>
+          </div>
+          <div class="bg-white border border-grey-200 rounded-xl p-4">
+            <p class="text-2xl font-display font-700" id="stat-avg">$0</p>
+            <p class="text-xs text-grey-500 mt-0.5">Avg. estimate (low end)</p>
+          </div>
+        </div>
+
+        <div class="bg-white border border-grey-200 rounded-xl p-5">
+          <div class="flex items-center justify-between mb-1">
+            <h2 class="font-display text-base font-700">Recent leads</h2>
+            <button type="button" id="view-all-leads-btn" class="text-xs font-semibold text-leaf-600 hover:text-leaf-700">View all →</button>
+          </div>
+          <div id="recent-leads-list"></div>
+          <p id="recent-empty" class="hidden text-center text-sm text-grey-400 py-10">No leads yet.</p>
+        </div>
+      </section>
+
+      <!-- ===== LEADS ===== -->
+      <section id="view-leads" data-view-panel class="hidden">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+          <div>
+            <h1 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">Leads</h1>
+            <p class="text-sm text-grey-500 mt-1">Quote requests submitted from the site, plus anything you log manually.</p>
+          </div>
+          <button id="add-lead-btn" type="button" class="inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 text-sm font-semibold px-5 py-2.5 transition-colors">
+            + Add lead
+          </button>
+        </div>
+
+        <!-- Search + filter -->
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <input id="search-input" type="text" placeholder="Search by name or email…" class="flex-1 min-w-[200px] rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+          <select id="status-filter" class="rounded-lg border border-grey-300 bg-white px-3 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+            <option value="all">All statuses</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="won">Won</option>
+            <option value="lost">Lost</option>
+          </select>
+        </div>
+
+        <!-- Bulk action bar -->
+        <div id="bulk-bar" class="hidden flex flex-wrap items-center gap-3 bg-ink-800 text-white rounded-xl px-4 py-3 mb-4">
+          <span id="bulk-count" class="text-sm font-medium">0 selected</span>
+          <div class="flex items-center gap-2 sm:ml-auto">
+            <select id="bulk-status-select" class="text-xs font-medium rounded-lg border-0 bg-white/10 text-white px-2.5 py-2 focus:ring-2 focus:ring-leaf-500/40">
+              <option value="" class="text-grey-900">Set status…</option>
+              <option value="new" class="text-grey-900">New</option>
+              <option value="contacted" class="text-grey-900">Contacted</option>
+              <option value="won" class="text-grey-900">Won</option>
+              <option value="lost" class="text-grey-900">Lost</option>
+            </select>
+            <button id="bulk-apply-status-btn" type="button" class="text-xs font-semibold px-3 py-2 rounded-lg bg-leaf-500 text-ink-900 hover:bg-leaf-400 transition-colors">Apply</button>
+            <button id="bulk-delete-btn" type="button" class="text-xs font-semibold px-3 py-2 rounded-lg bg-red-500/15 text-red-300 hover:bg-red-500/25 transition-colors">Delete selected</button>
+            <button id="bulk-clear-btn" type="button" class="text-xs font-medium px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Clear</button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white border border-grey-200 rounded-xl overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-left text-xs uppercase tracking-wide text-grey-500 border-b border-grey-200">
+                <th class="pl-4 pr-2 py-3 font-semibold w-8"><input type="checkbox" id="select-all-checkbox" class="rounded border-grey-300 text-leaf-600 focus:ring-leaf-500/40" aria-label="Select all visible leads"></th>
+                <th class="px-2 py-3 font-semibold">Contact</th>
+                <th class="px-4 py-3 font-semibold">Video type</th>
+                <th class="px-4 py-3 font-semibold">Length</th>
+                <th class="px-4 py-3 font-semibold">Estimate</th>
+                <th class="px-4 py-3 font-semibold">Status</th>
+                <th class="px-4 py-3 font-semibold">Notes</th>
+                <th class="px-4 py-3 font-semibold">Date</th>
+                <th class="px-4 py-3 font-semibold text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody"></tbody>
+          </table>
+          <p id="empty-state" class="hidden text-center text-sm text-grey-400 py-14">No leads yet. Submissions from the site's quote form will show up here — or add one manually.</p>
+        </div>
+      </section>
+
+      <!-- ===== HOMEPAGE SETTINGS ===== -->
+      <section id="view-homepage" data-view-panel class="hidden">
+        <div class="mb-6">
+          <h1 class="font-display text-2xl sm:text-3xl font-700 tracking-tight">Homepage settings</h1>
+          <p class="text-sm text-grey-500 mt-1">Controls for content that's edited here rather than inline on the site.</p>
+        </div>
+
+        <div class="bg-white border border-grey-200 rounded-xl p-5">
+          <p class="text-xs font-semibold text-leaf-600 uppercase tracking-wide mb-1">Global Reach map</p>
+          <h2 class="font-display text-lg font-700">Clients served, by region</h2>
+          <p class="text-sm text-grey-500 mt-1 max-w-lg">Shown in the homepage world map's region list, plus the stat bar underneath it (clients served is totalled automatically).</p>
+
+          <form id="reach-stat-form" class="mt-5">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-northAmerica">North America</label>
+                <input id="reach-input-northAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAmerica">South America</label>
+                <input id="reach-input-southAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-europe">Europe</label>
+                <input id="reach-input-europe" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-africa">Africa</label>
+                <input id="reach-input-africa" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-middleEast">Middle East</label>
+                <input id="reach-input-middleEast" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAsia">South Asia</label>
+                <input id="reach-input-southAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southeastAsia">Southeast Asia</label>
+                <input id="reach-input-southeastAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-eastAsia">East Asia</label>
+                <input id="reach-input-eastAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-centralAsia">Central Asia</label>
+                <input id="reach-input-centralAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-oceania">Oceania</label>
+                <input id="reach-input-oceania" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-grey-100 grid grid-cols-2 gap-3 max-w-sm">
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-countries">Countries reached</label>
+                <input id="reach-input-countries" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-satisfaction">Satisfaction %</label>
+                <input id="reach-input-satisfaction" type="number" min="0" max="100" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+              </div>
+            </div>
+
+            <button type="submit" class="mt-4 text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 transition-colors">Save</button>
+          </form>
+        </div>
+      </section>
+
     </div>
-    <button id="add-lead-btn" type="button" class="inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 text-sm font-semibold px-5 py-2.5 transition-colors">
-      + Add lead
-    </button>
-  </div>
-
-  <!-- Homepage settings -->
-  <div class="bg-white border border-grey-200 rounded-xl p-5 mb-8">
-    <p class="text-xs font-semibold text-leaf-600 uppercase tracking-wide mb-1">Homepage — Global Reach map</p>
-    <h2 class="font-display text-lg font-700">Clients served, by region</h2>
-    <p class="text-sm text-grey-500 mt-1 max-w-lg">Shown in the homepage world map's region list, plus the stat bar underneath it (clients served is totalled automatically).</p>
-
-    <form id="reach-stat-form" class="mt-5">
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-northAmerica">North America</label>
-          <input id="reach-input-northAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAmerica">South America</label>
-          <input id="reach-input-southAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-europe">Europe</label>
-          <input id="reach-input-europe" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-africa">Africa</label>
-          <input id="reach-input-africa" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-middleEast">Middle East</label>
-          <input id="reach-input-middleEast" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAsia">South Asia</label>
-          <input id="reach-input-southAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southeastAsia">Southeast Asia</label>
-          <input id="reach-input-southeastAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-eastAsia">East Asia</label>
-          <input id="reach-input-eastAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-centralAsia">Central Asia</label>
-          <input id="reach-input-centralAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-oceania">Oceania</label>
-          <input id="reach-input-oceania" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-grey-100 grid grid-cols-2 gap-3 max-w-sm">
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-countries">Countries reached</label>
-          <input id="reach-input-countries" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-satisfaction">Satisfaction %</label>
-          <input id="reach-input-satisfaction" type="number" min="0" max="100" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-        </div>
-      </div>
-
-      <button type="submit" class="mt-4 text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 transition-colors">Save</button>
-    </form>
-  </div>
-
-  <!-- Stats -->
-  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-    <div class="bg-white border border-grey-200 rounded-xl p-4">
-      <p class="text-2xl font-display font-700" id="stat-total">0</p>
-      <p class="text-xs text-grey-500 mt-0.5">Total leads</p>
-    </div>
-    <div class="bg-white border border-grey-200 rounded-xl p-4">
-      <p class="text-2xl font-display font-700 text-leaf-600" id="stat-new">0</p>
-      <p class="text-xs text-grey-500 mt-0.5">New</p>
-    </div>
-    <div class="bg-white border border-grey-200 rounded-xl p-4">
-      <p class="text-2xl font-display font-700" id="stat-won">0</p>
-      <p class="text-xs text-grey-500 mt-0.5">Won</p>
-    </div>
-    <div class="bg-white border border-grey-200 rounded-xl p-4">
-      <p class="text-2xl font-display font-700" id="stat-avg">$0</p>
-      <p class="text-xs text-grey-500 mt-0.5">Avg. estimate (low end)</p>
-    </div>
-  </div>
-
-  <!-- Search + filter -->
-  <div class="flex flex-wrap items-center gap-3 mb-4">
-    <input id="search-input" type="text" placeholder="Search by name or email…" class="flex-1 min-w-[200px] rounded-lg border border-grey-300 bg-white px-4 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-    <select id="status-filter" class="rounded-lg border border-grey-300 bg-white px-3 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-      <option value="all">All statuses</option>
-      <option value="new">New</option>
-      <option value="contacted">Contacted</option>
-      <option value="won">Won</option>
-      <option value="lost">Lost</option>
-    </select>
-  </div>
-
-  <!-- Table -->
-  <div class="bg-white border border-grey-200 rounded-xl overflow-x-auto">
-    <table class="w-full text-sm">
-      <thead>
-        <tr class="text-left text-xs uppercase tracking-wide text-grey-500 border-b border-grey-200">
-          <th class="px-4 py-3 font-semibold">Contact</th>
-          <th class="px-4 py-3 font-semibold">Video type</th>
-          <th class="px-4 py-3 font-semibold">Length</th>
-          <th class="px-4 py-3 font-semibold">Estimate</th>
-          <th class="px-4 py-3 font-semibold">Status</th>
-          <th class="px-4 py-3 font-semibold">Date</th>
-          <th class="px-4 py-3 font-semibold text-right">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="leads-tbody"></tbody>
-    </table>
-    <p id="empty-state" class="hidden text-center text-sm text-grey-400 py-14">No leads yet. Submissions from the site's quote form will show up here — or add one manually.</p>
-  </div>
-
-</main>
+  </main>
+</div>
 
 <!-- ============ MODAL ============ -->
 <div id="modal-overlay" class="modal-overlay hidden fixed inset-0 z-50 bg-ink-950/50 backdrop-blur-sm flex items-center justify-center p-4">
@@ -232,6 +314,11 @@
           <option value="won">Won</option>
           <option value="lost">Lost</option>
         </select>
+      </div>
+
+      <div class="mt-4">
+        <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="f-notes">Notes</label>
+        <textarea id="f-notes" rows="3" placeholder="Internal notes — not shown to the lead…" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20"></textarea>
       </div>
 
       <div class="mt-5 rounded-xl bg-ink-800 text-white px-5 py-4 flex items-center justify-between">
@@ -287,6 +374,7 @@
 
   let leads = [];
   let editingId = null; // null = creating new
+  let selectedIds = new Set();
 
   function toast(msg) {
     const el = document.getElementById('toast');
@@ -308,6 +396,52 @@
     catch { return ''; }
   }
 
+  function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+
+  // ===== View switching (sidebar) — a single page, no reloads; the hash
+  // just makes the current section bookmarkable / restorable on refresh. =====
+  const VIEWS = ['overview', 'leads', 'homepage'];
+  function switchView(view) {
+    if (!VIEWS.includes(view)) view = 'overview';
+    VIEWS.forEach(v => document.getElementById('view-' + v).classList.toggle('hidden', v !== view));
+    document.querySelectorAll('.dash-nav-btn').forEach(btn => btn.classList.toggle('is-active', btn.dataset.view === view));
+    if (location.hash.slice(1) !== view) location.hash = view;
+  }
+  document.querySelectorAll('.dash-nav-btn').forEach(btn => btn.addEventListener('click', () => switchView(btn.dataset.view)));
+  document.getElementById('view-all-leads-btn').addEventListener('click', () => switchView('leads'));
+  window.addEventListener('hashchange', () => switchView(location.hash.slice(1)));
+
+  // ===== Overview =====
+  function renderOverview() {
+    document.getElementById('stat-total').textContent = leads.length;
+    document.getElementById('stat-new').textContent = leads.filter(l => l.status === 'new').length;
+    document.getElementById('stat-contacted').textContent = leads.filter(l => l.status === 'contacted').length;
+    document.getElementById('stat-won').textContent = leads.filter(l => l.status === 'won').length;
+    document.getElementById('stat-lost').textContent = leads.filter(l => l.status === 'lost').length;
+    const lows = leads.map(l => parseInt((l.estimate || '').replace(/[^0-9]/g, '').slice(0, 4), 10)).filter(n => !isNaN(n));
+    const avg = lows.length ? Math.round(lows.reduce((a, b) => a + b, 0) / lows.length) : 0;
+    document.getElementById('stat-avg').textContent = '$' + avg.toLocaleString();
+
+    document.getElementById('nav-leads-badge').textContent = leads.length;
+
+    const recent = [...leads].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+    document.getElementById('recent-leads-list').innerHTML = recent.map(l => `
+      <div class="flex items-center justify-between py-2.5 border-b border-grey-100 last:border-0">
+        <div class="min-w-0 pr-3">
+          <p class="text-sm font-medium truncate">${escapeHtml(l.name)}</p>
+          <p class="text-xs text-grey-500">${fmtDate(l.date)}</p>
+        </div>
+        <span class="text-xs font-semibold rounded-full px-2.5 py-1 shrink-0 ${STATUS_STYLES[l.status] || STATUS_STYLES.new}">${escapeHtml(l.status)}</span>
+      </div>`).join('');
+    document.getElementById('recent-empty').classList.toggle('hidden', recent.length > 0);
+  }
+
+  // ===== Leads =====
+  function updateBulkBar() {
+    document.getElementById('bulk-count').textContent = selectedIds.size + ' selected';
+    document.getElementById('bulk-bar').classList.toggle('hidden', selectedIds.size === 0);
+  }
+
   function render() {
     const q = document.getElementById('search-input').value.trim().toLowerCase();
     const statusFilter = document.getElementById('status-filter').value;
@@ -318,10 +452,15 @@
       return matchesQ && matchesStatus;
     });
 
+    // Selection can only ever contain leads that still exist.
+    const liveIds = new Set(leads.map(l => l.id));
+    selectedIds.forEach(id => { if (!liveIds.has(id)) selectedIds.delete(id); });
+
     const tbody = document.getElementById('leads-tbody');
     tbody.innerHTML = filtered.map(l => `
       <tr class="lead-row border-b border-grey-100 last:border-0 hover:bg-grey-50">
-        <td class="px-4 py-3">
+        <td class="pl-4 pr-2 py-3"><input type="checkbox" class="row-checkbox rounded border-grey-300 text-leaf-600 focus:ring-leaf-500/40" data-id="${l.id}" ${selectedIds.has(l.id) ? 'checked' : ''} aria-label="Select ${escapeHtml(l.name)}"></td>
+        <td class="px-2 py-3">
           <p class="font-medium">${escapeHtml(l.name)}</p>
           <p class="text-grey-500 text-xs">${escapeHtml(l.email)}</p>
         </td>
@@ -336,6 +475,9 @@
             <option value="lost" ${l.status === 'lost' ? 'selected' : ''}>Lost</option>
           </select>
         </td>
+        <td class="px-4 py-3">
+          <input type="text" class="notes-input w-40 rounded-md border border-transparent hover:border-grey-300 focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20 px-2 py-1 text-xs bg-transparent focus:bg-white transition-colors" data-id="${l.id}" value="${escapeHtml(l.notes || '')}" placeholder="Add note…">
+        </td>
         <td class="px-4 py-3 text-grey-500 whitespace-nowrap">${fmtDate(l.date)}</td>
         <td class="px-4 py-3 text-right whitespace-nowrap">
           <button type="button" class="edit-btn text-grey-500 hover:text-leaf-600 px-2" data-id="${l.id}" aria-label="Edit lead">✎</button>
@@ -345,15 +487,23 @@
 
     document.getElementById('empty-state').classList.toggle('hidden', filtered.length > 0);
 
-    // stats (computed from all leads, not just the filtered view)
-    document.getElementById('stat-total').textContent = leads.length;
-    document.getElementById('stat-new').textContent = leads.filter(l => l.status === 'new').length;
-    document.getElementById('stat-won').textContent = leads.filter(l => l.status === 'won').length;
-    const lows = leads.map(l => parseInt((l.estimate || '').replace(/[^0-9]/g, '').slice(0, 4), 10)).filter(n => !isNaN(n));
-    const avg = lows.length ? Math.round(lows.reduce((a, b) => a + b, 0) / lows.length) : 0;
-    document.getElementById('stat-avg').textContent = '$' + avg.toLocaleString();
+    // header "select all" reflects only the currently-filtered rows
+    const selectAllCb = document.getElementById('select-all-checkbox');
+    const visibleIds = filtered.map(l => l.id);
+    const selectedVisibleCount = visibleIds.filter(id => selectedIds.has(id)).length;
+    selectAllCb.checked = visibleIds.length > 0 && selectedVisibleCount === visibleIds.length;
+    selectAllCb.indeterminate = selectedVisibleCount > 0 && selectedVisibleCount < visibleIds.length;
+
+    updateBulkBar();
+    renderOverview();
 
     // wire row controls
+    tbody.querySelectorAll('.row-checkbox').forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (cb.checked) selectedIds.add(cb.dataset.id); else selectedIds.delete(cb.dataset.id);
+        render();
+      });
+    });
     tbody.querySelectorAll('.status-select').forEach(sel => {
       sel.addEventListener('change', async () => {
         const lead = leads.find(l => l.id === sel.dataset.id);
@@ -371,12 +521,32 @@
         }
       });
     });
+    tbody.querySelectorAll('.notes-input').forEach(input => {
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
+      input.addEventListener('blur', async () => {
+        const lead = leads.find(l => l.id === input.dataset.id);
+        if (!lead) return;
+        const val = input.value.trim();
+        if (val === (lead.notes || '')) return;
+        const previous = lead.notes || '';
+        lead.notes = val;
+        try {
+          await apiFetch(`/leads/${lead.id}`, { method: 'PUT', body: JSON.stringify({ notes: val }) });
+          toast('Note saved');
+        } catch (err) {
+          lead.notes = previous;
+          input.value = previous;
+          toast(err.message || 'Failed to save note');
+        }
+      });
+    });
     tbody.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.id)));
     tbody.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', async () => {
       if (!confirm('Delete this lead? This cannot be undone.')) return;
       const id = btn.dataset.id;
       const removed = leads.find(l => l.id === id);
       leads = leads.filter(l => l.id !== id);
+      selectedIds.delete(id);
       render();
       try {
         await apiFetch(`/leads/${id}`, { method: 'DELETE' });
@@ -389,16 +559,78 @@
     }));
   }
 
-  function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+  document.getElementById('select-all-checkbox').addEventListener('change', (e) => {
+    const q = document.getElementById('search-input').value.trim().toLowerCase();
+    const statusFilter = document.getElementById('status-filter').value;
+    const visibleIds = leads
+      .filter(l => (!q || l.name.toLowerCase().includes(q) || l.email.toLowerCase().includes(q)) && (statusFilter === 'all' || l.status === statusFilter))
+      .map(l => l.id);
+    if (e.target.checked) visibleIds.forEach(id => selectedIds.add(id));
+    else visibleIds.forEach(id => selectedIds.delete(id));
+    render();
+  });
+
+  document.getElementById('bulk-clear-btn').addEventListener('click', () => { selectedIds.clear(); render(); });
+
+  document.getElementById('bulk-delete-btn').addEventListener('click', async () => {
+    if (!selectedIds.size) return;
+    if (!confirm(`Delete ${selectedIds.size} lead(s)? This cannot be undone.`)) return;
+    const ids = [...selectedIds];
+    const removedMap = new Map(ids.map(id => [id, leads.find(l => l.id === id)]));
+    leads = leads.filter(l => !ids.includes(l.id));
+    selectedIds.clear();
+    render();
+    // Sequential on purpose: firing these concurrently (Promise.all) races
+    // against the read-modify-write each DELETE does server-side — two
+    // requests can both read the pre-delete list before either writes back,
+    // so the second write silently undoes the first. Awaiting one at a time
+    // avoids that regardless of how the backend is deployed.
+    const failed = [];
+    for (const id of ids) {
+      try { await apiFetch(`/leads/${id}`, { method: 'DELETE' }); }
+      catch (err) { failed.push(id); }
+    }
+    if (failed.length) {
+      failed.forEach(id => { const lead = removedMap.get(id); if (lead) leads.push(lead); });
+      render();
+      toast(`Deleted ${ids.length - failed.length}, failed to delete ${failed.length}`);
+    } else {
+      toast(ids.length + ' lead(s) deleted');
+    }
+  });
+
+  document.getElementById('bulk-apply-status-btn').addEventListener('click', async () => {
+    const status = document.getElementById('bulk-status-select').value;
+    if (!status) { toast('Choose a status first'); return; }
+    if (!selectedIds.size) return;
+    const ids = [...selectedIds];
+    const previous = new Map(ids.map(id => [id, leads.find(l => l.id === id)?.status]));
+    ids.forEach(id => { const l = leads.find(x => x.id === id); if (l) l.status = status; });
+    render();
+    // Sequential for the same reason as bulk delete above.
+    const failed = [];
+    for (const id of ids) {
+      try { await apiFetch(`/leads/${id}`, { method: 'PUT', body: JSON.stringify({ status }) }); }
+      catch (err) { failed.push(id); }
+    }
+    if (failed.length) {
+      failed.forEach(id => { const l = leads.find(x => x.id === id); if (l) l.status = previous.get(id); });
+      render();
+      toast(`Updated ${ids.length - failed.length}, failed for ${failed.length}`);
+    } else {
+      toast('Status updated for ' + ids.length + ' lead(s)');
+    }
+    document.getElementById('bulk-status-select').value = '';
+  });
 
   // ===== Modal =====
   const overlay = document.getElementById('modal-overlay');
-  const panel = document.getElementById('modal-panel');
   const form = document.getElementById('lead-form');
   const fType = document.getElementById('f-type');
   const fLength = document.getElementById('f-length');
   const fAddons = document.getElementById('f-addons');
   const fEstimate = document.getElementById('f-estimate-output');
+  const fNotes = document.getElementById('f-notes');
 
   fType.innerHTML = Object.keys(TYPE_BASE).map(t => `<option value="${t}">${t} · $${TYPE_BASE[t]}</option>`).join('');
   fLength.innerHTML = Object.keys(LENGTH_MULT).map(l => `<option value="${l}">${l}</option>`).join('');
@@ -426,6 +658,7 @@
     fType.value = lead ? lead.type : Object.keys(TYPE_BASE)[0];
     fLength.value = lead ? lead.length : Object.keys(LENGTH_MULT)[0];
     document.getElementById('f-status').value = lead ? lead.status : 'new';
+    fNotes.value = lead ? (lead.notes || '') : '';
     document.querySelectorAll('.f-addon-check').forEach(c => {
       c.checked = !!(lead && (lead.addons || []).some(a => a.startsWith(c.value)));
     });
@@ -452,6 +685,7 @@
       length: fLength.value,
       addons: chosenAddons,
       status: document.getElementById('f-status').value,
+      notes: fNotes.value.trim(),
       estimate: computeEstimate(fType.value, fLength.value, chosenAddons.map(a => a.split(' +$')[0]))
     };
 
@@ -480,8 +714,8 @@
   document.getElementById('search-input').addEventListener('input', render);
   document.getElementById('status-filter').addEventListener('change', render);
 
-  // Homepage — Global Reach map stats (site.clientsServedByRegion + the two
-  // extra stat-bar figures; "Clients served" itself is totalled on the page).
+  // ===== Homepage — Global Reach map stats (site.clientsServedByRegion + the
+  // two extra stat-bar figures; "Clients served" itself is totalled on the page). =====
   const REACH_REGIONS = [
     'northAmerica', 'southAmerica', 'europe', 'africa', 'middleEast',
     'southAsia', 'southeastAsia', 'eastAsia', 'centralAsia', 'oceania'
@@ -520,6 +754,8 @@
   });
 
   (async function init() {
+    switchView(location.hash.slice(1));
+
     try {
       leads = await apiFetch('/leads');
     } catch (err) {

@@ -87,4 +87,25 @@ async function saveLeads(leads) {
   return leads;
 }
 
-module.exports = { getContent, saveContent, getLeads, saveLeads };
+// Route handlers do read → modify → write across two separate store calls,
+// which races if two requests overlap (e.g. the dashboard's bulk actions
+// firing several PUT/DELETE calls back to back): both read the same
+// pre-write state, and whichever save() lands second silently discards the
+// first save's change. These two queues serialize same-resource writes
+// within this process so each transaction fully completes before the next
+// starts — the fix on the client is to also await requests sequentially
+// rather than firing them with Promise.all, since a serverless deployment
+// may not route concurrent requests to the same process (and thus the same
+// queue) at all.
+function makeLock() {
+  let chain = Promise.resolve();
+  return function withLock(fn) {
+    const run = chain.then(fn, fn);
+    chain = run.then(() => {}, () => {});
+    return run;
+  };
+}
+const withContentLock = makeLock();
+const withLeadsLock = makeLock();
+
+module.exports = { getContent, saveContent, getLeads, saveLeads, withContentLock, withLeadsLock };
