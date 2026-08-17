@@ -13,6 +13,7 @@ const { requireAuthPage } = require('./auth');
 const contentRouter = require('./routes/content');
 const leadsRouter = require('./routes/leads');
 const sessionRouter = require('./routes/session');
+const pagesRouter = require('./routes/pages');
 
 const SESSION_SECRET = process.env.SESSION_SECRET || 'dev-insecure-secret-change-me';
 
@@ -39,6 +40,7 @@ function mount(prefix, router) {
 mount('/api/content', contentRouter);
 mount('/api/leads', leadsRouter);
 mount('/api', sessionRouter);
+mount('', pagesRouter);
 
 // The dashboard page itself — protected, and deliberately NOT inside /public so it can
 // never be reached as a plain static file.

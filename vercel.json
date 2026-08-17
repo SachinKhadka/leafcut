@@ -8,6 +8,15 @@
   },
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/handler" },
-    { "source": "/dashboard", "destination": "/api/handler" }
+    { "source": "/dashboard", "destination": "/api/handler" },
+    { "source": "/work", "destination": "/api/handler" },
+    { "source": "/lines", "destination": "/api/handler" },
+    { "source": "/lines/:slug", "destination": "/api/handler" },
+    { "source": "/ai-studio", "destination": "/api/handler" },
+    { "source": "/studio", "destination": "/api/handler" },
+    { "source": "/contact", "destination": "/api/handler" },
+    { "source": "/partners", "destination": "/api/handler" },
+    { "source": "/privacy", "destination": "/api/handler" },
+    { "source": "/terms", "destination": "/api/handler" }
   ]
 }
