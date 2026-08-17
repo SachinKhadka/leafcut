@@ -123,9 +123,9 @@ function renderNav() {
 function renderFooter() {
   return `
 <footer class="bg-ink-800 text-ink-200">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid md:grid-cols-12 gap-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid md:grid-cols-12 gap-10">
 
-    <div class="md:col-span-5 reveal">
+    <div class="md:col-span-4 reveal">
       <a href="/" class="flex items-center gap-2 font-display font-700 text-lg text-white">
         <svg class="h-7 w-7" viewBox="195 335 155 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path fill="#6bdb37" d="M268.65,351.18h62.57l-98.05,53.1v-17.62c0-19.59,15.88-35.48,35.48-35.48Z"/>
@@ -136,11 +136,11 @@ function renderFooter() {
       <p class="mt-4 text-sm leading-relaxed text-ink-300 max-w-sm">The best product companies in the world do not own their factories. They hire the best one. Leafcut is that floor for video — 50,000 finished videos, one system, delivered in as little as 24 hours.</p>
     </div>
 
-    <div class="md:col-span-3 reveal" style="transition-delay:.05s">
+    <div class="md:col-span-2 reveal" style="transition-delay:.05s">
       <p class="text-xs font-semibold tracking-widest uppercase text-ink-400 mb-4">Navigate</p>
-      <nav class="flex flex-col gap-3 text-sm" aria-label="Footer">
+      <nav class="flex flex-col gap-3 text-sm" aria-label="Footer navigate">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
         <a href="/work" class="hover:text-white transition-colors">Work</a>
-        <a href="/lines" class="hover:text-white transition-colors">The Lines</a>
         <a href="/ai-studio" class="hover:text-white transition-colors">AI Studio</a>
         <a href="/studio" class="hover:text-white transition-colors">Studio</a>
         <a href="/partners" class="hover:text-white transition-colors">Partners</a>
@@ -148,7 +148,19 @@ function renderFooter() {
       </nav>
     </div>
 
-    <div class="md:col-span-4 reveal" style="transition-delay:.1s">
+    <div class="md:col-span-3 reveal" style="transition-delay:.1s">
+      <p class="text-xs font-semibold tracking-widest uppercase text-ink-400 mb-4">The Lines</p>
+      <nav class="flex flex-col gap-3 text-sm" aria-label="Footer lines">
+        <a href="/lines" class="hover:text-white transition-colors">All lines</a>
+        <a href="/lines/product-explainer" class="hover:text-white transition-colors">Product &amp; Explainer</a>
+        <a href="/lines/brand-launch-film" class="hover:text-white transition-colors">Brand &amp; Launch Film</a>
+        <a href="/lines/training-enablement" class="hover:text-white transition-colors">Training &amp; Enablement</a>
+        <a href="/lines/localisation" class="hover:text-white transition-colors">Localisation</a>
+        <a href="/lines/content-operations" class="hover:text-white transition-colors">Content Operations</a>
+      </nav>
+    </div>
+
+    <div class="md:col-span-3 reveal" style="transition-delay:.15s">
       <p class="text-xs font-semibold tracking-widest uppercase text-ink-400 mb-4">Get in touch</p>
       <a href="mailto:hello@leafcut.studio" class="text-sm hover:text-white transition-colors">hello@leafcut.studio</a>
       <p class="mt-2 text-sm text-ink-300">24-hour delivery available</p>
