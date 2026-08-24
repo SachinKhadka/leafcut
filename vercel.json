@@ -9,6 +9,7 @@
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/handler" },
     { "source": "/dashboard", "destination": "/api/handler" },
+    { "source": "/finance", "destination": "/api/handler" },
     { "source": "/work", "destination": "/api/handler" },
     { "source": "/lines", "destination": "/api/handler" },
     { "source": "/lines/:slug", "destination": "/api/handler" },
