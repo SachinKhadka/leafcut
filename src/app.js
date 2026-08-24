@@ -50,6 +50,14 @@ allRoutes.push({
   handlers: [requireAuthPage, async (req, res) => sendFile(res, path.join(VIEWS_DIR, 'dashboard.html'))]
 });
 
+// Internal finance report — same login-gated pattern as /dashboard, kept out of
+// /public so it can't be reached as a plain static file.
+allRoutes.push({
+  method: 'GET',
+  ...compilePath('/finance'),
+  handlers: [requireAuthPage, async (req, res) => sendFile(res, path.join(VIEWS_DIR, 'finance.html'))]
+});
+
 function matchRoute(method, pathname) {
   for (const route of allRoutes) {
     if (route.method !== method) continue;

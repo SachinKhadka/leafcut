@@ -56,6 +56,7 @@
     </a>
     <div class="flex items-center gap-4">
       <a href="/?edit=1" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">Edit site content →</a>
+      <a href="/finance" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">Finance report →</a>
       <a href="/" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">← Back to site</a>
       <button id="logout-btn" type="button" class="text-xs font-medium text-ink-100 hover:text-white transition-colors">Log out</button>
     </div>
@@ -204,62 +205,24 @@
 
         <div class="bg-white border border-grey-200 rounded-xl p-5">
           <p class="text-xs font-semibold text-leaf-600 uppercase tracking-wide mb-1">Global Reach map</p>
-          <h2 class="font-display text-lg font-700">Clients served, by region</h2>
-          <p class="text-sm text-grey-500 mt-1 max-w-lg">Shown in the homepage world map's region list, plus the stat bar underneath it (clients served is totalled automatically).</p>
+          <h2 class="font-display text-lg font-700">Clients served, by country</h2>
+          <p class="text-sm text-grey-500 mt-1 max-w-lg">Shown on the homepage world map and its country list, plus the stat bar underneath it (countries reached and projects delivered are totalled automatically).</p>
 
           <form id="reach-stat-form" class="mt-5">
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-northAmerica">North America</label>
-                <input id="reach-input-northAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
+            <div class="flex items-end gap-3 flex-wrap">
+              <div class="flex-1 min-w-[14rem] max-w-sm">
+                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-add-select">Add a country</label>
+                <select id="reach-add-select" class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20"></select>
               </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAmerica">South America</label>
-                <input id="reach-input-southAmerica" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-europe">Europe</label>
-                <input id="reach-input-europe" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-africa">Africa</label>
-                <input id="reach-input-africa" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-middleEast">Middle East</label>
-                <input id="reach-input-middleEast" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southAsia">South Asia</label>
-                <input id="reach-input-southAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-southeastAsia">Southeast Asia</label>
-                <input id="reach-input-southeastAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-eastAsia">East Asia</label>
-                <input id="reach-input-eastAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-centralAsia">Central Asia</label>
-                <input id="reach-input-centralAsia" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-oceania">Oceania</label>
-                <input id="reach-input-oceania" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
+              <button type="button" id="reach-add-btn" class="text-sm font-semibold px-4 py-2.5 rounded-lg border border-grey-300 hover:bg-grey-50 transition-colors">+ Add</button>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-grey-100 grid grid-cols-2 gap-3 max-w-sm">
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-countries">Countries reached</label>
-                <input id="reach-input-countries" type="number" min="0" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-satisfaction">Satisfaction %</label>
-                <input id="reach-input-satisfaction" type="number" min="0" max="100" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
-              </div>
+            <div id="reach-country-rows" class="mt-4 divide-y divide-grey-100 border-t border-b border-grey-100 max-w-xl"></div>
+            <p id="reach-empty-note" class="mt-3 text-sm text-grey-400 hidden">No countries added yet — use the picker above.</p>
+
+            <div class="mt-4 pt-4 border-t border-grey-100 max-w-[10rem]">
+              <label class="block text-xs font-semibold text-grey-500 uppercase tracking-wide mb-1.5" for="reach-input-satisfaction">Satisfaction %</label>
+              <input id="reach-input-satisfaction" type="number" min="0" max="100" step="1" required class="w-full rounded-lg border border-grey-300 px-3.5 py-2.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20">
             </div>
 
             <button type="submit" class="mt-4 text-sm font-semibold px-5 py-2.5 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-900 transition-colors">Save</button>
@@ -693,23 +656,65 @@
   document.getElementById('search-input').addEventListener('input', render);
   document.getElementById('status-filter').addEventListener('change', render);
 
-  // ===== Homepage — Global Reach map stats (site.clientsServedByRegion + the
-  // two extra stat-bar figures; "Clients served" itself is totalled on the page). =====
-  const REACH_REGIONS = [
-    'northAmerica', 'southAmerica', 'europe', 'africa', 'middleEast',
-    'southAsia', 'southeastAsia', 'eastAsia', 'centralAsia', 'oceania'
-  ];
+  // ===== Homepage — Global Reach map stats (site.clientsServedByCountry, keyed
+  // by ISO 3166-1 alpha-2 code, + the satisfaction figure; countries reached and
+  // projects delivered are totalled automatically on the page). Only countries
+  // the homepage map actually draws are offered here, so every entry saved is
+  // guaranteed to render. =====
+  const REACH_COUNTRIES = [["AF","Afghanistan"],["AL","Albania"],["DZ","Algeria"],["AO","Angola"],["AR","Argentina"],["AM","Armenia"],["AU","Australia"],["AT","Austria"],["AZ","Azerbaijan"],["BS","Bahamas"],["BD","Bangladesh"],["BY","Belarus"],["BE","Belgium"],["BZ","Belize"],["BJ","Benin"],["BT","Bhutan"],["BO","Bolivia"],["BA","Bosnia and Herzegovina"],["BW","Botswana"],["BR","Brazil"],["BN","Brunei"],["BG","Bulgaria"],["BF","Burkina Faso"],["BI","Burundi"],["KH","Cambodia"],["CM","Cameroon"],["CA","Canada"],["CF","Central African Republic"],["TD","Chad"],["CL","Chile"],["CN","China"],["CO","Colombia"],["CR","Costa Rica"],["HR","Croatia"],["CU","Cuba"],["CY","Cyprus"],["CZ","Czechia"],["DK","Denmark"],["DJ","Djibouti"],["DO","Dominican Republic"],["CD","DR Congo"],["EC","Ecuador"],["EG","Egypt"],["SV","El Salvador"],["GQ","Equatorial Guinea"],["ER","Eritrea"],["EE","Estonia"],["SZ","Eswatini"],["ET","Ethiopia"],["FK","Falkland Islands"],["FJ","Fiji"],["FI","Finland"],["FR","France"],["TF","French Southern and Antarctic Lands"],["GA","Gabon"],["GM","Gambia"],["GE","Georgia"],["DE","Germany"],["GH","Ghana"],["GR","Greece"],["GL","Greenland"],["GT","Guatemala"],["GN","Guinea"],["GW","Guinea-Bissau"],["GY","Guyana"],["HT","Haiti"],["HN","Honduras"],["HU","Hungary"],["IS","Iceland"],["IN","India"],["ID","Indonesia"],["IR","Iran"],["IQ","Iraq"],["IE","Ireland"],["IL","Israel"],["IT","Italy"],["CI","Ivory Coast"],["JM","Jamaica"],["JP","Japan"],["JO","Jordan"],["KZ","Kazakhstan"],["KE","Kenya"],["KW","Kuwait"],["KG","Kyrgyzstan"],["LA","Laos"],["LV","Latvia"],["LB","Lebanon"],["LS","Lesotho"],["LR","Liberia"],["LY","Libya"],["LT","Lithuania"],["LU","Luxembourg"],["MG","Madagascar"],["MW","Malawi"],["MY","Malaysia"],["ML","Mali"],["MR","Mauritania"],["MX","Mexico"],["MD","Moldova"],["MN","Mongolia"],["ME","Montenegro"],["MA","Morocco"],["MZ","Mozambique"],["MM","Myanmar"],["NA","Namibia"],["NP","Nepal"],["NL","Netherlands"],["NC","New Caledonia"],["NZ","New Zealand"],["NI","Nicaragua"],["NE","Niger"],["NG","Nigeria"],["KP","North Korea"],["MK","North Macedonia"],["NO","Norway"],["OM","Oman"],["PK","Pakistan"],["PS","Palestine"],["PA","Panama"],["PG","Papua New Guinea"],["PY","Paraguay"],["PE","Peru"],["PH","Philippines"],["PL","Poland"],["PT","Portugal"],["PR","Puerto Rico"],["QA","Qatar"],["CG","Republic of the Congo"],["RO","Romania"],["RU","Russia"],["RW","Rwanda"],["SA","Saudi Arabia"],["SN","Senegal"],["RS","Serbia"],["SL","Sierra Leone"],["SK","Slovakia"],["SI","Slovenia"],["SB","Solomon Islands"],["SO","Somalia"],["ZA","South Africa"],["KR","South Korea"],["SS","South Sudan"],["ES","Spain"],["LK","Sri Lanka"],["SD","Sudan"],["SR","Suriname"],["SE","Sweden"],["CH","Switzerland"],["SY","Syria"],["TW","Taiwan"],["TJ","Tajikistan"],["TZ","Tanzania"],["TH","Thailand"],["TL","Timor-Leste"],["TG","Togo"],["TT","Trinidad and Tobago"],["TN","Tunisia"],["TR","Türkiye"],["TM","Turkmenistan"],["UG","Uganda"],["UA","Ukraine"],["AE","United Arab Emirates"],["GB","United Kingdom"],["US","United States"],["UY","Uruguay"],["UZ","Uzbekistan"],["VU","Vanuatu"],["VE","Venezuela"],["VN","Vietnam"],["EH","Western Sahara"],["YE","Yemen"],["ZM","Zambia"],["ZW","Zimbabwe"]];
+  const REACH_COUNTRY_NAMES = Object.fromEntries(REACH_COUNTRIES);
+  let reachRows = {};
+
+  function renderReachAddSelect() {
+    const select = document.getElementById('reach-add-select');
+    const available = REACH_COUNTRIES.filter(([code]) => reachRows[code] == null);
+    select.innerHTML = available.map(([code, name]) => `<option value="${code}">${name}</option>`).join('');
+    document.getElementById('reach-add-btn').disabled = available.length === 0;
+  }
+
+  function renderReachRows() {
+    const container = document.getElementById('reach-country-rows');
+    const codes = Object.keys(reachRows).sort((a, b) => (REACH_COUNTRY_NAMES[a] || a).localeCompare(REACH_COUNTRY_NAMES[b] || b));
+    container.innerHTML = codes.map(code => `
+      <div class="flex items-center gap-3 py-2.5" data-code="${code}">
+        <span class="flex-1 text-sm font-medium text-ink-900">${escapeHtml(REACH_COUNTRY_NAMES[code] || code)} <span class="text-grey-400 font-normal">${code}</span></span>
+        <input type="number" min="0" step="1" class="reach-row-input w-28 rounded-lg border border-grey-300 px-3 py-1.5 text-sm focus:border-leaf-500 focus:ring-2 focus:ring-leaf-500/20" value="${reachRows[code]}">
+        <button type="button" class="reach-row-remove h-8 w-8 rounded-full hover:bg-grey-100 flex items-center justify-center text-grey-400 hover:text-red-600 transition-colors" aria-label="Remove ${escapeHtml(REACH_COUNTRY_NAMES[code] || code)}">&times;</button>
+      </div>
+    `).join('');
+    document.getElementById('reach-empty-note').classList.toggle('hidden', codes.length > 0);
+    renderReachAddSelect();
+  }
+
+  document.getElementById('reach-add-btn').addEventListener('click', () => {
+    const code = document.getElementById('reach-add-select').value;
+    if (!code || reachRows[code] != null) return;
+    reachRows[code] = 0;
+    renderReachRows();
+  });
+
+  document.getElementById('reach-country-rows').addEventListener('input', (e) => {
+    if (!e.target.classList.contains('reach-row-input')) return;
+    const row = e.target.closest('[data-code]');
+    reachRows[row.dataset.code] = e.target.value;
+  });
+
+  document.getElementById('reach-country-rows').addEventListener('click', (e) => {
+    const btn = e.target.closest('.reach-row-remove');
+    if (!btn) return;
+    delete reachRows[btn.closest('[data-code]').dataset.code];
+    renderReachRows();
+  });
+
   document.getElementById('reach-stat-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const clientsServedByRegion = {};
-    for (const key of REACH_REGIONS) {
-      const value = parseInt(document.getElementById('reach-input-' + key).value, 10);
-      if (isNaN(value) || value < 0) { toast('Enter a valid number for every region'); return; }
-      clientsServedByRegion[key] = value;
+    const clientsServedByCountry = {};
+    for (const [code, value] of Object.entries(reachRows)) {
+      const n = parseInt(value, 10);
+      if (isNaN(n) || n < 0) { toast('Enter a valid number for every country'); return; }
+      clientsServedByCountry[code] = n;
     }
-    const countriesReachedCount = parseInt(document.getElementById('reach-input-countries').value, 10);
     const clientSatisfactionPercent = parseInt(document.getElementById('reach-input-satisfaction').value, 10);
-    if (isNaN(countriesReachedCount) || countriesReachedCount < 0) { toast('Enter a valid countries-reached number'); return; }
     if (isNaN(clientSatisfactionPercent) || clientSatisfactionPercent < 0 || clientSatisfactionPercent > 100) { toast('Satisfaction must be 0–100'); return; }
 
     const btn = e.target.querySelector('button[type="submit"]');
@@ -717,7 +722,7 @@
     try {
       await apiFetch('/content/site', {
         method: 'PUT',
-        body: JSON.stringify({ clientsServedByRegion, countriesReachedCount, clientSatisfactionPercent })
+        body: JSON.stringify({ clientsServedByCountry, clientSatisfactionPercent })
       });
       toast('Homepage stats updated');
     } catch (err) {
@@ -745,11 +750,8 @@
 
     try {
       const content = await apiFetch('/content');
-      const byRegion = (content.site && content.site.clientsServedByRegion) || {};
-      REACH_REGIONS.forEach(key => {
-        document.getElementById('reach-input-' + key).value = byRegion[key] ?? 0;
-      });
-      document.getElementById('reach-input-countries').value = (content.site && content.site.countriesReachedCount) ?? 0;
+      reachRows = { ...((content.site && content.site.clientsServedByCountry) || {}) };
+      renderReachRows();
       document.getElementById('reach-input-satisfaction').value = (content.site && content.site.clientSatisfactionPercent) ?? 0;
     } catch (err) {
       toast(err.message || 'Failed to load homepage settings');
