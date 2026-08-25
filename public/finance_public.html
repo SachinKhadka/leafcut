@@ -187,6 +187,8 @@
 1.6346153846153846,
 1.4607843137254901
 ],
+"aov_new": [78.2, 81.2, 90.5, 100.6, 78.2, 94.7, 99.7, 95.1, 98.0, 125.4, 119.9, 124.5],
+"aov_returning": [107.3, 85.3, 99.6, 121.3, 129.9, 109.4, 103.9, 94.8, 102.8, 118.4, 152.2, 114.4],
 "pct_completed_status": [
 100.0,
 99.40828402366864,
@@ -1349,6 +1351,24 @@ null,
     <div class="finding">12-month total, by order date: <b>$228.2K</b> net price billed, <b>$134.7K</b> contribution margin (<b>59.0%</b> average margin). Jun 2026 is the peak month at $26.7K, with Jul 2026 close behind at <b>$25.0K</b> — both fully closed months by order date. See "Why order date, not List" below for why this report doesn't use ClickUp's own month-list totals.</div>
   </section>
 
+  <section class="block" id="sec-aov">
+  <div class="block-head">
+    <div>
+      <div class="block-num">04 — Average order value</div>
+      <h2 class="block-title">Returning clients spend slightly more per order</h2>
+    </div>
+  </div>
+  <p class="block-dek">Net price per task, by month, split by whether the client had ordered before that month. Overall AOV (both combined) has climbed from $88 (Aug 2025) to $122 (Jul 2026).</p>
+  <div class="card">
+    <div class="legend">
+      <span class="legend-item"><span class="swatch" style="background:var(--series-new)"></span>New clients</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--series-returning)"></span>Returning clients</span>
+    </div>
+    <div class="chart-wrap" id="chart-aov"></div>
+  </div>
+  <div class="finding">Per order, returning clients spend <b>$111.31</b> on average vs. <b>$100.93</b> for new clients — both figures are Net Price, attributed by order date.</div>
+</section>
+
   <section class="block hidden" id="sec-quality">
     <div class="block-head">
       <div>
@@ -1378,7 +1398,7 @@ null,
   <section class="block " id="sec-clients">
     <div class="block-head">
       <div>
-        <div class="block-num">04 — Clients</div>
+        <div class="block-num">05 — Clients</div>
         <h2 class="block-title">Who's ordering the most — and paying the most</h2>
       </div>
     </div>
@@ -1655,6 +1675,11 @@ null,
     { data: DATA.net_price, color: getComputedStyle(document.documentElement).getPropertyValue("--seq-500").trim(), label: "Net price" },
     { data: DATA.contribution_margin, color: getComputedStyle(document.documentElement).getPropertyValue("--series-returning").trim(), label: "Margin" },
   ], { money: true, height: 240 });
+
+  renderLineChart("chart-aov", DATA.months, [
+  { data: DATA.aov_new, color: getComputedStyle(document.documentElement).getPropertyValue("--series-new").trim(), label: "New clients" },
+  { data: DATA.aov_returning, color: getComputedStyle(document.documentElement).getPropertyValue("--series-returning").trim(), label: "Returning clients" },
+], { money: true, height: 220, padL: 44 });
 
   renderLineChart("chart-late", DATA.months, [
     { data: DATA.pct_late, color: getComputedStyle(document.documentElement).getPropertyValue("--status-critical").trim(), label: "Late %" },
