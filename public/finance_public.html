@@ -1410,19 +1410,19 @@ null,
 
   <footer class="methodology">
     <h3>Methodology &amp; notes</h3>
-    <p><b>Scope.</b> Every task in Space "Client's Project" → Folder "Production", drawn from a full-history ClickUp export (3,131 tasks) provided directly by the user on Aug 22, 2026. Every metric in this report — revenue, volume, cohort, retention, and quality — windows to the same 12 completed months by order date: Aug 2025–Jul 2026, 2,188 client tasks, 1,404 unique clients.</p>
-    <p><b>Why order date, not ClickUp's "List."</b> ClickUp's "List" field is a manually-created monthly bucket; until the next month's list exists, newly-created tasks default into whichever list is current, so a list's task count isn't a reliable record of when work was actually ordered. As of this export, 137 tasks that were really Aug-2026 orders were still sitting in the "Jul 2026" list, and "Mar 2025" is a legacy catch-all rather than real March orders. Every figure in this report uses each task's own <b>Date Created</b> field instead, which doesn't have that problem.</p>
-    <p><b>Cohort month.</b> A client's cohort is the calendar month of their first-ever task by order date, across the full history available (Apr 2025 onward — May 2025 is excluded, see below) — so a client who first ordered in Apr 2025 and reappears in Sep 2025 is correctly counted as "returning," not "new."</p>
-    <p><b>Client identity.</b> Parsed from the "Ordered by" / "Client name" custom fields, falling back to the task-name prefix before the parenthesis (e.g. "abe12345 (LaunchpadTV)" → abe12345) when a field was blank. Minor spelling/casing variants of the same handle were merged. Tasks previously logged under the placeholder identity "unknown" were identified as belonging to a real client and are now included under the name Nacho.</p>
-    <h3>Exclusions &amp; caveats</h3>
-    <ul>
+    <!-- <p><b>Scope.</b> Every task in Space "Client's Project" → Folder "Production", drawn from a full-history ClickUp export (3,131 tasks) provided directly by the user on Aug 22, 2026. Every metric in this report — revenue, volume, cohort, retention, and quality — windows to the same 12 completed months by order date: Aug 2025–Jul 2026, 2,188 client tasks, 1,404 unique clients.</p> -->
+    <!-- <p><b>Why order date, not ClickUp's "List."</b> ClickUp's "List" field is a manually-created monthly bucket; until the next month's list exists, newly-created tasks default into whichever list is current, so a list's task count isn't a reliable record of when work was actually ordered. As of this export, 137 tasks that were really Aug-2026 orders were still sitting in the "Jul 2026" list, and "Mar 2025" is a legacy catch-all rather than real March orders. Every figure in this report uses each task's own <b>Date Created</b> field instead, which doesn't have that problem.</p> -->
+    <p><b>Cohort month.</b> A client's cohort is the calendar month of their first-ever task by order date, across the full history available (Apr 2025 onward — May 2025 is excluded, see below) — so a client who first ordered in Apr 2025 and reappears in Sep 2025 is correctly counted as "returning," not "new." But the reapeat client before who have multiple orders before Apr 2025 and reappears in this time range is counted as a new client</p>
+    <!-- <p><b>Client identity.</b> Parsed from the "Ordered by" / "Client name" custom fields, falling back to the task-name prefix before the parenthesis (e.g. "abe12345 (LaunchpadTV)" → abe12345) when a field was blank. Minor spelling/casing variants of the same handle were merged. Tasks previously logged under the placeholder identity "unknown" were identified as belonging to a real client and are now included under the name Nacho.</p> -->
+    <!-- <h3>Exclusions &amp; caveats</h3> -->
+    <!-- <ul>
       <li>205 tasks created in May 2025 are excluded throughout — a one-time bulk backlog entry made when ClickUp was first set up, not representative of real order timing.</li>
       <li>4 tasks tagged to the placeholder identity "biiyond" (internal projects) were excluded from client-level counts — they aren't a real client account.</li>
       <li>Financial figures reflect the "Total price," "Net Price," and "Contribution Margin" fields as entered in ClickUp; currency/units weren't independently verified against billing records.</li>
       <li>The "Rating" field is heavily ceiling'd — 95% of rated tasks show a perfect 5.0 — so it's reported for completeness but isn't a strong differentiator between months.</li>
       <li>Cancellations are inferred from a "canceled" tag rather than a status, since cancelled ClickUp tasks in this workspace are still marked "completed."</li>
       <li><b>Data limitation — repeat-client scope.</b> Order history is only reliably available from April 2025 onward by order date (earlier records sat in a legacy catch-all list, and May 2025 reflects a one-time bulk backlog entry rather than real order timing, so both are excluded/adjusted above). A client who was ordering from Leafcut before April 2025 but placed only one order in this window is still classified here as a one-time / new client — their earlier history isn't reliably captured. Treat "new" client counts as an upper bound, not a certainty.</li>
-    </ul>
+    </ul> -->
   </footer>
 
 </div>
